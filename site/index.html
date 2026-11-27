@@ -1,0 +1,1440 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Markup Instructions</title>
+<meta name="description" content="Tell Claude what to mark in its replies, and choose how you see it: a few hundred words of instructions and a small renderer.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231b1e24'/%3E%3Crect x='7' y='8.5' width='18' height='3.2' rx='1.6' fill='%236b7280'/%3E%3Crect x='7' y='14.4' width='13' height='3.2' rx='1.6' fill='%23ff6b8b'/%3E%3Crect x='7' y='20.3' width='15' height='3.2' rx='1.6' fill='%23d65fd6'/%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="canonical" href="https://markupinstructions.com/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://markupinstructions.com/">
+<meta property="og:title" content="Markup Instructions">
+<meta property="og:description" content="Tell Claude what to mark in its replies, and choose how you see it: a few hundred words of instructions and a small renderer.">
+<meta property="og:image" content="https://markupinstructions.com/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The page's opening: Tell Claude what to mark. Choose how you see it. Beside it, a reply with its marks drawn in colour.">
+<meta name="twitter:card" content="summary_large_image">
+<script>try { if (localStorage.getItem('surface') === 'terminal') document.documentElement.setAttribute('data-surface', 'terminal'); } catch (e) {}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..750&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: one reading column (~66ch) with figures breaking out wider. Reply views are drawn as a generic chat app (the default), which follows the page's theme, or as a terminal, which stays dark in both themes. */
+:root {
+  --bg: #f4f5f7;
+  --surface: #ffffff;
+  --sunk: #eceef2;
+  --ink: #1a1d23;
+  --muted: #586070;
+  --faint: #8a91a0;
+  --line: #dcdfe6;
+  --focus: #3b5bdb;
+  --accent: #0b8571;
+
+  --open: #a53ba5; --open-2: #b35ab3; --guess: #c42443; --decided: #3c7a13; --changed: #0b8571; --checked: #9a6a06; --unknown: #8c6a3c;
+  --todo: #6b3fb3; --send: #b5541a;
+
+  --term: #15171c; --term-edge: #2a2e36; --term-ink: #d6d9df; --term-dim: #7d8492; --term-code: #a3acf5; --term-bright: #f2f3f5; --term-line: #343944; --term-bar: #3a3f4a;
+  --term-ghost: #4b515d; --term-code-bg: transparent;
+
+  --f-display: "Bricolage Grotesque", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --f-body: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --f-mono: "JetBrains Mono", "SF Mono", Menlo, Consolas, monospace;
+  --col: 41rem; --wide: 62rem;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #111317; --surface: #191c22; --sunk: #1f232a; --ink: #e4e6ea; --muted: #a0a7b4; --faint: #737b89; --line: #2b3039; --focus: #8ea2ff; --accent: #4fd6be;
+    --open: #e07ce0; --open-2: #eea6ee; --guess: #ff6b8b; --decided: #8bd450; --changed: #4fd6be; --checked: #f5b942; --unknown: #d9b88c;
+    --todo: #b98cf0; --send: #f09a5a;
+    --term: #0c0d10; --term-edge: #262a32;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #111317; --surface: #191c22; --sunk: #1f232a; --ink: #e4e6ea; --muted: #a0a7b4; --faint: #737b89; --line: #2b3039; --focus: #8ea2ff; --accent: #4fd6be;
+  --open: #e07ce0; --open-2: #eea6ee; --guess: #ff6b8b; --decided: #8bd450; --changed: #4fd6be; --checked: #f5b942; --unknown: #d9b88c;
+  --todo: #b98cf0; --send: #f09a5a;
+  --term: #0c0d10; --term-edge: #262a32;
+  color-scheme: dark;
+}
+/* Surface: the reply views' tokens. The terminal (above) stays dark in both themes; the chat app, the default, follows the page's theme. */
+:root:not([data-surface="terminal"]) {
+  --term: #ffffff; --term-edge: #dcdfe6; --term-ink: #2b2f36; --term-dim: #6b7280; --term-code: #2b2f36; --term-bright: #111317; --term-line: #e4e7ec; --term-bar: #d9dde3; --term-ghost: #a3a9b4; --term-code-bg: #eef0f3;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-surface="terminal"]):not([data-theme="light"]) {
+    --term: #1c1f25; --term-edge: #2c3139; --term-ink: #dcdfe4; --term-dim: #8a91a0; --term-code: #e4e6ea; --term-bright: #f5f6f8; --term-line: #2e333c; --term-bar: #363b45; --term-ghost: #5a606c; --term-code-bg: #2a2e36;
+  }
+}
+:root:not([data-surface="terminal"])[data-theme="dark"] {
+  --term: #1c1f25; --term-edge: #2c3139; --term-ink: #dcdfe4; --term-dim: #8a91a0; --term-code: #e4e6ea; --term-bright: #f5f6f8; --term-line: #2e333c; --term-bar: #363b45; --term-ghost: #5a606c; --term-code-bg: #2a2e36;
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--ink);
+  font: 400 1.0625rem/1.65 var(--f-body);
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration-color: var(--faint); text-underline-offset: 3px; }
+a:hover { text-decoration-color: currentColor; }
+:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; border-radius: 3px; }
+.col { max-width: var(--wide); margin-inline: auto; }
+.col > * { max-width: var(--col); }
+.wide { max-width: var(--wide); margin-inline: auto; }
+h1, h2, h3 { font-family: var(--f-display); text-wrap: balance; letter-spacing: -0.01em; }
+h1 { font-size: clamp(2.6rem, 7.4vw, 5rem); line-height: 1.0; font-weight: 700; margin: 0; letter-spacing: -0.03em; max-width: 15ch; }
+h2 { font-size: clamp(1.65rem, 3.4vw, 2.25rem); line-height: 1.12; font-weight: 650; margin: 0 0 0.8rem; }
+h3 { font-size: 1.2rem; line-height: 1.3; font-weight: 650; margin: 0 0 0.4rem; }
+p { margin: 0 0 1rem; }
+.eyebrow { font: 600 0.75rem/1 var(--f-body); text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); margin-bottom: 0.9rem; }
+.lede { font-size: 1.2rem; line-height: 1.55; max-width: 38rem; margin: 0; color: var(--muted); }
+.small { font-size: 0.9rem; color: var(--muted); }
+.lbl-top { font: 600 0.72rem/1.2 var(--f-body); text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 0.5rem; }
+code { font-family: var(--f-mono); font-size: 0.86em; }
+p code, li code, figcaption code, summary code { background: var(--sunk); padding: 0.08em 0.35em; border-radius: 4px; }
+section { padding-block: clamp(3rem, 7vw, 5rem); border-top: 1px solid var(--line); }
+section.tint { background: var(--sunk); margin-inline: calc(-1 * max(16px, env(safe-area-inset-left, 0px))); padding-inline: max(16px, env(safe-area-inset-left, 0px)); }
+section.tint p code, section.tint figcaption code { background: var(--surface); }
+figure { margin: 1.8rem 0 0; }
+figcaption { font-size: 0.88rem; color: var(--muted); margin-top: 0.8rem; line-height: 1.5; max-width: var(--col); }
+.arrow { color: var(--faint); display: flex; align-items: center; justify-content: center; }
+.arrow svg { display: block; }
+
+/* tag names in running text */
+.k-open, .k-open-ask { --k: var(--open); } .k-open-default { --k: var(--open-2); }
+.k-guess { --k: var(--guess); } .k-decided { --k: var(--decided); } .k-changed { --k: var(--changed); } .k-checked { --k: var(--checked); }
+.tagname { font-family: var(--f-mono); font-size: 0.85rem; color: var(--k); font-weight: 600; white-space: nowrap; }
+
+/* reply views */
+.term { background: var(--term); color: var(--term-ink); border: 1px solid var(--term-edge); border-radius: 10px; font: 400 0.86rem/1.65 var(--f-mono); padding: 1.1rem 1.2rem 1.2rem; overflow-x: auto; min-width: 0; }
+.term .bar { display: flex; gap: 6px; margin: -0.3rem 0 0.9rem; }
+.term .bar i { width: 9px; height: 9px; border-radius: 50%; background: #2e323b; display: block; }
+.term .reply { position: relative; transition: filter .35s ease; }
+.term p { margin: 0 0 0.85rem; } .term p:last-child { margin-bottom: 0; }
+.term code { color: var(--term-code); font-size: 1em; background: none; padding: 0; }
+section.tint .term p code { background: none; padding: 0; }
+.term b { color: var(--term-bright); font-weight: 600; }
+.term.sm { padding: 0.65rem 0.8rem; font-size: 0.8rem; line-height: 1.55; border-radius: 8px; }
+/* faded bars above an example: earlier lines of a longer reply */
+.earlier { display: grid; gap: 0.85rem; padding-top: 0.25rem; margin-bottom: 1rem; -webkit-mask-image: linear-gradient(to bottom, transparent, #000 85%); mask-image: linear-gradient(to bottom, transparent, #000 85%); }
+.earlier i { display: block; height: 7px; border-radius: 4px; background: var(--term-bar); }
+.m .raw, .m .tsym, .m .note { display: none; }
+.mode-rendered .m, .mode-squint .m { color: var(--c); }
+.mode-rendered .m .lbl code, .mode-squint .m .lbl code { color: var(--c); }
+.mode-rendered .m .tsym, .mode-squint .m .tsym, .mode-rendered .m .note, .mode-squint .m .note { display: inline; }
+.m .note { color: color-mix(in srgb, var(--c) 60%, #000); }
+.mode-raw .m .raw { display: inline; color: var(--term-ink); }
+.mode-squint .reply { filter: blur(3.2px); }
+@media (prefers-reduced-motion: reduce) { .term .reply { transition: none !important; } }
+/* a mark's colour: --cd on dark, --cl on light; the chat surface in a light theme takes the light one */
+.cc { --c: var(--cd); }
+:root:not([data-surface="terminal"]) .cc { --c: var(--cl, var(--cd)); }
+:root:not([data-surface="terminal"]) .xrow .xsym { color: var(--cl); }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-surface="terminal"]):not([data-theme="light"]) .cc { --c: var(--cd); }
+  :root:not([data-surface="terminal"]):not([data-theme="light"]) .xrow .xsym { color: var(--c); }
+}
+:root:not([data-surface="terminal"])[data-theme="dark"] .cc { --c: var(--cd); }
+:root:not([data-surface="terminal"])[data-theme="dark"] .xrow .xsym { color: var(--c); }
+/* the chat surface: a proportional font, inline code on a chip, and the user's message as a bubble in place of the window dots */
+:root:not([data-surface="terminal"]) .term { font: 400 0.95rem/1.65 var(--f-body); border-radius: 14px; }
+:root:not([data-surface="terminal"]) .term.sm { font-size: 0.86rem; line-height: 1.55; border-radius: 10px; }
+:root:not([data-surface="terminal"]) .anat-line { line-height: 2.1; }
+:root:not([data-surface="terminal"]) .term code { background: var(--term-code-bg); padding: 0.08em 0.35em; border-radius: 4px; font-size: 0.88em; }
+:root:not([data-surface="terminal"]) .term .bar { justify-content: flex-end; margin: 0 0 1rem; }
+:root:not([data-surface="terminal"]) .term .bar i { display: none; }
+:root:not([data-surface="terminal"]) .term .bar i:first-child { display: block; width: min(16rem, 55%); height: 2.2rem; border-radius: 1.1rem; background: var(--term-line); }
+:root:not([data-surface="terminal"]) .term .m .note { color: var(--term-dim); }
+:root:not([data-surface="terminal"]) .chk .mk { font: 400 0.86rem/1.5 var(--f-body); border: 1px solid var(--term-edge); }
+:root:not([data-surface="terminal"]) .doc { border: 1px solid var(--term-edge); }
+:root:not([data-surface="terminal"]) .doc .foot .ln, :root:not([data-surface="terminal"]) .doc .extra .ln { background: var(--term-ghost); }
+:root:not([data-surface="terminal"]) .doc .badge { color: var(--term); background: var(--term-ink); }
+:root:not([data-surface="terminal"]) .xrules .xt { color: var(--accent); }
+:root:not([data-surface="terminal"]) .bv.after .bv-head b { color: var(--accent); }
+:root:not([data-surface="terminal"]) .bv-doc i.b { box-shadow: none; }
+:root:not([data-surface="terminal"]) .trow2.hit .box { outline-color: var(--decided); }
+:root:not([data-surface="terminal"]) .seg.top button[aria-pressed="true"] { border-color: var(--ink); }
+
+/* the surface switch */
+/* the nav: the page's name, the surface switch and the repo link */
+.nav { border-bottom: 1px solid var(--line); margin-inline: calc(-1 * max(16px, env(safe-area-inset-left, 0px))); padding-inline: max(16px, env(safe-area-inset-left, 0px)); }
+.nav-inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.6rem 1.2rem; padding-block: 0.75rem; }
+.nav-brand { font: 650 1.05rem/1 var(--f-display); letter-spacing: -0.01em; text-decoration: none; white-space: nowrap; }
+.nav-right { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem 1rem; }
+.nav-repo { display: inline-flex; align-items: center; gap: 0.45rem; font: 500 0.85rem/1 var(--f-body); color: var(--bg); background: var(--ink); border: 1px solid var(--ink); border-radius: 8px; padding: 0.55rem 0.95rem; min-height: 2.25rem; text-decoration: none; }
+.nav-repo:hover { opacity: 0.88; }
+.nav-right .surface-bar { padding-right: 1rem; border-right: 1px solid var(--line); }
+@media (max-width: 560px) { .nav-right .surface-bar { padding-right: 0; border-right: 0; } }
+.nav-repo svg { flex: none; display: block; }
+.surface-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem 0.7rem; }
+.surface-bar .seg { margin: 0; }
+.surface-lbl { font-size: 0.85rem; color: var(--muted); }
+.surface-bar button { display: inline-flex; align-items: center; gap: 0.45rem; }
+.surface-bar svg { flex: none; display: block; }
+
+/* segmented controls */
+.seg { display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: center; margin-bottom: 0.8rem; }
+.seg button, .tbtn { font: 500 0.85rem/1 var(--f-body); color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 0.55rem 0.9rem; min-height: 2.25rem; cursor: pointer; }
+.seg button[aria-pressed="true"], .tbtn[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.seg.modes button { font-size: 0.8rem; padding: 0.45rem 0.75rem; }
+/* top-level switchers: each pill carries a small dark chip with its tags' symbols, and turns into a piece of the reply view when chosen */
+.seg.top { gap: 0.5rem; margin-bottom: 1rem; }
+.seg.top button { position: relative; overflow: hidden; max-width: 100%; text-align: left; line-height: 1.25; display: inline-flex; align-items: center; gap: 0.6rem; border-radius: 12px; padding: 0.4rem 0.9rem 0.4rem 0.4rem; min-height: 2.75rem; font-weight: 600; transition: background-color .15s ease, border-color .15s ease, color .15s ease; }
+.seg.top button:hover { border-color: var(--faint); }
+.seg.top button::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: var(--grad, var(--accent)); opacity: 0; transition: opacity .15s ease; }
+.seg.top button[aria-pressed="true"] { background: var(--term); color: var(--term-bright); border-color: var(--term-line); box-shadow: 0 10px 22px -14px rgba(0,0,0,.6); }
+.seg.top button[aria-pressed="true"]::after { opacity: 1; }
+.seg.top .chip { display: inline-flex; align-items: center; gap: 0.3rem; background: var(--term); border: 1px solid var(--term-edge); border-radius: 8px; padding: 0.4rem 0.5rem; font: 600 0.82rem/1 var(--f-mono); }
+.seg.top button[aria-pressed="true"] .chip { border-color: var(--term-line); }
+.seg.top .chip i { font-style: normal; color: var(--c); }
+.seg.top .chip i.dim { opacity: 0.3; }
+@media (prefers-reduced-motion: reduce) { .seg.top button, .seg.top button::after { transition: none; } }
+
+/* 0. hero */
+.hero { padding-block: clamp(4rem, 11vw, 7rem) clamp(3.5rem, 8vw, 5.5rem); }
+.hero-grid { display: grid; gap: 1.2rem; justify-items: start; min-width: 0; }
+.hero-text { display: grid; gap: 1.2rem; justify-items: start; min-width: 0; }
+.hero .eyebrow { margin-bottom: 0; }
+/* the hero's video: one reply as it renders today, as markdown, tagged, drawn and highlighted; it follows the theme and pauses on a click */
+.hero-fig { margin: 1.6rem 0 0; width: 100%; max-width: 34rem; min-width: 0; }
+.hero-vid { position: relative; display: block; width: 100%; padding: 0; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; background: none; cursor: pointer; }
+.hero-vid:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; }
+.hero-vid video { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; }
+.hv-icon { position: absolute; right: 0.6rem; bottom: 0.6rem; width: 2rem; height: 2rem; border-radius: 50%; display: grid; place-items: center; background: rgba(17, 19, 23, 0.6); color: #fff; opacity: 0; transition: opacity .2s ease; }
+.hv-icon .play, .hero-vid.paused .hv-icon .pause { display: none; }
+.hero-vid.paused .hv-icon .play { display: block; }
+.hero-vid:hover .hv-icon, .hero-vid:focus-visible .hv-icon, .hero-vid.paused .hv-icon { opacity: 1; }
+@media (prefers-reduced-motion: reduce) { .hv-icon { transition: none; } }
+@media (min-width: 980px) {
+  .hero-grid { grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); column-gap: clamp(2rem, 5vw, 4rem); align-items: center; }
+  .hero h1 { font-size: clamp(2.6rem, 5.2vw, 4.4rem); }
+  .hero-fig { margin-top: 0; max-width: none; }
+}
+
+/* 1. today */
+.levers { display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: 1rem; }
+.lever { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 1rem; display: flex; flex-direction: column; gap: 0.7rem; min-width: 0; }
+.lever h3 { margin: 0; font-size: 1.05rem; }
+.lever .quote { font: 400 0.78rem/1.45 var(--f-mono); color: var(--muted); }
+.lever .cost { font-size: 0.88rem; line-height: 1.5; color: var(--muted); margin: auto 0 0; }
+.doc { background: var(--term); border-radius: 8px; padding: 0.85rem 0.8rem; display: grid; gap: 7px; position: relative; min-height: 10rem; align-content: start; }
+.ln { height: 7px; border-radius: 4px; background: var(--term-line); display: flex; overflow: hidden; }
+.ln > s { display: block; height: 100%; text-decoration: none; }
+.ln .g { background: var(--term-line); } .ln .gap { background: transparent; }
+.ln.ghost, .ln .ghost { background: transparent; outline: 1px dashed var(--term-ghost); outline-offset: -1px; border-radius: 4px; }
+.doc .foot { margin-top: 6px; border-top: 1px solid var(--term-bar); padding-top: 8px; display: grid; gap: 6px; }
+.doc .foot .ln { background: #5a606c; }
+.doc .badge { position: absolute; top: 0.6rem; right: 0.6rem; font: 600 0.72rem/1 var(--f-mono); color: #e6e8ec; background: #2d323c; border-radius: 4px; padding: 0.3rem 0.4rem; }
+.doc .extra { margin-top: 6px; border-top: 1px dashed var(--term-bar); padding-top: 8px; display: grid; gap: 6px; }
+.doc .extra .ln { background: #4a505c; }
+.dig { margin-top: 2.4rem; }
+.dig-head { display: flex; flex-wrap: wrap; gap: 0.6rem 1rem; align-items: center; justify-content: space-between; margin-bottom: 0.7rem; }
+.dig-head p { margin: 0; font: 650 clamp(1.15rem, 2.2vw, 1.35rem)/1.3 var(--f-display); letter-spacing: -0.01em; color: var(--ink); max-width: 34rem; padding-left: 0.85rem; border-left: 3px solid var(--accent); text-wrap: balance; }
+.pin { display: inline-block; font: 700 0.68rem/1.15rem var(--f-body); min-width: 1.15rem; height: 1.15rem; text-align: center; border-radius: 50%; background: var(--term-bright); color: var(--term); margin-right: 0.4rem; vertical-align: 0.12em; }
+.pins-off .pin, .pins-off + .pincaps { visibility: hidden; }
+.pincaps { display: grid; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); gap: 0.4rem 1rem; margin-top: 0.8rem; font-size: 0.92rem; font-weight: 600; }
+.pincaps .pin { background: var(--ink); color: var(--bg); margin: 0 0.45rem 0 0; }
+
+/* 2. the missing piece */
+.anat-line { font-size: 0.95rem; line-height: 2.1; }
+.ap { border-bottom: 2px solid var(--u); padding-bottom: 2px; }
+.ap1 { --u: #82aaff; } .ap2 { --u: var(--term-bright); } .ap3 { --u: #d9b88c; }
+.anat-parts { display: grid; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); gap: 0.5rem 1.2rem; margin-top: 0.8rem; font-size: 0.92rem; line-height: 1.5; color: var(--muted); }
+.anat-parts code { display: inline-block; margin-right: 0.4rem; background: var(--term); color: var(--term-bright); border-bottom: 2px solid var(--u); border-radius: 4px 4px 0 0; padding: 0.1em 0.4em; font-size: 0.8rem; }
+.flow3 { display: grid; grid-template-columns: minmax(0, 1fr) 2.6rem minmax(0, 1fr) 2.6rem minmax(0, 1fr); align-items: stretch; }
+.flow3 > div { min-width: 0; display: flex; flex-direction: column; }
+.flow3 .term { flex-grow: 1; }
+.flow3 .arrow { padding-top: 1.2rem; }
+.steps3 .who { font-size: 0.92rem; font-weight: 600; margin: -0.2rem 0 0.5rem; color: var(--ink); }
+.steps3 .who::before { content: "\2713  "; color: var(--muted); }
+.steps3 .who.yours { color: var(--accent); }
+.steps3 .who.yours::before { content: "\270E  "; color: var(--accent); }
+.steps3 .cap { font-size: 0.85rem; line-height: 1.45; color: var(--muted); margin: 0.5rem 0 0; }
+.steps3 .cap code { background: var(--surface); }
+.term.tree { overflow-wrap: anywhere; }
+.tree .t-node { color: var(--term-dim); } .tree .t-name { color: var(--term-bright); font-weight: 600; }
+.after-fig { margin-top: 1.6rem; max-width: var(--col); }
+@media (max-width: 760px) { .flow3.steps3 .arrow { padding: 1.1rem 0 0.9rem; } }
+.plaintext { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 0.65rem 0.8rem; font: 400 0.85rem/1.55 var(--f-body); overflow-wrap: anywhere; }
+@media (max-width: 760px) {
+  .flow3 { grid-template-columns: 1fr; gap: 0.3rem; }
+  .flow3 .arrow { padding: 0.2rem 0; }
+  .flow3 .arrow svg { transform: rotate(90deg); }
+}
+details.more { margin-top: 1.8rem; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 0.85rem 1rem; }
+details.more summary { cursor: pointer; font-weight: 600; font-size: 0.95rem; }
+details.more > p, details.more li { font-size: 0.9rem; line-height: 1.55; color: var(--muted); }
+details.more > p { margin: 0.8rem 0 0; }
+details.more ul { margin: 0.8rem 0 0; padding-left: 1.1rem; display: grid; gap: 0.5rem; }
+details.more b { color: var(--ink); font-weight: 600; }
+.cite { font-size: 0.85em; color: var(--muted); }
+
+/* 3. a tag is a meaning and a look */
+.xcfg { --xl: 10rem; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 1rem; box-shadow: 0 14px 34px -22px rgba(0,0,0,.35); display: grid; gap: 0.6rem; }
+@media (max-width: 640px) { .xcfg { --xl: 5.4rem; padding: 0.7rem; } }
+/* two bands: the look (left, tinted) stays with the renderer; the meaning (right) goes to Claude */
+.xhead { display: grid; grid-template-columns: var(--xl) minmax(0, 1fr); }
+.xhead > div { padding: 0 0.6rem; font-size: 0.78rem; line-height: 1.3; color: var(--muted); }
+.xhead b { display: block; font: 600 0.72rem/1.3 var(--f-body); text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink); }
+.xlist { display: grid; gap: 0.5rem; }
+.xrow { display: grid; grid-template-columns: var(--xl) minmax(0, 1fr); border: 1px solid var(--line); border-radius: 10px; background: var(--bg); min-width: 0; overflow: hidden; }
+.xlook { background: var(--sunk); padding: 0.6rem; display: flex; flex-wrap: wrap; gap: 0.45rem; justify-content: center; align-content: start; border-right: 1px solid var(--line); }
+.xmean { padding: 0.45rem 0.5rem 0.55rem; display: grid; gap: 0.1rem; align-content: start; min-width: 0; }
+.xouts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin-top: 0.6rem; }
+@media (max-width: 760px) { .xouts { grid-template-columns: 1fr; } }
+.xout { display: flex; flex-direction: column; gap: 0.5rem; min-width: 0; }
+.xrow input, .xrow textarea { font: inherit; color: var(--ink); background: transparent; border: 1px solid transparent; border-radius: 6px; padding: 0.3rem 0.4rem; min-width: 0; width: 100%; }
+.xrow input:hover, .xrow textarea:hover { border-color: var(--line); }
+.xrow input:focus, .xrow textarea:focus { border-color: var(--focus); outline: none; background: var(--surface); }
+.xrow .xsym { width: 2.4rem; height: 2.1rem; display: grid; place-items: center; text-align: center; font: 600 1.05rem/1 var(--f-mono); background: var(--term); color: var(--c); border-radius: 6px; padding: 0; }
+.xrow .xname { font: 600 0.88rem/1.3 var(--f-mono); color: var(--cl, var(--c)); }
+.xrow .xrule { font-size: 0.85rem; line-height: 1.45; color: var(--muted); resize: none; field-sizing: content; min-height: 2.3rem; }
+.xcols { display: flex; gap: 0.35rem; align-items: center; }
+.xsw { position: relative; display: grid; justify-items: center; gap: 0.2rem; font: 500 0.6rem/1 var(--f-body); color: var(--faint); text-transform: uppercase; letter-spacing: 0.06em; cursor: pointer; }
+.xsw i { display: block; width: 1.7rem; height: 1.7rem; border-radius: 6px; border: 1px solid var(--line); }
+.xsw input[type=color] { position: absolute; left: 0; top: 0; width: 1.7rem; height: 1.7rem; opacity: 0; cursor: pointer; padding: 0; border: 0; }
+.xsw:focus-within i { outline: 2px solid var(--focus); outline-offset: 2px; }
+.xwarn { padding: 0 0.4rem; font-size: 0.8rem; line-height: 1.4; color: var(--checked); }
+.xwarn:empty { display: none; }
+.xlbl { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; font: 600 0.7rem/1 var(--f-body); text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); min-height: 1.8rem; }
+.xflash { animation: xflash 1s ease-out; }
+@keyframes xflash { from { box-shadow: 0 0 0 3px var(--focus); } to { box-shadow: 0 0 0 3px transparent; } }
+@media (prefers-reduced-motion: reduce) { .xflash { animation: none; } }
+.xprev { background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 0.8rem 0.9rem; font-size: 0.9rem; line-height: 1.6; }
+.xprev p { margin: 0 0 0.6rem; } .xprev p:last-child { margin: 0; }
+.xprev .m { color: var(--cl, var(--c)); }
+.xprev .m .lbl code { color: inherit; }
+.xprev .m .tsym, .xprev .m .note { display: inline; }
+.xprev .m .note { color: inherit; opacity: 0.62; font-size: 0.9em; }
+.xrules { background: var(--term); color: var(--term-ink); border: 1px solid var(--term-edge); border-radius: 8px; padding: 0.75rem 0.85rem; font: 400 0.72rem/1.6 var(--f-mono); white-space: pre-wrap; overflow-wrap: anywhere; margin: 0; max-height: 15rem; overflow-y: auto; }
+.xrules .xt { color: #c3e88d; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .xprev .m, :root:not([data-theme="light"]) .xrow .xname { color: var(--c); } }
+:root[data-theme="dark"] .xprev .m, :root[data-theme="dark"] .xrow .xname { color: var(--c); }
+/* 9. asking Claude for tags */
+.askc { margin-top: 1rem; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 1rem 1.1rem; display: grid; grid-template-columns: auto 4.5rem minmax(0, 1fr); gap: 0.8rem 0.4rem; align-items: center; }
+.askc h3 { grid-column: 1 / -1; font-size: 1rem; margin: 0; }
+.askc .seg { grid-column: 1 / -1; margin: 0; }
+.askc[data-scope="surface"] .s-project, .askc[data-scope="project"] .s-surface { display: none; }
+.askc[data-scope="project"] .chats > div:nth-child(1) { opacity: 0.12; }
+.askc[data-scope="project"] .chats > div:nth-child(2), .askc[data-scope="project"] .chats > div:nth-child(3) { border: 1.5px dashed var(--send); }
+.askc[data-scope="project"] .chats i.dug { outline-color: var(--send); }
+.pset { display: grid; gap: 0.5rem; }
+.chats { position: relative; width: 9.5rem; height: 7rem; }
+.chats > div { position: absolute; width: 7.5rem; height: 5.2rem; background: var(--term); border: 1px solid var(--term-edge); border-radius: 8px; padding: 0.6rem; display: grid; gap: 6px; align-content: start; }
+.chats > div:nth-child(1) { left: 0; top: 0; opacity: 0.5; }
+.chats > div:nth-child(2) { left: 0.9rem; top: 0.9rem; opacity: 0.75; }
+.chats > div:nth-child(3) { left: 1.8rem; top: 1.8rem; }
+.chats i { display: block; height: 5px; border-radius: 3px; background: var(--term-line); }
+.chats i.dug { outline: 1.5px dashed var(--todo); outline-offset: 2px; }
+.askc .arrow { flex-direction: column; gap: 0.2rem; font-size: 0.72rem; line-height: 1.2; text-align: center; }
+.props { display: grid; gap: 0.5rem; min-width: 0; }
+.keep { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem 0.7rem; font-size: 0.85rem; color: var(--muted); }
+.keep .kchip { display: inline-flex; gap: 0.3rem; background: var(--term); border: 1px solid var(--term-edge); border-radius: 8px; padding: 0.4rem 0.5rem; font: 600 0.82rem/1 var(--f-mono); }
+.keep .kchip i { font-style: normal; color: var(--c); }
+.keep b { font-weight: 600; color: var(--ink); }
+.prop { display: grid; gap: 0.25rem; border: 1.5px dashed var(--k); border-radius: 8px; padding: 0.55rem 0.75rem; }
+.prop .ph { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.2rem 0.7rem; }
+.prop .ph > b { font: 600 0.82rem/1.3 var(--f-mono); color: var(--k); }
+.prop .add { font: 600 0.66rem/1 var(--f-body); text-transform: uppercase; letter-spacing: 0.08em; color: var(--k); border: 1px solid currentColor; border-radius: 4px; padding: 0.2rem 0.3rem; }
+.prop span { font-size: 0.8rem; color: var(--muted); line-height: 1.35; }
+.prop .ev { font-style: italic; }
+.prop .dest { font-size: 0.75rem; color: var(--faint); }
+.k-todo { --k: var(--todo); }
+.k-send { --k: var(--send); }
+@media (max-width: 640px) {
+  .askc { grid-template-columns: 1fr; }
+  .askc .arrow { flex-direction: row; justify-content: flex-start; }
+  .askc .arrow svg { transform: rotate(90deg); }
+}
+
+/* 4. vocabulary switcher */
+.vocab { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); gap: 1.2rem; margin-top: 0.4rem; align-items: start; }
+@media (max-width: 760px) { .vocab { grid-template-columns: 1fr; } }
+.vfor { font-size: 0.95rem; line-height: 1.5; margin: 0 0 0.8rem; }
+.vfor b { font-weight: 600; }
+.vtable { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+.vrow { display: grid; grid-template-columns: 2rem minmax(0, 1fr); gap: 0.2rem 0.7rem; padding: 0.7rem 0.9rem; border-top: 1px solid var(--line); align-items: baseline; }
+.vrow:first-child { border-top: 0; }
+.vrow .ic { font: 600 1.1rem/1 var(--f-mono); text-align: center; border-radius: 6px; background: var(--term); color: var(--c); padding: 0.3rem 0; }
+.vrow .nm { font: 600 0.85rem/1.3 var(--f-mono); }
+.vrow .why { grid-column: 2; font-size: 0.88rem; line-height: 1.45; color: var(--muted); }
+
+/* 4b. vocabularies beyond the preset, always on show */
+.alts { margin-top: 2.4rem; }
+.alts h3 { font-size: 1.1rem; margin: 0 0 0.8rem; }
+.alt-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); gap: 1rem; }
+.alt { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 1rem; display: grid; gap: 0.8rem; align-content: start; min-width: 0; }
+.alt .vfor { margin: 0; }
+.alt .vtable { background: var(--bg); }
+.alt .earlier { gap: 0.65rem; margin-bottom: 0.75rem; }
+
+/* 5. displays */
+.disp .m { color: inherit; }
+.disp .m .tsym { display: none; }
+.disp-colour .m { color: var(--c); }
+.disp-colour .m .tsym, .disp-symbols .m .tsym { display: inline; color: var(--c); }
+.disp-highlight .m .lbl { background: color-mix(in srgb, var(--c) 30%, transparent); color: var(--term-bright); border-radius: 3px; padding: 0.05em 0.15em; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+.disp-underline .m .lbl { text-decoration: underline 2px var(--c); text-underline-offset: 4px; }
+.seg.top .chip i.hl { background: color-mix(in srgb, var(--c) 35%, transparent); color: var(--term-bright); border-radius: 3px; padding: 0.1em 0.2em; }
+.seg.top .chip i.ul { color: var(--term-bright); text-decoration: underline 2px var(--c); text-underline-offset: 3px; }
+.wrote { margin-top: 1rem; }
+.wrote .plaintext { font: 400 0.78rem/1.6 var(--f-mono); color: var(--muted); }
+
+/* 6. what any mark buys */
+.use { margin-top: clamp(2.6rem, 6vw, 4rem); }
+.use + .use { border-top: 1px solid var(--line); padding-top: clamp(2.6rem, 6vw, 4rem); }
+.use h3 { font-size: 1.4rem; margin-bottom: 0.5rem; }
+.use .lead { max-width: var(--col); color: var(--muted); margin-bottom: 1.4rem; }
+.use .boldviz { margin-top: 2rem; }
+.use .kicker { font: 600 0.72rem/1.2 var(--f-body); text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); display: block; margin-bottom: 0.35rem; }
+.two { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin-top: 0.9rem; }
+.two > div { min-width: 0; display: flex; flex-direction: column; }
+.two .term { flex-grow: 1; }
+.two.one { grid-template-columns: minmax(0, 34rem); }
+.two .cap { font-size: 0.88rem; color: var(--muted); margin-top: 0.5rem; line-height: 1.45; }
+@media (max-width: 700px) { .two { grid-template-columns: 1fr; } }
+.boldviz { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin-top: 1.2rem; }
+@media (max-width: 700px) { .boldviz { grid-template-columns: 1fr; } }
+.bv { background: var(--term); border: 1px solid var(--term-edge); border-radius: 12px; padding: 1rem 1.1rem 1.2rem; display: grid; gap: 0.7rem; min-width: 0; }
+.bv-lbl { font: 600 0.7rem/1.2 var(--f-body); text-transform: uppercase; letter-spacing: 0.1em; color: var(--term-dim); }
+.bv-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.3rem 0.7rem; }
+.bv-head b { font: 700 clamp(2.2rem, 4.4vw, 3rem)/1 var(--f-display); color: var(--term-bright); letter-spacing: -0.02em; }
+.bv.after .bv-head b { color: #4fd6be; }
+.bv-head span { font-size: 0.85rem; color: var(--term-dim); }
+.bv-doc { display: grid; gap: 9px; margin-top: 0.3rem; }
+.bv-doc .l { display: flex; gap: 5px; align-items: center; height: 10px; }
+.bv-doc i { display: block; height: 6px; border-radius: 3px; background: var(--term-bar); }
+.bv-doc i.b { height: 10px; background: var(--term-bright); box-shadow: 0 0 10px rgba(242, 243, 245, 0.35); }
+.longreply { padding: 0.9rem 1rem; overflow: hidden; }
+.blurbox { display: grid; gap: 1rem; }
+.blurbox .para { display: grid; gap: 7px; }
+.blurbox .line { display: flex; gap: 5px; height: 7px; }
+.blurbox .line i { display: block; height: 7px; border-radius: 4px; background: var(--term-bar); }
+.thread { padding: 0.75rem 0.8rem; display: grid; gap: 7px; }
+.trow2 { display: grid; grid-template-columns: minmax(0, 1fr) 2.8rem; gap: 0.6rem; align-items: center; }
+.trow2 .box { display: grid; gap: 4px; }
+.trow2 .box i { display: block; height: 5px; border-radius: 3px; background: var(--term-line); }
+.trow2.hit .box { outline: 1.5px solid #8bd450; outline-offset: 3px; border-radius: 3px; }
+.trow2 .ticks { display: flex; gap: 3px; justify-content: flex-end; }
+.trow2 .ticks b { width: 8px; height: 8px; border-radius: 2px; display: block; }
+.found { margin-top: 0.6rem; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 0.6rem 0.8rem; }
+.found .lbl-top { margin-bottom: 0.25rem; font-size: 0.66rem; }
+.found code { color: var(--decided); font-size: 0.8rem; }
+.checks { display: grid; gap: 0.6rem; margin-top: 0.9rem; }
+.chk { display: grid; grid-template-columns: minmax(0, 1fr) 3rem minmax(0, 1fr); align-items: center; }
+.chk.hd { font: 600 0.72rem/1.2 var(--f-body); text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
+.chk .mk { background: var(--term); border-radius: 8px; padding: 0.55rem 0.75rem; font: 400 0.8rem/1.5 var(--f-mono); color: var(--c); min-width: 0; }
+.chk .link { position: relative; height: 100%; display: flex; align-items: center; justify-content: center; }
+.chk .link::before { content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 1.5px; background: var(--faint); }
+.verdict { position: relative; width: 1.7rem; height: 1.7rem; border-radius: 50%; display: grid; place-items: center; color: #fff; font: 700 0.85rem/1 var(--f-body); }
+.v-ok { background: #3c7a13; } .v-guess { background: #6b7280; } .v-no { background: #c42443; }
+.chk .rec { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 0.55rem 0.75rem; font-size: 0.85rem; line-height: 1.45; min-width: 0; }
+.chk.no .rec { border: 1.5px solid var(--guess); }
+.chk .rec.dim { color: var(--muted); }
+@media (max-width: 640px) {
+  .chk { grid-template-columns: 2.2rem minmax(0, 1fr); gap: 0.35rem 0.5rem; }
+  .chk .mk { grid-column: 1 / -1; }
+  .chk .link::before { display: none; }
+  .chk.hd { display: none; }
+}
+
+/* 7. preset */
+.families { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 0.8rem; margin-top: 1.4rem; }
+.fam { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 0.85rem 1rem 0.95rem; display: flex; flex-direction: column; gap: 0.5rem; min-width: 0; }
+.fam .head { display: flex; align-items: baseline; gap: 0.6rem; }
+.fam .big { font-family: var(--f-mono); font-size: 1.3rem; line-height: 1; color: var(--k); }
+.fam .q { font-weight: 600; font-size: 0.95rem; line-height: 1.3; }
+.fam .ex { margin-top: auto; }
+.known { margin-top: 1.8rem; }
+.known > p { font-size: 0.9rem; line-height: 1.55; color: var(--muted); margin: 0; }
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); gap: 1rem; margin-top: 1rem; }
+.fact { border-top: 2px solid var(--line); padding-top: 0.7rem; min-width: 0; }
+.fact h4 { font-size: 0.95rem; margin: 0 0 0.25rem; }
+.fact p { font-size: 0.86rem; line-height: 1.5; color: var(--muted); margin: 0; }
+.rules-pre { background: var(--term); color: var(--term-ink); border-radius: 10px; padding: 1rem 1.1rem; font: 400 0.8rem/1.65 var(--f-mono); white-space: pre-wrap; overflow-wrap: anywhere; margin: 0.8rem 0 0; border: 1px solid var(--term-edge); }
+.copyrow { display: flex; gap: 0.8rem; align-items: center; margin-top: 0.6rem; font-size: 0.85rem; color: var(--muted); }
+.copyrow button { font: 500 0.85rem/1 var(--f-body); background: var(--surface); color: var(--ink); border: 1px solid var(--line); border-radius: 6px; padding: 0.5rem 0.8rem; min-height: 2.25rem; cursor: pointer; }
+
+/* 7b. how the vocabulary changed */
+
+/* 8. limits */
+.limits { display: grid; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); gap: 0.8rem; margin-top: 1.2rem; }
+.limit { display: flex; gap: 0.7rem; align-items: flex-start; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 0.85rem 0.95rem; font-weight: 600; font-size: 0.95rem; line-height: 1.4; min-width: 0; }
+.limit svg { flex: none; color: var(--muted); margin-top: 0.1rem; }
+
+/* 9. yours to change */
+.track { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1px; margin-top: 1.4rem; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: var(--line); }
+.track > div { padding: 1rem; min-width: 0; background: var(--surface); }
+.track h3 { font-size: 1rem; margin: 0 0 0.3rem; }
+.track p { font-size: 0.9rem; line-height: 1.5; color: var(--muted); margin: 0; }
+.track code { font-size: 0.8rem; color: var(--faint); display: block; margin-bottom: 0.35rem; }
+.more-lbl { margin: 1.2rem 0 0; }
+.track.more { margin-top: 0.5rem; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+@media (max-width: 900px) { .track { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 640px) { .track, .track.more { grid-template-columns: 1fr; } }
+.asks-lbl { margin: 2.2rem 0 0; }
+.look { margin-top: 1rem; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 1rem 1.1rem; display: grid; gap: 0.8rem; }
+.look h3 { font-size: 1rem; margin: 0; }
+.look-pair { display: grid; grid-template-columns: minmax(0, 1fr) 2.6rem minmax(0, 1fr); align-items: start; }
+.look-pair > div { min-width: 0; display: flex; flex-direction: column; }
+.look-pair .term { flex-grow: 1; }
+.look-pair .arrow { padding-top: 2.4rem; }
+.look .cap { font-size: 0.85rem; line-height: 1.45; color: var(--muted); margin-top: 0.45rem; }
+@media (max-width: 640px) {
+  .look-pair { grid-template-columns: 1fr; gap: 0.3rem; }
+  .look-pair .arrow { padding: 0.2rem 0; }
+  .look-pair .arrow svg { transform: rotate(90deg); }
+}
+
+footer { border-top: 1px solid var(--line); padding-block: 2rem 3rem; font-size: 0.85rem; color: var(--muted); }
+footer p { margin: 0 0 0.6rem; }
+</style>
+</head>
+<body>
+
+<nav class="nav" aria-label="Site">
+<div class="nav-inner wide">
+  <a class="nav-brand" href="#top">Markup Instructions</a>
+  <div class="nav-right">
+<div class="surface-bar">
+  <span class="surface-lbl" id="surface-lbl">Replies look like</span>
+  <div class="seg modes" role="group" aria-labelledby="surface-lbl" id="surface-seg">
+    <button type="button" data-surface="chat" aria-pressed="true"><svg width="15" height="15" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 2.5h10a1.5 1.5 0 0 1 1.5 1.5v6a1.5 1.5 0 0 1-1.5 1.5H7l-3.5 2.5V11.5H3A1.5 1.5 0 0 1 1.5 10V4A1.5 1.5 0 0 1 3 2.5z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>A chat app</button>
+    <button type="button" data-surface="terminal" aria-pressed="false"><svg width="15" height="15" viewBox="0 0 16 16" aria-hidden="true"><rect x="1.5" y="2.5" width="13" height="11" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M4.5 6.5 6.5 8l-2 1.5M8 10h3.5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>A terminal</button>
+  </div>
+</div>
+    <a class="nav-repo" href="https://github.com/myleslinder/markup-instructions"><svg width="15" height="15" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>View the repo</a>
+  </div>
+</div>
+</nav>
+
+<!-- ============ 0. HERO ============ -->
+<header class="hero" id="top">
+  <div class="wide hero-grid">
+    <div class="hero-text">
+      <div class="eyebrow">Markup instructions for AI chat</div>
+      <h1>Tell Claude what to mark. Choose how you see it.</h1>
+      <p class="lede">Each tag says what it's for, so Claude marks by meaning as it writes, and the mark stays in the reply for you or Claude to check later.</p>
+    </div>
+    <figure class="hero-fig" aria-label="A 10-second loop: a reply as it renders today, its markdown, Claude adding tags to the markdown, the reply with its marks drawn in colour, then drawn as a highlighter.">
+      <button type="button" class="hero-vid" id="hero-vid" aria-label="Pause the animation">
+        <video id="hero-video" src="hero-light.mp4" poster="hero-light.png" width="880" height="660" muted loop playsinline preload="auto" aria-hidden="true"></video>
+        <span class="hv-icon" aria-hidden="true"><svg class="pause" width="12" height="12" viewBox="0 0 12 12"><path d="M3 1.5v9M9 1.5v9" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg><svg class="play" width="12" height="12" viewBox="0 0 12 12"><path d="M3 1.2v9.6L11 6z" fill="currentColor"/></svg></span>
+      </button>
+    </figure>
+  </div>
+</header>
+
+<main>
+
+<!-- ============ 1. THE PROBLEM ============ -->
+<section id="problem">
+  <div class="col">
+    <div class="eyebrow">Why this exists</div>
+    <h2>Bold is what Claude points with</h2>
+    <p>To make something stand out, Claude almost always uses bold, and rarely italic. Bold says a sentence matters, not whether it's a guess, a question for you or something done, so you still read every sentence to sort them.</p>
+  </div>
+  <div class="wide dig">
+    <div class="dig-head">
+      <p>Three bold spans, three different kinds of statement.</p>
+      <button type="button" class="tbtn" id="pins-btn" aria-pressed="true">Hide</button>
+    </div>
+    <div class="term" id="pins-term"><div class="bar" aria-hidden="true"><i></i><i></i><i></i></div><div class="reply">
+      <p><span class="pin">3</span>I <b>switched the signup emails to the new provider</b>. <span class="pin">2</span>A test signup to your address arrived in about two seconds.</p>
+      <p>The old provider's key is still in <code>.env</code>, so both are set up for now. <span class="pin">3</span>I haven't touched password-reset emails, which go through a separate path. <span class="pin">2</span><b>Reset emails probably share the signup template</b>, but I didn't open it to check.</p>
+      <p><span class="pin">1</span><b>Should the sender stay noreply@yourapp.com, or move to hello@?</b> <span class="pin">1</span>I'll remove the old provider's key on Friday unless you want to keep it.</p>
+    </div></div>
+    <div class="pincaps" aria-live="polite">
+      <div><span class="pin">1</span>Which of these needs you?</div>
+      <div><span class="pin">2</span>Which was checked, and which is a guess?</div>
+      <div><span class="pin">3</span>What did it do, and what did it leave?</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 1b. THE USUAL FIX: ANOTHER INSTRUCTION ============ -->
+<section id="today" class="tint">
+  <div class="col">
+    <div class="eyebrow">The usual fix</div>
+    <h2>Instructions can only change the words</h2>
+    <p>Custom instructions are how people shape replies now: an 80/20 rule, a fixed structure, a word limit. Each one works by changing the reply itself, not by showing you which sentence is which.</p>
+  </div>
+  <div class="wide">
+    <figure>
+      <div class="levers">
+        <div class="lever">
+          <h3>Cut</h3>
+          <div class="doc" aria-hidden="true">
+            <div class="ln" style="width:92%"></div>
+            <div class="ln ghost" style="width:80%"></div>
+            <div class="ln" style="width:88%"></div>
+            <div class="ln" style="width:60%"></div>
+            <div class="ln ghost" style="width:94%"></div>
+            <div class="ln ghost" style="width:72%"></div>
+            <div class="ln" style="width:85%"></div>
+          </div>
+          <span class="quote">"Be concise."</span>
+          <p class="cost">Claude decides what you don't see.</p>
+        </div>
+        <div class="lever">
+          <h3>Reshape</h3>
+          <div class="doc" aria-hidden="true">
+            <div class="ln" style="width:92%"></div>
+            <div class="ln" style="width:80%"><s class="g" style="width:30%"></s><s class="ghost" style="width:45%"></s><s class="gap" style="width:25%"></s></div>
+            <div class="ln" style="width:88%"></div>
+            <div class="ln" style="width:94%"><s class="g" style="width:55%"></s><s class="ghost" style="width:45%"></s></div>
+            <div class="foot">
+              <div class="ln" style="width:52%"></div>
+              <div class="ln" style="width:44%"></div>
+            </div>
+          </div>
+          <span class="quote">"End with Next steps and Questions."</span>
+          <p class="cost">One shape for every reply, with items away from their reasons.</p>
+        </div>
+        <div class="lever">
+          <h3>Add on</h3>
+          <div class="doc" aria-hidden="true">
+            <span class="badge">82%</span>
+            <div class="ln" style="width:70%"></div>
+            <div class="ln" style="width:92%"></div>
+            <div class="ln" style="width:80%"></div>
+            <div class="ln" style="width:60%"></div>
+            <div class="extra">
+              <div class="ln" style="width:64%"></div>
+              <div class="ln" style="width:48%"></div>
+            </div>
+          </div>
+          <span class="quote">"Rate your confidence from 1 to 100%."</span>
+          <p class="cost">More to read, and one number for many claims.</p>
+        </div>
+      </div>
+      <figcaption>Dashed outlines show what was dropped or moved.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ============ 2. THE IDEA ============ -->
+<section id="how">
+  <div class="col">
+    <div class="eyebrow">The idea</div>
+    <h2>Like HTML and CSS, for Claude's replies</h2>
+    <p>Claude already writes its replies in markdown, and already knows markdown's syntax for custom tags, called directives. So a few hundred words of instructions are enough to give it a vocabulary of its own to write, the way HTML gives a page its structure. How each tag looks is a separate choice, and wide open, the way CSS is.</p>
+  </div>
+  <div class="wide">
+    <figure aria-label="Writing, reading and drawing one tag, and who does each">
+      <div class="flow3 steps3">
+        <div>
+          <div class="lbl-top">Claude writes it</div>
+          <div class="who">Already in the model</div>
+          <div class="term sm mode-raw"><div class="reply" data-vocab="pen" data-md=":ask[Should the sender move to hello@?]"></div></div>
+          <p class="cap">Your instructions only say what each tag means, such as <code>:ask[…]</code> needs my answer or a go-ahead.</p>
+        </div>
+        <div class="arrow" aria-hidden="true"><svg width="32" height="14" viewBox="0 0 32 14"><path d="M1 7h26M21 1l7 6-7 6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div>
+          <div class="lbl-top">A parser reads it</div>
+          <div class="who">Already open source</div>
+          <div class="term sm tree"><span class="t-node">textDirective</span> <span class="t-name">ask</span><br>└─ text "Should the sender move to hello@?"</div>
+          <p class="cap">remark, a widely used markdown parser, reads a directive the way it reads bold.</p>
+        </div>
+        <div class="arrow" aria-hidden="true"><svg width="32" height="14" viewBox="0 0 32 14"><path d="M1 7h26M21 1l7 6-7 6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div>
+          <div class="lbl-top">Your renderer draws it</div>
+          <div class="who yours">The part you choose</div>
+          <div class="term sm mode-rendered"><div class="reply" data-vocab="pen" data-md=":ask[Should the sender move to hello@?]"></div></div>
+          <p class="cap">A colour, a symbol, an underline: a stylesheet that Claude never reads.</p>
+        </div>
+      </div>
+    </figure>
+    <figure aria-label="The three parts of a directive">
+      <div class="term anat-line"><span class="ap ap1">:verified</span><span class="ap ap2">[A test signup arrived in about two seconds]</span><span class="ap ap3">{src="test send"}</span></div>
+      <div class="anat-parts">
+        <div><code class="ap1">:name</code>The tag, from your instructions.</div>
+        <div><code class="ap2">[label]</code>The passage it marks, and what gets drawn.</div>
+        <div><code class="ap3">{attributes}</code>Optional extras, such as a source.</div>
+      </div>
+    </figure>
+    <p class="after-fig">Ideally chat apps would draw directives themselves. They don't yet, so this project includes small renderers for the places it can reach: Claude Code and claude.ai.</p>
+    <details class="more">
+      <summary>Why directives</summary>
+      <ul>
+        <li><b>A standard syntax.</b> Directives are a proposed part of markdown, written <code>:name[label]{attributes}</code>, so Claude learned them with the rest of markdown.</li>
+        <li><b>Any name works.</b> The standard keeps names it doesn't know, so a new tag works before any renderer has heard of it.</li>
+        <li><b>Readable without a renderer.</b> Where nothing draws them, they read as plain text, the way code reads in a plain editor.</li>
+      </ul>
+    </details>
+  </div>
+</section>
+
+
+<!-- ============ 3. WHAT GETS MARKED ============ -->
+<section id="vocabs" class="tint">
+  <div class="col">
+    <div class="eyebrow">What gets marked</div>
+    <h2>Same reply, marked for what you need</h2>
+    <p>These are examples of problems people can solve for, not things the markup solves on its own.</p>
+  </div>
+  <div class="wide">
+    <div class="seg top" role="group" aria-label="Choose a vocabulary" id="vocab-seg">
+      <button type="button" data-v="ask" aria-pressed="true">What needs me</button>
+      <button type="button" data-v="sure" aria-pressed="false">How sure it is</button>
+      <button type="button" data-v="preset" aria-pressed="false">All three at once</button>
+    </div>
+    <div class="vocab">
+      <div>
+        <p class="vfor" id="vocab-for" aria-live="polite"></p>
+        <div class="vtable" id="vocab-table"></div>
+      </div>
+      <div>
+        <div class="seg modes" role="group" aria-label="How to show the reply" id="mode-seg">
+          <button type="button" data-mode="plain" aria-pressed="false">Plain</button>
+          <button type="button" data-mode="raw" aria-pressed="false">As written</button>
+          <button type="button" data-mode="rendered" aria-pressed="true">Drawn</button>
+          <button type="button" data-mode="squint" aria-pressed="false">Squint</button>
+        </div>
+        <div class="term mode-rendered" id="vocab-term"><div class="bar" aria-hidden="true"><i></i><i></i><i></i></div><div class="reply" id="vocab-reply"></div></div>
+        <p class="small" id="mode-hint" aria-live="polite" style="margin-top:0.6rem"></p>
+      </div>
+    </div>
+    <div class="alts">
+      <h3>Or mark something else</h3>
+      <div class="alt-grid">
+        <div class="alt">
+          <p class="vfor"><b>For problem 3:</b> what it did, and what it left.</p>
+          <div class="vtable" data-rows="did"></div>
+          <div class="term sm mode-rendered"><div class="earlier" aria-hidden="true"><i style="width:90%"></i><i style="width:96%"></i><i style="width:70%"></i></div><div class="reply" data-vocab="did" data-md="I :changed[switched the signup emails to the new provider]. :not-done[I haven't touched password-reset emails, which go through a separate path.]"></div></div>
+        </div>
+        <div class="alt">
+          <p class="vfor"><b>Something else entirely:</b> feedback on a draft.</p>
+          <div class="vtable" data-rows="review"></div>
+          <div class="term sm mode-rendered"><div class="earlier" aria-hidden="true"><i style="width:94%"></i><i style="width:82%"></i><i style="width:97%"></i></div><div class="reply" data-vocab="review" data-md=":needs-source[The 40% drop in churn after the redesign] is the claim the whole piece rests on. :cut[The paragraph on the old onboarding flow repeats the introduction.]"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4. A TAG IS A MEANING AND A LOOK ============ -->
+<section id="meaning-and-look">
+  <div class="col">
+    <div class="eyebrow">Two halves of a tag</div>
+    <h2>A tag is a meaning and a look</h2>
+    <p>Each tag has two halves that go to different places: its meaning to Claude, as one line of your instructions, and its look to your renderer, like a rule in a stylesheet. Restyling a tag never changes what Claude reads.</p>
+  </div>
+  <div class="wide">
+    <figure>
+      <div class="xcfg" id="xcfg">
+        <div class="xhead" aria-hidden="true">
+          <div><b>Look</b>stays with your renderer</div>
+          <div><b>Meaning</b>goes to Claude</div>
+        </div>
+        <div class="xlist" id="xrows"></div>
+        <div class="xouts">
+          <div class="xout">
+            <div class="xlbl"><span>What you see</span></div>
+            <div class="xprev" id="xprev"></div>
+          </div>
+          <div class="xout">
+            <div class="xlbl"><span>What Claude reads</span></div>
+            <pre class="xrules" id="xrules" tabindex="0"></pre>
+          </div>
+        </div>
+      </div>
+      <figcaption>Change a colour, then a tag's line, and see which side each one reaches.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ============ 5. YOUR SIDE ============ -->
+<section id="displays" class="tint">
+  <div class="col">
+    <div class="eyebrow">Your side: how you see it</div>
+    <h2>The same marks, shown your way</h2>
+    <p>None of this changes a word of the instructions.</p>
+  </div>
+  <div class="wide">
+    <div class="seg top" role="group" aria-label="Choose a display" id="disp-seg">
+      <button type="button" data-d="colour" aria-pressed="true"><span class="chip" aria-hidden="true"><i style="--c:#4fd6be">✎</i><i style="--c:#ff6b8b">～</i><i style="--c:#e07ce0">?</i></span>Colour and symbol</button>
+      <button type="button" data-d="symbols" aria-pressed="false"><span class="chip" aria-hidden="true"><i style="--c:#d6d9df">✎</i><i style="--c:#d6d9df">～</i><i style="--c:#d6d9df">?</i></span>Symbols only</button>
+      <button type="button" data-d="highlight" aria-pressed="false"><span class="chip" aria-hidden="true"><i class="hl" style="--c:#4fd6be">a</i><i class="hl" style="--c:#ff6b8b">b</i><i class="hl" style="--c:#e07ce0">c</i></span>Highlighter</button>
+      <button type="button" data-d="underline" aria-pressed="false"><span class="chip" aria-hidden="true"><i class="ul" style="--c:#4fd6be">a</i><i class="ul" style="--c:#ff6b8b">b</i><i class="ul" style="--c:#e07ce0">c</i></span>Underline</button>
+    </div>
+    <div class="term disp disp-colour" id="disp-term">
+      <div class="earlier" aria-hidden="true"><i style="width:93%"></i><i style="width:98%"></i><i style="width:76%"></i></div>
+      <div class="reply" id="disp-reply" data-vocab="pen" data-md=":changed[I switched the signup emails to the new provider.] The old provider's key is still in `.env`, so both are set up for now. :guess[Reset emails probably share the signup template.] :ask[Should the sender stay noreply@yourapp.com, or move to hello@?]"></div>
+    </div>
+    <p class="small" id="disp-hint" aria-live="polite" style="margin-top:0.6rem"></p>
+    <div class="wrote">
+      <div class="lbl-top">What Claude wrote, the same in every view</div>
+      <div class="plaintext">:changed[I switched the signup emails to the new provider.] The old provider's key is still in `.env`, so both are set up for now. :guess[Reset emails probably share the signup template.] :ask[Should the sender stay noreply@yourapp.com, or move to hello@?]</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 6. WHAT ANY MARK BUYS ============ -->
+<section id="value">
+  <div class="col">
+    <h2>Better to write, to read and to check</h2>
+    <p>One mark does three jobs, one at each stage of a reply's life.</p>
+  </div>
+  <div class="wide">
+
+    <div class="use">
+      <span class="kicker">While Claude drafts</span>
+      <h3>Bold says it matters. A mark says what it is.</h3>
+      <p class="lead">As it writes, Claude often has more to say than "this matters". A mark lets it say which kind of thing a passage is.</p>
+      <div class="two one">
+        <div>
+          <div class="lbl-top">With marks</div>
+          <div class="term mode-rendered"><div class="earlier" aria-hidden="true"><i style="width:94%"></i><i style="width:72%"></i><i style="width:88%"></i></div><div class="reply" data-vocab="pen" data-md="I switched the signup emails to the new provider. :guess[Reset emails probably share the signup template.] :ask[Should the sender move to hello@?]"></div></div>
+          <div class="cap">One is a guess. One needs you.</div>
+        </div>
+      </div>
+      <div class="boldviz">
+        <div class="bv">
+          <div class="bv-lbl">Before the marks</div>
+          <div class="bv-head"><b>4–8</b><span>bold spans per 1,000 characters</span></div>
+          <div class="bv-doc" id="bv-before" aria-hidden="true"></div>
+        </div>
+        <div class="bv after">
+          <div class="bv-lbl">With the marks</div>
+          <div class="bv-head"><b>1–2</b><span>bold spans per 1,000 characters</span></div>
+          <div class="bv-doc" id="bv-after" aria-hidden="true"></div>
+        </div>
+      </div>
+      <p class="small" style="margin-top:0.6rem">In one person's sessions. Once marks say what each claim is, bold is left for structure.</p>
+    </div>
+
+    <div class="use">
+      <span class="kicker">While you read, now and later</span>
+      <h3>Find what matters now, and again later.</h3>
+      <p class="lead">In a long reply, colour finds each item in one pass. Days later, the same marks lead you back to a decision.</p>
+      <div class="two">
+        <div>
+          <div class="lbl-top">Now: one long reply</div>
+          <div class="term longreply"><div class="blurbox" id="blurbox" aria-hidden="true"></div></div>
+        </div>
+        <div>
+          <div class="lbl-top">Later: a long thread</div>
+          <div class="term thread" id="thread" aria-hidden="true"></div>
+          <div class="found"><div class="lbl-top">Did I agree to Monday?</div><code>✓ The switch goes live before Monday's launch.</code></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="use">
+      <span class="kicker">When it's checked later</span>
+      <h3>What it meant is on record.</h3>
+      <p class="lead">Claude makes each mark as it writes, so each one is its own claim about what the passage is. A second model tagging the reply afterwards would record its own reading instead.</p>
+      <div class="checks">
+        <div class="chk hd"><span>The reply's marks</span><span></span><span>The session's record</span></div>
+        <div class="chk"><div class="mk" style="--c:#4fd6be">✎ I switched the signup emails to the new provider.</div><div class="link"><span class="verdict v-ok" role="img" aria-label="matches">✓</span></div><div class="rec">An edit to the mail settings: the provider switched.</div></div>
+        <div class="chk"><div class="mk" style="--c:#8bd450">✔ A test signup arrived in about two seconds.</div><div class="link"><span class="verdict v-ok" role="img" aria-label="matches">✓</span></div><div class="rec">A test send, delivered.</div></div>
+        <div class="chk"><div class="mk" style="--c:#ff6b8b">～ Reset emails probably share the signup template.</div><div class="link"><span class="verdict v-guess" role="img" aria-label="no record, marked as a guess">～</span></div><div class="rec dim">The template was never opened. Still a guess, and marked as one.</div></div>
+        <div class="chk no"><div class="mk" style="--c:#f5b942">⌕ All the signup tests pass.</div><div class="link"><span class="verdict v-no" role="img" aria-label="no match">✗</span></div><div class="rec">No test run anywhere in the session.</div></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ 7. ONE PERSON'S VOCABULARY ============ -->
+<section id="preset" class="tint">
+  <div class="col">
+    <div class="eyebrow">The included preset</div>
+    <h2>One vocabulary, tuned in daily use</h2>
+    <p>The renderers come with their author's own vocabulary: 320 words of instructions, in daily use since 22 November 2026.</p>
+  </div>
+  <div class="wide">
+    <div class="families">
+      <div class="fam k-open-ask">
+        <div class="head"><span class="big">¿</span><span class="q">For you to answer or act on</span></div>
+        <div class="ex"><div class="term sm mode-rendered"><div class="reply" data-md=":open-ask[Should the sender stay noreply@yourapp.com?]"></div></div></div>
+      </div>
+      <div class="fam k-guess">
+        <div class="head"><span class="big">～</span><span class="q">Claude's own reading</span></div>
+        <div class="ex"><div class="term sm mode-rendered"><div class="reply" data-md=":guess[Reset emails probably share the signup template]"></div></div></div>
+      </div>
+      <div class="fam k-decided">
+        <div class="head"><span class="big">✓</span><span class="q">Your decision</span></div>
+        <div class="ex"><div class="term sm mode-rendered"><div class="reply" data-md=":decided[The switch goes live before Monday's launch]"></div></div></div>
+      </div>
+      <div class="fam k-changed">
+        <div class="head"><span class="big">✎</span><span class="q">Something it changed</span></div>
+        <div class="ex"><div class="term sm mode-rendered"><div class="reply" data-md=":changed[switched the signup emails to the new provider]"></div></div></div>
+      </div>
+      <div class="fam k-checked">
+        <div class="head"><span class="big">⌕</span><span class="q">Something it verified</span></div>
+        <div class="ex"><div class="term sm mode-rendered"><div class="reply" data-md=":checked[A test signup arrived in about two seconds]{src=&quot;test send&quot;}"></div></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="known">
+      <h3>What's known so far</h3>
+      <p>From one person's daily use, mostly while building the renderers. Early signs, not proof.</p>
+      <div class="facts">
+        <div class="fact"><h4>Replies are easier to read and check</h4><p>The author's verdict after a day with the renderer. One person, who also designed it.</p></div>
+        <div class="fact"><h4>The guess tag earns its place</h4><p>It catches a guess that reads like a decision, and it's among the most used.</p></div>
+        <div class="fact"><h4>Bold gets sparing</h4><p>With marks that say what kind of statement something is, bold is left for structure: about 1 to 2 spans per 1,000 characters, against 4 to 8 without.</p></div>
+      </div>
+    </div>
+    <details class="more">
+      <summary>The preset's instructions, in full</summary>
+      <p>They give the reason for each rule rather than examples, so Claude can judge cases they don't name.</p>
+<pre class="rules-pre" id="rules">On substantial replies, mark key items inline with markdown text directives. The point is to let me find them at a glance, without reading every sentence to find out. Treat the markers as semantic highlighting for prose: a browser extension I use highlights each label by its type, so the marker itself tells me what kind of item it is.
+:open-ask[…] needs my input or an action from me before you go on with it.
+:open-default[…] a check you leave to me or a call I can override, and the default you'll go on with unless I say otherwise.
+:guess[…] you filled a gap or gave your own reading; I haven't agreed it.
+:decided[…] I said it or explicitly agreed, whoever first proposed it. Your proposals stay :guess until I agree. Someone else's call I haven't OK'd is :checked (a fact) or :guess (you assume I accept it), not :decided.
+:changed[verb …] something you saved, edited, moved or deleted outside the chat this turn. Group alike changes. Name deletes. :changed[nothing] is for the whole turn, when work could have happened but didn't; say what's left undone, or use :open-(ask|default) if it needs me. Changes another session made are :checked, not :changed.
+:checked[claim]{src="doc or file"} verified against an internal source (not web results).
+IDs ({#ID}) and src work like source citations: they tell me where in the project to find the item, or what you checked it against.
+The label is what gets highlighted, so make it the whole claim, or a lead-in to the block it introduces, complete enough to read on its own, and keep reasons and detail outside it. No formatting inside labels. Never put these in code; use backticks to show the syntax literally.
+Use them only in your replies to me, never in anything written to be saved, sent or handed on (docs, files, artifacts, drafts, handoff notes), even when that text appears inside your reply.</pre>
+      <div class="copyrow"><button type="button" id="copy-rules">Copy the instructions</button><span id="copy-status" aria-live="polite"></span></div>
+    </details>
+  </div>
+</section>
+
+<!-- ============ 8. LIMITS ============ -->
+<section id="limits">
+  <div class="col">
+    <h2>What it can't fix</h2>
+  </div>
+  <div class="wide">
+    <div class="limits">
+      <div class="limit"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="8" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M10 5.5v5.5M10 13.6v.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>Models misreport their own work</div>
+      <div class="limit"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="8" r="5.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M7 12.5 5.5 18.5 10 16.3l4.5 2.2-1.5-6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>A wrong verified mark reads like a badge</div>
+      <div class="limit"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><rect x="2.5" y="2.5" width="15" height="15" rx="3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-dasharray="3 2.4"/></svg>Unmarked text may read as settled</div>
+      <div class="limit"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 16h12M5.5 16 7 7h6l1.5 9M8 7a2 2 0 1 1 4 0" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/></svg>Instructions have a cost</div>
+    </div>
+  </div>
+  <div class="col">
+    <details class="more">
+      <summary>What each one means, with sources</summary>
+      <ul>
+        <li><b>Models misreport their own work.</b> Agents have claimed tool use they never made and reported success on work that failed <span class="cite">(Transluce, 2025; Guo et al., 2025)</span>. Marks make those claims easy to find. They don't make them less likely.</li>
+        <li><b>A wrong verified mark reads like a badge.</b> Citations raised people's trust in answers even when they were random <span class="cite">(Ding et al., AAAI 2025)</span>. A wrong verified mark may mislead more than the same claim in prose.</li>
+        <li><b>Unmarked text may read as settled.</b> Tagging some false headlines made untagged ones seem more accurate <span class="cite">(Pennycook et al., 2020)</span>. What's left unmarked carries an implied status.</li>
+        <li><b>Instructions have a cost.</b> Heavy format rules can hurt reasoning <span class="cite">(Tam et al., 2024)</span>. Inline marks are far lighter, and whether they change what a reply says is still untested.</li>
+      </ul>
+    </details>
+  </div>
+</section>
+
+<!-- ============ 9. YOURS TO CHANGE ============ -->
+<section id="yours" class="tint">
+  <div class="col">
+    <div class="eyebrow">Make it yours</div>
+    <h2>Yours to change, with your own Claude</h2>
+    <p>Everything here is in one repo you can take: the instructions, the preset, and both renderers as source. None of it is in a store, and nobody maintains it for each person's taste, so you point your own Claude at it and ask.</p>
+  </div>
+  <div class="wide">
+    <div class="track">
+      <div><h3>The instructions</h3><p>About 320 words for your chat app's custom instructions. They work anywhere; without a renderer, marks read as plain text.</p></div>
+      <div><h3>A preset</h3><p>The vocabulary above, to start from or to replace.</p></div>
+      <div><h3>A Claude Code mod</h3><p>Draws the marks in the terminal and the desktop app.</p></div>
+      <div><h3>A Chrome extension</h3><p>Draws them on claude.ai, with a panel for your tags and colours. You load it from the repo.</p></div>
+    </div>
+    <div class="lbl-top more-lbl">And to change it</div>
+    <div class="track more">
+      <div><h3>The tag review</h3><p>Claude reads your past chats and proposes tags, as below: a skill in Claude Code, a prompt to paste on claude.ai.</p></div>
+      <div><h3>A CLAUDE.md</h3><p>Tells your Claude how the repo fits together, so it can make the change you ask for.</p></div>
+      <div><h3>An MIT license</h3><p>Use it, change it and share it.</p></div>
+    </div>
+    <div class="lbl-top asks-lbl">Two things to ask your Claude</div>
+    <div class="askc" id="askc" data-scope="surface">
+      <h3>Ask Claude to propose your tags</h3>
+      <div class="seg modes" role="group" aria-label="Which chats Claude reads" id="scope-seg">
+        <button type="button" data-scope="surface" aria-pressed="true">All your Claude Code chats</button>
+        <button type="button" data-scope="project" aria-pressed="false">One claude.ai project</button>
+      </div>
+      <div class="chats" aria-hidden="true">
+        <div><i style="width:80%"></i><i style="width:95%"></i><i style="width:60%"></i></div>
+        <div><i style="width:90%"></i><i style="width:70%"></i><i style="width:85%"></i></div>
+        <div><i style="width:92%"></i><i style="width:75%"></i><i class="dug" style="width:50%"></i><i style="width:82%"></i></div>
+      </div>
+      <div class="arrow" aria-hidden="true"><svg width="36" height="14" viewBox="0 0 36 14"><path d="M1 7h30M25 1l7 6-7 6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="s-surface">Claude reads your chats</span><span class="s-project">Claude reads the project's chats</span></div>
+      <div class="props">
+        <div class="pset s-surface">
+        <div class="keep"><span class="kchip" aria-hidden="true"><i style="--c:#d65fd6">¿</i><i style="--c:#eea6ee">¿</i><i style="--c:#ff6b8b">～</i><i style="--c:#8bd450">✓</i><i style="--c:#4fd6be">✎</i><i style="--c:#f5b942">⌕</i></span><span><b>Keep all six.</b> Each meets a need it found.</span></div>
+        <div class="prop k-todo">
+          <div class="ph"><span class="add">Add</span><b>¿ open-todo</b><span>an action for me that can wait until I get to it</span></div>
+          <span class="ev">From: "I missed your note about resetting local data."</span>
+          <span class="dest">Goes in your personal preferences</span>
+        </div>
+        </div>
+        <div class="pset s-project">
+        <div class="keep"><span class="kchip" aria-hidden="true"><i style="--c:#d65fd6">¿</i><i style="--c:#eea6ee">¿</i><i style="--c:#ff6b8b">～</i><i style="--c:#8bd450">✓</i><i style="--c:#4fd6be">✎</i><i style="--c:#f5b942">⌕</i></span><span><b>Keep five, change one.</b></span></div>
+        <div class="prop k-send">
+          <div class="ph"><span class="add">Add</span><b>↗ send</b><span>something I carry from this chat to someone else</span></div>
+          <span class="ev">From: "what are the replies we have recorded as not yet sent to dev…"</span>
+          <span class="dest">Goes in this project's instructions only</span>
+        </div>
+        </div>
+      </div>
+    </div>
+    <div class="look">
+      <h3>Ask Claude for a different look</h3>
+      <div class="look-pair">
+        <div>
+          <div class="lbl-top">22 Nov, on the web</div>
+          <div class="term sm disp disp-underline"><div class="reply" data-md=":guess[Reset emails probably share the signup template.] :open-ask[Should the sender move to hello@?]"></div></div>
+          <div class="cap">A coloured underline, chosen because it distracted less.</div>
+        </div>
+        <div class="arrow" aria-hidden="true"><svg width="32" height="14" viewBox="0 0 32 14"><path d="M1 7h26M21 1l7 6-7 6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div>
+          <div class="lbl-top">Since, in the terminal and on claude.ai</div>
+          <div class="term sm mode-rendered"><div class="reply" data-md=":guess[Reset emails probably share the signup template.] :open-ask[Should the sender move to hello@?]"></div></div>
+          <div class="cap">Coloured words with a symbol, so there's no legend to remember.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="col">
+    <p>Written November 2026. The example replies were written for this page. Reply views are drawn to match the renderers' colours; they aren't screenshots, and the chat look is a generic one, not any particular app's.</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var PRESET_TAGS = {
+    'open': ['¿', '#e07ce0'], 'open-ask': ['¿', '#d65fd6', '#9c1f9c'], 'open-default': ['¿', '#eea6ee', '#b35ab3'],
+    'guess': ['～', '#ff6b8b', '#d1193f'], 'decided': ['✓', '#8bd450', '#3c7f12'], 'changed': ['✎', '#4fd6be', '#0b7f6e'], 'checked': ['⌕', '#f5b942', '#9a6400']
+  };
+  var T = {
+    ask: ['?', '#e07ce0'], verified: ['✔', '#8bd450'], guess: ['～', '#ff6b8b'],
+    changed: ['✎', '#4fd6be'], 'not-done': ['⊘', '#ffa657']
+  };
+
+  // The agent's reply. Every vocabulary but the draft review marks the same text; only what gets marked differs.
+  var VOCABS = {
+    pen: { tags: { ask: T.ask, verified: T.verified, guess: T.guess, changed: T.changed } },
+    ask: {
+      tags: { ask: T.ask },
+      rows: [['ask', 'needs my answer or a go-ahead from me']],
+      for: '<b>For problem 1:</b> what needs you.',
+      reply: [
+        'I switched the signup emails to the new provider. A test signup to your address arrived in about two seconds.',
+        'The old provider\'s key is still in `.env`, so both are set up for now. I haven\'t touched password-reset emails, which go through a separate path. Reset emails probably share the signup template, but I didn\'t open it to check.',
+        ':ask[Should the sender stay noreply@yourapp.com, or move to hello@?] :ask[I\'ll remove the old provider\'s key on Friday unless you want to keep it.]'
+      ]
+    },
+    sure: {
+      tags: { verified: T.verified, guess: T.guess },
+      rows: [['verified', 'you checked it; say how'], ['guess', 'your own reading, not checked']],
+      for: '<b>For problem 2:</b> what was checked, and what is a guess.',
+      reply: [
+        'I switched the signup emails to the new provider. :verified[A test signup to your address arrived in about two seconds.]{src="test send"}',
+        'The old provider\'s key is still in `.env`, so both are set up for now. I haven\'t touched password-reset emails, which go through a separate path. :guess[Reset emails probably share the signup template], but I didn\'t open it to check.',
+        'Should the sender stay noreply@yourapp.com, or move to hello@? I\'ll remove the old provider\'s key on Friday unless you want to keep it.'
+      ]
+    },
+    did: {
+      tags: { changed: T.changed, 'not-done': T['not-done'] },
+      rows: [['changed', 'something you changed outside the chat'], ['not-done', 'something in scope that you left alone']],
+      for: '<b>For problem 3:</b> what it did, and what it left.',
+      reply: [
+        'I :changed[switched the signup emails to the new provider]. A test signup to your address arrived in about two seconds.',
+        'The old provider\'s key is still in `.env`, so both are set up for now. :not-done[I haven\'t touched password-reset emails, which go through a separate path.] Reset emails probably share the signup template, but I didn\'t open it to check.',
+        'Should the sender stay noreply@yourapp.com, or move to hello@? I\'ll remove the old provider\'s key on Friday unless you want to keep it.'
+      ]
+    },
+    preset: {
+      tags: PRESET_TAGS,
+      rows: [
+        ['open-ask', 'needs my input or an action from me before you go on'],
+        ['open-default', 'a call I can override, with the default you\'ll go on with'],
+        ['guess', 'you filled a gap or gave your own reading; I haven\'t agreed it'],
+        ['decided', 'I said it or explicitly agreed'],
+        ['changed', 'something you saved, edited, moved or deleted this turn'],
+        ['checked', 'verified against a source in the project']
+      ],
+      for: '<b>For all three at once:</b> the preset that comes with the renderers, one person\'s own set, in use every day. <a href="#preset">More below</a>.',
+      reply: [
+        'I :changed[switched the signup emails to the new provider]. :checked[A test signup to your address arrived in about two seconds.]{src="test send"}',
+        'The old provider\'s key is still in `.env`, so both are set up for now. I haven\'t touched password-reset emails, which go through a separate path. :guess[Reset emails probably share the signup template], but I didn\'t open it to check.',
+        ':open-ask[Should the sender stay noreply@yourapp.com, or move to hello@?] :open-default[I\'ll remove the old provider\'s key on Friday unless you want to keep it.]'
+      ]
+    },
+    review: {
+      tags: { 'needs-source': ['⚑', '#ffa657'], 'cut': ['✂', '#b392f0'], 'unclear': ['≈', '#56d4dd'] },
+      rows: [
+        ['needs-source', 'a claim in my draft that a reader will want a source for'],
+        ['cut', 'something I could remove without losing the point'],
+        ['unclear', 'a sentence a reader could take two ways']
+      ],
+      for: '<b>Something else entirely:</b> feedback on a draft.',
+      reply: [
+        'The second section is the strongest part of the draft, and the opening sets it up well.',
+        ':needs-source[The 40% drop in churn after the redesign] is the claim the whole piece rests on, and it has no source yet.',
+        ':cut[The paragraph on the old onboarding flow repeats what the introduction already says.]',
+        ':unclear["It" in the last sentence could mean the pricing plan or the sales team.]'
+      ]
+    }
+  };
+
+  var UNKNOWN = '#d9b88c', UNKNOWN_L = '#86663a';
+
+  // One colour per tag is enough: the light-background shade is the same hue and chroma, 0.2 darker in OKLCH, darkened further until it reaches 4.5:1 on a light page.
+  function lin(c) { return c <= 0.04045 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4); }
+  function gam(c) { return c <= 0.0031308 ? 12.92 * c : 1.055 * Math.pow(c, 1 / 2.4) - 0.055; }
+  function toLab(h) {
+    var v = [1, 3, 5].map(function (i) { return lin(parseInt(h.slice(i, i + 2), 16) / 255); });
+    var l = Math.cbrt(0.4122214708 * v[0] + 0.5363325363 * v[1] + 0.0514459929 * v[2]);
+    var m = Math.cbrt(0.2119034982 * v[0] + 0.6806995451 * v[1] + 0.1073969566 * v[2]);
+    var s = Math.cbrt(0.0883024619 * v[0] + 0.2817188376 * v[1] + 0.6299787005 * v[2]);
+    return [0.2104542553 * l + 0.7936177850 * m - 0.0040720468 * s, 1.9779984951 * l - 2.4285922050 * m + 0.4505937099 * s, 0.0259040371 * l + 0.7827717662 * m - 0.8086757660 * s];
+  }
+  function fromLab(L, a, b) {
+    var l = Math.pow(L + 0.3963377774 * a + 0.2158037573 * b, 3), m = Math.pow(L - 0.1055613458 * a - 0.0638541728 * b, 3), s = Math.pow(L - 0.0894841775 * a - 1.2914855480 * b, 3);
+    return [4.0767416621 * l - 3.3077115913 * m + 0.2309699292 * s, -1.2684380046 * l + 2.6097574011 * m - 0.3413193965 * s, -0.0041960863 * l - 0.7034186147 * m + 1.7076147010 * s];
+  }
+  function clamp(r) { return r.map(function (c) { return Math.min(1, Math.max(0, c)); }); }
+  function inGamut(r) { return r.every(function (c) { return c >= -0.0005 && c <= 1.0005; }); }
+  function fit(L, a, b) { var k = 1, r = fromLab(L, a, b); for (var i = 0; i < 40 && !inGamut(r); i++) { k *= 0.94; r = fromLab(L, a * k, b * k); } return clamp(r); }
+  function lum(r) { return 0.2126 * r[0] + 0.7152 * r[1] + 0.0722 * r[2]; }
+  function hex(r) { return '#' + r.map(function (c) { var v = Math.round(gam(c) * 255); return (v < 16 ? '0' : '') + v.toString(16); }).join(''); }
+  var BG = lum([0.98, 0.976, 0.96].map(lin));
+  var cache = {};
+  function derive(h) {
+    if (cache[h]) return cache[h];
+    var p = toLab(h), L = p[0] - 0.2, r = fit(L, p[1], p[2]);
+    while ((BG + 0.05) / (lum(r) + 0.05) < 4.5 && L > 0.05) { L -= 0.01; r = fit(L, p[1], p[2]); }
+    return (cache[h] = hex(r));
+  }
+  // the preset's own light shades where a colour is one of its tags', the derived shade otherwise
+  var LIGHT = {};
+  Object.keys(PRESET_TAGS).forEach(function (k) { var t = PRESET_TAGS[k]; if (t[2]) LIGHT[t[1]] = t[2]; });
+  function lightFor(c) { c = c.trim().toLowerCase(); return LIGHT[c] || derive(c); }
+
+  function esc(s) { return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
+  function fmt(s) { return esc(s).replace(/`([^`]+)`/g, '<code>$1</code>').replace(/\*\*([^*]+)\*\*/g, '<b>$1</b>'); }
+  var DIR = /:([a-z][a-z0-9-]*)\[([^\]]*)\](?:\{([^}]*)\})?/g;
+  function inline(text, tags) {
+    var out = '', last = 0, m;
+    DIR.lastIndex = 0;
+    while ((m = DIR.exec(text))) {
+      var prev = m.index > 0 ? text[m.index - 1] : '';
+      if (/[A-Za-z0-9_]/.test(prev)) continue;
+      out += fmt(text.slice(last, m.index));
+      var tag = m[1], label = m[2], attrs = m[3];
+      var t = Object.prototype.hasOwnProperty.call(tags, tag) ? tags[tag] : null;
+      var sym = t ? t[0] : '[' + tag + ']';
+      var col = t ? t[1] : UNKNOWN;
+      var lc = t ? (t[2] || lightFor(col)) : UNKNOWN_L;
+      var src = attrs && /src="([^"]*)"/.exec(attrs);
+      out += '<span class="m cc" data-tag="' + esc(tag) + '" style="--cd:' + col + ';--cl:' + lc + '">' +
+        '<span class="raw">:' + esc(tag) + '[</span>' +
+        '<span class="tsym">' + esc(sym) + ' </span>' +
+        '<span class="lbl">' + fmt(label) + '</span>' +
+        '<span class="raw">]' + (attrs ? '{' + esc(attrs) + '}' : '') + '</span>' +
+        (src ? '<span class="note"> src: ' + esc(src[1]) + '</span>' : '') +
+        '</span>';
+      last = DIR.lastIndex;
+    }
+    return out + fmt(text.slice(last));
+  }
+  function render(md, tags) {
+    return md.split(/\n{2,}/).map(function (block) { return '<p>' + inline(block.replace(/\n/g, ' '), tags) + '</p>'; }).join('');
+  }
+  function vocabOf(el) { return VOCABS[el.getAttribute('data-vocab') || 'preset'].tags; }
+  function tableOf(v) {
+    return v.rows.map(function (r) {
+      var t = v.tags[r[0]];
+      return '<div class="vrow"><span class="ic cc" style="--cd:' + t[1] + ';--cl:' + (t[2] || lightFor(t[1])) + '">' + esc(t[0]) + '</span><span class="nm">' + esc(r[0]) + '</span><span class="why">' + esc(r[1]) + '</span></div>';
+    }).join('');
+  }
+  function press(sel, attr, val) {
+    document.querySelectorAll(sel + ' button').forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute(attr) === val)); });
+  }
+
+  document.querySelectorAll('[data-md]').forEach(function (el) { el.innerHTML = render(el.getAttribute('data-md'), vocabOf(el)); });
+  document.querySelectorAll('[data-rows]').forEach(function (el) { el.innerHTML = tableOf(VOCABS[el.getAttribute('data-rows')]); });
+
+  // the surface switch: a chat app (the default) or a terminal, remembered for this reader
+  var root = document.documentElement;
+  function setSurface(s) {
+    root.setAttribute('data-surface', s);
+    press('#surface-seg', 'data-surface', s);
+  }
+  document.querySelectorAll('#surface-seg button').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var s = b.getAttribute('data-surface');
+      setSurface(s);
+      try { localStorage.setItem('surface', s); } catch (e) {}
+    });
+  });
+  setSurface(root.getAttribute('data-surface') === 'terminal' ? 'terminal' : 'chat');
+
+  // 0. hero: the video takes the page's theme and pauses or plays on a click. Playing, it shows its own first frame (today's reply)
+  // while it loads; held still for reduced motion (or without this script), it shows the drawn reply.
+  var hv = document.getElementById('hero-video'), hb = document.getElementById('hero-vid');
+  var darkQ = window.matchMedia('(prefers-color-scheme: dark)'), stillQ = window.matchMedia('(prefers-reduced-motion: reduce)');
+  var heroPaused = stillQ.matches;
+  function heroShow() {
+    var theme = root.getAttribute('data-theme') || (darkQ.matches ? 'dark' : 'light');
+    var poster = 'hero-' + theme + (stillQ.matches ? '' : '-start') + '.png';
+    if (hv.getAttribute('poster') !== poster) hv.setAttribute('poster', poster);
+    if (hv.getAttribute('src') !== 'hero-' + theme + '.mp4') hv.src = 'hero-' + theme + '.mp4';
+    hb.classList.toggle('paused', heroPaused);
+    hb.setAttribute('aria-label', heroPaused ? 'Play the animation' : 'Pause the animation');
+    if (heroPaused) hv.pause(); else { var p = hv.play(); if (p) p.catch(function () {}); }
+  }
+  hb.addEventListener('click', function () { heroPaused = !heroPaused; heroShow(); });
+  if (darkQ.addEventListener) darkQ.addEventListener('change', heroShow);
+  heroShow();
+
+  // 9. which chats Claude reads
+  var askc = document.getElementById('askc');
+  document.querySelectorAll('#scope-seg button').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var scope = b.getAttribute('data-scope');
+      askc.setAttribute('data-scope', scope);
+      press('#scope-seg', 'data-scope', scope);
+    });
+  });
+
+  // 1. reveal the pins
+  var pinsBtn = document.getElementById('pins-btn'), pinsTerm = document.getElementById('pins-term');
+  pinsBtn.addEventListener('click', function () {
+    var on = pinsTerm.classList.toggle('pins-off') === false;
+    pinsBtn.setAttribute('aria-pressed', String(on));
+    pinsBtn.textContent = on ? 'Hide' : 'Show where';
+  });
+
+  // top-level switchers: each vocabulary pill gets a chip of its tags' symbols; every top-level pill gets a bar of its chip's colours
+  document.querySelectorAll('#vocab-seg button').forEach(function (b) {
+    var v = VOCABS[b.getAttribute('data-v')];
+    b.insertAdjacentHTML('afterbegin', '<span class="chip" aria-hidden="true">' + v.rows.map(function (r) {
+      var t = v.tags[r[0]];
+      return '<i style="--c:' + t[1] + '">' + esc(t[0]) + '</i>';
+    }).join('') + '</span>');
+  });
+  // every fixed colour on the page (chips, the check rows) gets a light shade too, for the chat surface in a light theme
+  document.querySelectorAll('[style*="--c:"]').forEach(function (el) {
+    var c = el.style.getPropertyValue('--c').trim(); if (!c) return;
+    el.style.removeProperty('--c');
+    el.style.setProperty('--cd', c);
+    el.style.setProperty('--cl', lightFor(c));
+    el.classList.add('cc');
+  });
+  document.querySelectorAll('.seg.top button').forEach(function (b) {
+    var cs = Array.prototype.map.call(b.querySelectorAll('.chip [style]:not(.dim)'), function (el) { return el.style.getPropertyValue('--cd'); });
+    var n = cs.length;
+    if (n) b.style.setProperty('--grad', 'linear-gradient(90deg,' + cs.map(function (c, i) { return c + ' ' + (i * 100 / n) + '% ' + ((i + 1) * 100 / n) + '%'; }).join(',') + ')');
+  });
+
+  // 4. vocabulary switcher
+  var vterm = document.getElementById('vocab-term'), reply = document.getElementById('vocab-reply');
+  var table = document.getElementById('vocab-table'), vfor = document.getElementById('vocab-for'), hint = document.getElementById('mode-hint');
+  function setVocab(key) {
+    var v = VOCABS[key];
+    table.innerHTML = tableOf(v);
+    reply.innerHTML = render(v.reply.join('\n\n'), v.tags);
+    vfor.innerHTML = v.for;
+    press('#vocab-seg', 'data-v', key);
+  }
+  var HINTS = {
+    plain: 'Plain: the reply with no markup. Each vocabulary above marks this same text.',
+    raw: 'As written: what Claude writes under this vocabulary.',
+    rendered: 'Drawn: each mark in its colour, with its symbol.',
+    squint: 'Squint: blurred until only the colours show.'
+  };
+  function setMode(mode) {
+    vterm.className = 'term mode-' + mode;
+    press('#mode-seg', 'data-mode', mode);
+    hint.textContent = HINTS[mode];
+  }
+  document.querySelectorAll('#vocab-seg button').forEach(function (b) { b.addEventListener('click', function () { setVocab(b.getAttribute('data-v')); }); });
+  document.querySelectorAll('#mode-seg button').forEach(function (b) { b.addEventListener('click', function () { setMode(b.getAttribute('data-mode')); }); });
+  setVocab('ask');
+  setMode('rendered');
+
+  // 5. displays
+  var dterm = document.getElementById('disp-term'), dhint = document.getElementById('disp-hint');
+  var DHINTS = {
+    colour: 'What the renderers draw today.',
+    symbols: 'The symbol alone carries the kind.',
+    highlight: 'Each label highlighted in its tag\'s colour, with no symbol.',
+    underline: 'A coloured underline, the text left as it is.'
+  };
+  function setDisp(d) {
+    dterm.className = 'term disp disp-' + d;
+    press('#disp-seg', 'data-d', d);
+    dhint.textContent = DHINTS[d];
+  }
+  document.querySelectorAll('#disp-seg button').forEach(function (b) { b.addEventListener('click', function () { setDisp(b.getAttribute('data-d')); }); });
+  setDisp('colour');
+
+  var A = '#e07ce0', V = '#8bd450', G = '#ff6b8b', C = '#4fd6be';
+  // 6a. the same passage before and after: bold as bright bars; with marks, most of it becomes a coloured claim
+  var BOLD = [
+    [[22], [16, 'b', C], [38], [18]],
+    [[30], [44], [20, 'b']],
+    [[48], [26]],
+    [[14, 'b', 'b'], [40], [34]],
+    [[36], [22, 'b', G], [30]],
+    [[52], [34, 'b', 'b']],
+    [[18], [28, 'b', A], [42]],
+    [[44], [12]]
+  ];
+  function boldDoc(id, after) {
+    document.getElementById(id).innerHTML = BOLD.map(function (line) {
+      return '<div class="l">' + line.map(function (seg) {
+        var k = after ? seg[2] : seg[1];
+        if (k === 'b') return '<i class="b" style="flex:0 0 ' + seg[0] + '%"></i>';
+        return '<i style="flex:0 0 ' + seg[0] + '%' + (k ? ';background:' + k : '') + '"></i>';
+      }).join('') + '</div>';
+    }).join('');
+  }
+
+  boldDoc('bv-before', false);
+  boldDoc('bv-after', true);
+
+  // 6b. one long reply, squinted; a long thread with each reply's marks as ticks
+  var LONG = [
+    [[58, C], [36]], [[92]], [[40], [30, V]],
+    null,
+    [[95]], [[70], [24]], [[88]], [[46]],
+    null,
+    [[30], [52, G]], [[90]], [[62]],
+    null,
+    [[85]], [[48], [44, C]], [[76, A]]
+  ];
+  var bb = document.getElementById('blurbox'), html = '<div class="para">';
+  LONG.forEach(function (line) {
+    if (!line) { html += '</div><div class="para">'; return; }
+    html += '<div class="line">' + line.map(function (s) { return '<i style="flex:0 0 ' + s[0] + '%' + (s[1] ? ';background:' + s[1] : '') + '"></i>'; }).join('') + '</div>';
+  });
+  bb.innerHTML = html + '</div>';
+  var ROWS = [
+    [92, 70, [C]], [85, 55, []], [95, 80, [V, G]], [78, 40, [C, C]], [90, 66, [V], 1], [88, 74, []],
+    [93, 50, [G]], [80, 62, [C, V]], [86, 45, []], [94, 72, [G, A]], [82, 58, [C]]
+  ];
+  document.getElementById('thread').innerHTML = ROWS.map(function (r) {
+    return '<div class="trow2' + (r[3] ? ' hit' : '') + '"><div class="box"><i style="width:' + r[0] + '%"></i><i style="width:' + r[1] + '%"></i></div><div class="ticks">' +
+      r[2].map(function (c) { return '<b style="background:' + c + '"></b>'; }).join('') + '</div></div>';
+  }).join('');
+
+  // 3. a tag's look and meaning
+  (function () {
+    var list = document.getElementById('xrows'); if (!list) return;
+    var prev = document.getElementById('xprev'), rulesEl = document.getElementById('xrules');
+    var tags = [
+      { name: 'open-ask', sym: '¿', dark: '#d65fd6', light: '#9c1f9c', rule: 'needs my input or an action from me before you go on with it.' },
+      { name: 'guess', sym: '～', dark: '#ff6b8b', light: '#d1193f', rule: 'you filled a gap or gave your own reading; I haven\'t agreed it.' },
+      { name: 'changed', sym: '✎', dark: '#4fd6be', light: '#0b7f6e', rule: 'something you saved, edited, moved or deleted outside the chat this turn.' }
+    ];
+    var HEAD = 'On substantial replies, mark key items inline with markdown text directives. The point is to let me find them at a glance, without reading every sentence to find out. Treat the markers as semantic highlighting for prose: a browser extension I use highlights each label by its type, so the marker itself tells me what kind of item it is.';
+    var TAIL = [
+      'The label is what gets highlighted, so make it the whole claim, or a lead-in to the block it introduces, complete enough to read on its own, and keep reasons and detail outside it. No formatting inside labels. Never put these in code; use backticks to show the syntax literally.',
+      'Use them only in your replies to me, never in anything written to be saved, sent or handed on (docs, files, artifacts, drafts, handoff notes), even when that text appears inside your reply.'
+    ];
+    var SAMPLE = [
+      'I :changed[switched the signup emails to the new provider].',
+      ':guess[Reset emails probably share the signup template.]',
+      ':open-ask[Should the sender stay noreply@yourapp.com?]'
+    ].join('\n\n');
+
+    function lightOf(t) { return t.light || derive(t.dark); }
+    function symOf(t) { return Array.from(t.sym.trim())[0] || '•'; }
+
+    var NAME = /^[a-z](?:[a-z0-9_-]*[a-z0-9])?$/;
+    function exists(ref) { return tags.some(function (t) { return t.name === ref || t.name.indexOf(ref + '-') === 0; }); }
+    function problems(t) {
+      var out = [], seen = {};
+      if (!NAME.test(t.name)) out.push('A tag name is lower-case letters, digits and hyphens.');
+      else if (tags.filter(function (u) { return u.name === t.name; }).length > 1) out.push('Two tags share this name.');
+      if (!t.rule.trim()) out.push('Add a line saying when Claude should use it.');
+      (t.rule.match(/(^|[^A-Za-z0-9_]):[a-z][a-z0-9-]*/g) || []).forEach(function (m) {
+        var ref = m.replace(/^[^:]*:/, '').replace(/-+$/, '');
+        if (ref !== t.name && !exists(ref) && !seen[ref]) { seen[ref] = 1; out.push('This line mentions :' + ref + ', which isn\'t one of your tags.'); }
+      });
+      return out;
+    }
+    function usable(t) { return NAME.test(t.name) && t.rule.trim(); }
+    function vocab() {
+      var m = {};
+      tags.forEach(function (t) { if (NAME.test(t.name) && !m[t.name]) m[t.name] = [symOf(t), t.dark, lightOf(t)]; });
+      return m;
+    }
+    function update() {
+      prev.innerHTML = render(SAMPLE, vocab());
+      var used = tags.filter(usable);
+      var lines = used.map(function (t) { return '<span class="xt">:' + esc(t.name) + '[…]</span> ' + esc(t.rule.trim()); });
+      rulesEl.innerHTML = [esc(HEAD)].concat(lines, TAIL.map(esc)).join('\n');
+      Array.prototype.forEach.call(list.children, function (row, i) {
+        var t = tags[i], lc = lightOf(t);
+        row.style.setProperty('--c', t.dark);
+        row.style.setProperty('--cl', lc);
+        var d = row.querySelector('[data-f="dark"]'), l = row.querySelector('[data-f="light"]');
+        d.previousElementSibling.style.background = t.dark;
+        l.previousElementSibling.style.background = lc;
+        if (l.value !== lc) l.value = lc;
+        l.parentNode.querySelector('.xk').textContent = t.light ? 'light' : 'auto';
+        row.querySelector('.xwarn').innerHTML = problems(t).map(esc).join('<br>');
+      });
+    }
+    function build() {
+      list.innerHTML = tags.map(function (t) {
+        return '<div class="xrow">' +
+          '<div class="xlook">' +
+          '<input class="xsym" data-f="sym" value="' + esc(t.sym) + '" maxlength="2" aria-label="Symbol" autocomplete="off">' +
+          '<div class="xcols">' +
+            '<label class="xsw" title="Colour on dark backgrounds"><i></i><input type="color" data-f="dark" value="' + t.dark + '" aria-label="Colour on dark backgrounds"><span class="xk">dark</span></label>' +
+            '<label class="xsw" title="Colour on light backgrounds: worked out from the dark one unless you pick it"><i></i><input type="color" data-f="light" value="#000000" aria-label="Colour on light backgrounds"><span class="xk"></span></label>' +
+          '</div></div>' +
+          '<div class="xmean">' +
+          '<input class="xname" data-f="name" value="' + esc(t.name) + '" aria-label="Tag name" spellcheck="false" autocomplete="off">' +
+          '<textarea class="xrule" data-f="rule" rows="2" aria-label="When Claude uses this tag" placeholder="When should Claude use it?">' + esc(t.rule) + '</textarea>' +
+          '<div class="xwarn" aria-live="polite"></div>' +
+          '</div>' +
+        '</div>';
+      }).join('');
+      update();
+    }
+    function indexOf(row) { return Array.prototype.indexOf.call(list.children, row); }
+    list.addEventListener('input', function (e) {
+      var row = e.target.closest('.xrow'), f = e.target.getAttribute('data-f');
+      if (!row || !f) return;
+      var t = tags[indexOf(row)];
+      if (f === 'dark') { t.dark = e.target.value; t.light = null; }
+      else if (f === 'light') t.light = e.target.value;
+      else if (f === 'name') t.name = e.target.value.trim();
+      else t[f] = e.target.value;
+      update();
+      // show which side an edit reaches: the look only redraws the preview; the meaning also rewrites Claude's instructions
+      flash(prev);
+      if (f === 'name' || f === 'rule') flash(rulesEl);
+    });
+    function flash(el) { el.classList.remove('xflash'); void el.offsetWidth; el.classList.add('xflash'); }
+    build();
+  })();
+
+  // 7. copy the preset's instructions
+  var btn = document.getElementById('copy-rules'), status = document.getElementById('copy-status');
+  btn.addEventListener('click', function () {
+    var text = document.getElementById('rules').textContent;
+    function selectIt() {
+      var r = document.createRange(); r.selectNodeContents(document.getElementById('rules'));
+      var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+      status.textContent = 'Selected. Copy it with your keyboard.';
+    }
+    try { navigator.clipboard.writeText(text).then(function () { status.textContent = 'Copied.'; }, selectIt); } catch (e) { selectIt(); }
+  });
+})();
+</script>
+</body>
+</html>

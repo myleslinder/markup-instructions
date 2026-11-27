@@ -1,0 +1,18 @@
+{
+	"manifest_version": 3,
+	"name": "Markup Instructions",
+	"version": "0.4",
+	"description": "Draws the markup in Claude's replies on claude.ai. Reads only the page; makes no requests.",
+	"minimum_chrome_version": "116",
+	"permissions": ["storage", "sidePanel"],
+	"background": { "service_worker": "background.js" },
+	"content_scripts": [
+		{
+			"matches": ["https://claude.ai/*"],
+			"js": ["content.js"],
+			"run_at": "document_idle"
+		}
+	],
+	"action": { "default_title": "Markup Instructions settings" },
+	"side_panel": { "default_path": "sidepanel.html" }
+}

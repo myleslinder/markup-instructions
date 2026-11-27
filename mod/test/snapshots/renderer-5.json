@@ -1,0 +1,182 @@
+{
+	"type": "Box",
+	"layout": {
+		"flexDirection": "column",
+		"gap": 1
+	},
+	"children": [
+		{
+			"type": "Markdown",
+			"text": "**Sample reply** (same made-up blog move, now with a web lookup)"
+		},
+		{
+			"type": "Markdown",
+			"text": "---"
+		},
+		{
+			"type": "Markdown",
+			"text": "I checked which Astro version to start the new site on. Astro 7 is described as the fastest version of Astro so far, and an existing project can be upgraded with the automated @astrojs/upgrade CLI tool. Most custom Vite plugins should keep working, because Rolldown supports the same plugin API as Rollup."
+		},
+		{
+			"type": "Text",
+			"style": {},
+			"children": [
+				{
+					"type": "Text",
+					"style": {
+						"tone": "guess"
+					},
+					"children": [
+						{
+							"type": "Text",
+							"style": {
+								"bold": true
+							},
+							"children": [
+								{
+									"type": "Symbol",
+									"tag": "guess"
+								}
+							]
+						},
+						" ",
+						"Astro 7 is the current major release"
+					]
+				},
+				". The only source for that is a preview copy of the Astro blog, not the main site, so I haven't treated it as confirmed."
+			]
+		},
+		{
+			"type": "Text",
+			"style": {},
+			"children": [
+				{
+					"type": "Text",
+					"style": {
+						"tone": "open-default"
+					},
+					"children": [
+						{
+							"type": "Text",
+							"style": {
+								"bold": true
+							},
+							"children": [
+								{
+									"type": "Symbol",
+									"tag": "open-default"
+								}
+							]
+						},
+						" ",
+						"The new blog starts on Astro 7"
+					]
+				},
+				" unless you'd rather stay on the version you already know. That fits D1, because ",
+				{
+					"type": "Text",
+					"style": {
+						"tone": "decided"
+					},
+					"children": [
+						{
+							"type": "Text",
+							"style": {
+								"bold": true
+							},
+							"children": [
+								{
+									"type": "Symbol",
+									"tag": "decided"
+								}
+							]
+						},
+						" ",
+						"The new site uses Astro",
+						{
+							"type": "Text",
+							"style": {
+								"tone": "decided",
+								"note": true,
+								"added": true
+							},
+							"children": [
+								" #D1"
+							]
+						}
+					]
+				},
+				" doesn't name a version."
+			]
+		},
+		{
+			"type": "Markdown",
+			"text": "| Step | Status |\n|---|---|\n| Scaffold project | :open-ask[Confirm Astro 7 before I scaffold the project] |\n| Redirects | Ready, as agreed in D2 |"
+		},
+		{
+			"type": "Text",
+			"style": {},
+			"children": [
+				{
+					"type": "Text",
+					"style": {
+						"tone": "unknown"
+					},
+					"children": [
+						{
+							"type": "Text",
+							"style": {
+								"added": true
+							},
+							"children": [
+								"[parked] "
+							]
+						},
+						"Testing a Notion content loader waits until after launch",
+						{
+							"type": "Text",
+							"style": {
+								"tone": "unknown",
+								"note": true,
+								"added": true
+							},
+							"children": [
+								" #P2"
+							]
+						}
+					]
+				},
+				"."
+			]
+		},
+		{
+			"type": "Text",
+			"style": {},
+			"children": [
+				{
+					"type": "Text",
+					"style": {
+						"tone": "changed"
+					},
+					"children": [
+						{
+							"type": "Text",
+							"style": {
+								"bold": true
+							},
+							"children": [
+								{
+									"type": "Symbol",
+									"tag": "changed"
+								}
+							]
+						},
+						" ",
+						"nothing"
+					]
+				},
+				". The scaffold is on hold until you confirm the version."
+			]
+		}
+	]
+}

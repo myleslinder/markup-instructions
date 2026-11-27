@@ -1,0 +1,569 @@
+[
+	{
+		"source": "I'll read the project's README and plan, then find a recent mid-sized reply of mine to rework with your new markers.",
+		"gap": "\n\n",
+		"hasMarkers": false,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "text",
+				"text": "I'll read the project's README and plan, then find a recent mid-sized reply of mine to rework with your new markers."
+			}
+		]
+	},
+	{
+		"source": "I used the reply from **2026-10-14 (2)**, where I logged BL7 (the Watch verb wrapping the post line). It's an ordinary backlog-and-plan reply, so it shows how the markers look on typical work. I skipped the build 4 review because the last test already used it. The content below is the same as the original; only the marking is new.",
+		"gap": "\n\n",
+		"hasMarkers": false,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "text",
+				"text": "I used the reply from "
+			},
+			{
+				"kind": "strong",
+				"runs": [
+					{
+						"kind": "text",
+						"text": "2026-10-14 (2)"
+					}
+				]
+			},
+			{
+				"kind": "text",
+				"text": ", where I logged BL7 (the Watch verb wrapping the post line). It's an ordinary backlog-and-plan reply, so it shows how the markers look on typical work. I skipped the build 4 review because the last test already used it. The content below is the same as the original; only the marking is new."
+			}
+		]
+	},
+	{
+		"source": "---",
+		"gap": "\n\n",
+		"hasMarkers": false,
+		"kind": "thematicBreak"
+	},
+	{
+		"source": "**Simulated reply**",
+		"gap": "\n\n",
+		"hasMarkers": false,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "strong",
+				"runs": [
+					{
+						"kind": "text",
+						"text": "Simulated reply"
+					}
+				]
+			}
+		]
+	},
+	{
+		"source": ":changed[added BL7 to plan.md]{#BL7}: \"shared something to watch\" is much longer than the other post-line verbs, and it's the only one that wraps the post line on small phones.",
+		"gap": "\n\n",
+		"hasMarkers": true,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "marker",
+				"tag": "changed",
+				"known": true,
+				"label": [
+					{
+						"kind": "text",
+						"text": "added BL7 to plan.md"
+					}
+				],
+				"labelText": "added BL7 to plan.md",
+				"id": "BL7",
+				"attrs": {},
+				"source": ":changed[added BL7 to plan.md]{#BL7}",
+				"start": 478,
+				"end": 514
+			},
+			{
+				"kind": "text",
+				"text": ": \"shared something to watch\" is much longer than the other post-line verbs, and it's the only one that wraps the post line on small phones."
+			}
+		]
+	},
+	{
+		"source": ":guess[possible fixes], none decided:",
+		"gap": "\n",
+		"hasMarkers": true,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "marker",
+				"tag": "guess",
+				"known": true,
+				"label": [
+					{
+						"kind": "text",
+						"text": "possible fixes"
+					}
+				],
+				"labelText": "possible fixes",
+				"attrs": {},
+				"source": ":guess[possible fixes]",
+				"start": 656,
+				"end": 678
+			},
+			{
+				"kind": "text",
+				"text": ", none decided:"
+			}
+		]
+	},
+	{
+		"source": "- **\"a show or movie\":** still true when the app can't tell which, and a little shorter.\n- **\"a title\":** short, but it's streaming-industry jargon.\n- **Fewer links that fall back to this verb:** :checked[only IMDb title links are Watch in build 4]{src=\"plan.md\"}. If Netflix and Prime links can tell a show from a movie, fewer posts would need it.",
+		"gap": "\n\n",
+		"hasMarkers": true,
+		"kind": "list",
+		"ordered": false,
+		"spread": false,
+		"items": [
+			{
+				"blocks": [
+					{
+						"source": "**\"a show or movie\":** still true when the app can't tell which, and a little shorter.",
+						"gap": "",
+						"hasMarkers": false,
+						"kind": "paragraph",
+						"runs": [
+							{
+								"kind": "strong",
+								"runs": [
+									{
+										"kind": "text",
+										"text": "\"a show or movie\":"
+									}
+								]
+							},
+							{
+								"kind": "text",
+								"text": " still true when the app can't tell which, and a little shorter."
+							}
+						]
+					}
+				]
+			},
+			{
+				"blocks": [
+					{
+						"source": "**\"a title\":** short, but it's streaming-industry jargon.",
+						"gap": "",
+						"hasMarkers": false,
+						"kind": "paragraph",
+						"runs": [
+							{
+								"kind": "strong",
+								"runs": [
+									{
+										"kind": "text",
+										"text": "\"a title\":"
+									}
+								]
+							},
+							{
+								"kind": "text",
+								"text": " short, but it's streaming-industry jargon."
+							}
+						]
+					}
+				]
+			},
+			{
+				"blocks": [
+					{
+						"source": "**Fewer links that fall back to this verb:** :checked[only IMDb title links are Watch in build 4]{src=\"plan.md\"}. If Netflix and Prime links can tell a show from a movie, fewer posts would need it.",
+						"gap": "",
+						"hasMarkers": true,
+						"kind": "paragraph",
+						"runs": [
+							{
+								"kind": "strong",
+								"runs": [
+									{
+										"kind": "text",
+										"text": "Fewer links that fall back to this verb:"
+									}
+								]
+							},
+							{
+								"kind": "text",
+								"text": " "
+							},
+							{
+								"kind": "marker",
+								"tag": "checked",
+								"known": true,
+								"label": [
+									{
+										"kind": "text",
+										"text": "only IMDb title links are Watch in build 4"
+									}
+								],
+								"labelText": "only IMDb title links are Watch in build 4",
+								"src": "plan.md",
+								"attrs": {},
+								"source": ":checked[only IMDb title links are Watch in build 4]{src=\"plan.md\"}",
+								"start": 890,
+								"end": 957
+							},
+							{
+								"kind": "text",
+								"text": ". If Netflix and Prime links can tell a show from a movie, fewer posts would need it."
+							}
+						]
+					}
+				]
+			}
+		]
+	},
+	{
+		"source": "To test a fix, look at it on a 375 pt phone with the longest name in the beta group.",
+		"gap": "\n\n",
+		"hasMarkers": false,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "text",
+				"text": "To test a fix, look at it on a 375 pt phone with the longest name in the beta group."
+			}
+		]
+	},
+	{
+		"source": ":changed[added a style reminder to plan.md] saying :guess[post-line verbs fit one line] on a 375 pt phone. That's my reading of your note, not something you decided, so say if you'd rather I take it out.",
+		"gap": "\n\n",
+		"hasMarkers": true,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "marker",
+				"tag": "changed",
+				"known": true,
+				"label": [
+					{
+						"kind": "text",
+						"text": "added a style reminder to plan.md"
+					}
+				],
+				"labelText": "added a style reminder to plan.md",
+				"attrs": {},
+				"source": ":changed[added a style reminder to plan.md]",
+				"start": 1130,
+				"end": 1173
+			},
+			{
+				"kind": "text",
+				"text": " saying "
+			},
+			{
+				"kind": "marker",
+				"tag": "guess",
+				"known": true,
+				"label": [
+					{
+						"kind": "text",
+						"text": "post-line verbs fit one line"
+					}
+				],
+				"labelText": "post-line verbs fit one line",
+				"attrs": {},
+				"source": ":guess[post-line verbs fit one line]",
+				"start": 1181,
+				"end": 1217
+			},
+			{
+				"kind": "text",
+				"text": " on a 375 pt phone. That's my reading of your note, not something you decided, so say if you'd rather I take it out."
+			}
+		]
+	},
+	{
+		"source": ":open[same dev note as BL6?]{#BL7} BL7 could go with BL6 (YouTube as \"for later\") and the build 4 follow-ups.",
+		"gap": "\n\n",
+		"hasMarkers": true,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "marker",
+				"tag": "open",
+				"known": false,
+				"label": [
+					{
+						"kind": "text",
+						"text": "same dev note as BL6?"
+					}
+				],
+				"labelText": "same dev note as BL6?",
+				"id": "BL7",
+				"attrs": {},
+				"source": ":open[same dev note as BL6?]{#BL7}",
+				"start": 1335,
+				"end": 1369
+			},
+			{
+				"kind": "text",
+				"text": " BL7 could go with BL6 (YouTube as \"for later\") and the build 4 follow-ups."
+			}
+		]
+	},
+	{
+		"source": "I also saw that the build 4 handback was reviewed in another session, so the plan now has those findings too.",
+		"gap": "\n\n",
+		"hasMarkers": false,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "text",
+				"text": "I also saw that the build 4 handback was reviewed in another session, so the plan now has those findings too."
+			}
+		]
+	},
+	{
+		"source": "---",
+		"gap": "\n\n",
+		"hasMarkers": false,
+		"kind": "thematicBreak"
+	},
+	{
+		"source": "**What the test showed**",
+		"gap": "\n",
+		"hasMarkers": false,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "strong",
+				"runs": [
+					{
+						"kind": "text",
+						"text": "What the test showed"
+					}
+				]
+			}
+		]
+	},
+	{
+		"source": "- **This reply needed only five markers**, against about 18 for the build 4 review. It was easy to skim, and nothing important was left unmarked.\n- **The style reminder is the useful case.** It's both a saved change and my own reading, so it gets `:changed` and `:guess` together. That's exactly the thing you could have mistaken for a rule you'd agreed to.\n- **It had no `:decided` item**, and that's fine. Logging an item you asked for is covered by `:changed`.\n- **One gray area:** the last line is about the *other* session's work. I left it unmarked because I didn't change anything there. If you'd rather see `:changed` on anything that touched the plan, whoever did it, I'd need a rule for that.\n- **IDs:** BL7 got its ID twice. If one ID per item is enough, I'd drop the repeat.",
+		"gap": "\n\n",
+		"hasMarkers": false,
+		"kind": "list",
+		"ordered": false,
+		"spread": false,
+		"items": [
+			{
+				"blocks": [
+					{
+						"source": "**This reply needed only five markers**, against about 18 for the build 4 review. It was easy to skim, and nothing important was left unmarked.",
+						"gap": "",
+						"hasMarkers": false,
+						"kind": "paragraph",
+						"runs": [
+							{
+								"kind": "strong",
+								"runs": [
+									{
+										"kind": "text",
+										"text": "This reply needed only five markers"
+									}
+								]
+							},
+							{
+								"kind": "text",
+								"text": ", against about 18 for the build 4 review. It was easy to skim, and nothing important was left unmarked."
+							}
+						]
+					}
+				]
+			},
+			{
+				"blocks": [
+					{
+						"source": "**The style reminder is the useful case.** It's both a saved change and my own reading, so it gets `:changed` and `:guess` together. That's exactly the thing you could have mistaken for a rule you'd agreed to.",
+						"gap": "",
+						"hasMarkers": false,
+						"kind": "paragraph",
+						"runs": [
+							{
+								"kind": "strong",
+								"runs": [
+									{
+										"kind": "text",
+										"text": "The style reminder is the useful case."
+									}
+								]
+							},
+							{
+								"kind": "text",
+								"text": " It's both a saved change and my own reading, so it gets "
+							},
+							{
+								"kind": "code",
+								"text": ":changed"
+							},
+							{
+								"kind": "text",
+								"text": " and "
+							},
+							{
+								"kind": "code",
+								"text": ":guess"
+							},
+							{
+								"kind": "text",
+								"text": " together. That's exactly the thing you could have mistaken for a rule you'd agreed to."
+							}
+						]
+					}
+				]
+			},
+			{
+				"blocks": [
+					{
+						"source": "**It had no `:decided` item**, and that's fine. Logging an item you asked for is covered by `:changed`.",
+						"gap": "",
+						"hasMarkers": false,
+						"kind": "paragraph",
+						"runs": [
+							{
+								"kind": "strong",
+								"runs": [
+									{
+										"kind": "text",
+										"text": "It had no "
+									},
+									{
+										"kind": "code",
+										"text": ":decided"
+									},
+									{
+										"kind": "text",
+										"text": " item"
+									}
+								]
+							},
+							{
+								"kind": "text",
+								"text": ", and that's fine. Logging an item you asked for is covered by "
+							},
+							{
+								"kind": "code",
+								"text": ":changed"
+							},
+							{
+								"kind": "text",
+								"text": "."
+							}
+						]
+					}
+				]
+			},
+			{
+				"blocks": [
+					{
+						"source": "**One gray area:** the last line is about the *other* session's work. I left it unmarked because I didn't change anything there. If you'd rather see `:changed` on anything that touched the plan, whoever did it, I'd need a rule for that.",
+						"gap": "",
+						"hasMarkers": false,
+						"kind": "paragraph",
+						"runs": [
+							{
+								"kind": "strong",
+								"runs": [
+									{
+										"kind": "text",
+										"text": "One gray area:"
+									}
+								]
+							},
+							{
+								"kind": "text",
+								"text": " the last line is about the "
+							},
+							{
+								"kind": "emphasis",
+								"runs": [
+									{
+										"kind": "text",
+										"text": "other"
+									}
+								]
+							},
+							{
+								"kind": "text",
+								"text": " session's work. I left it unmarked because I didn't change anything there. If you'd rather see "
+							},
+							{
+								"kind": "code",
+								"text": ":changed"
+							},
+							{
+								"kind": "text",
+								"text": " on anything that touched the plan, whoever did it, I'd need a rule for that."
+							}
+						]
+					}
+				]
+			},
+			{
+				"blocks": [
+					{
+						"source": "**IDs:** BL7 got its ID twice. If one ID per item is enough, I'd drop the repeat.",
+						"gap": "",
+						"hasMarkers": false,
+						"kind": "paragraph",
+						"runs": [
+							{
+								"kind": "strong",
+								"runs": [
+									{
+										"kind": "text",
+										"text": "IDs:"
+									}
+								]
+							},
+							{
+								"kind": "text",
+								"text": " BL7 got its ID twice. If one ID per item is enough, I'd drop the repeat."
+							}
+						]
+					}
+				]
+			}
+		]
+	},
+	{
+		"source": "This session: :changed[nothing] in the project. I only read the README, the plan and the recent chats.",
+		"gap": "",
+		"hasMarkers": true,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "text",
+				"text": "This session: "
+			},
+			{
+				"kind": "marker",
+				"tag": "changed",
+				"known": true,
+				"label": [
+					{
+						"kind": "text",
+						"text": "nothing"
+					}
+				],
+				"labelText": "nothing",
+				"attrs": {},
+				"source": ":changed[nothing]",
+				"start": 2389,
+				"end": 2406
+			},
+			{
+				"kind": "text",
+				"text": " in the project. I only read the README, the plan and the recent chats."
+			}
+		]
+	}
+]

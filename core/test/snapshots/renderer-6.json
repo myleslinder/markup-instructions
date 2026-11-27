@@ -1,0 +1,140 @@
+[
+	{
+		"source": "**Sample reply** (same made-up blog move)",
+		"gap": "\n\n",
+		"hasMarkers": false,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "strong",
+				"runs": [
+					{
+						"kind": "text",
+						"text": "Sample reply"
+					}
+				]
+			},
+			{
+				"kind": "text",
+				"text": " (same made-up blog move)"
+			}
+		]
+	},
+	{
+		"source": "---",
+		"gap": "\n\n",
+		"hasMarkers": false,
+		"kind": "thematicBreak"
+	},
+	{
+		"source": ":open-ask[Run `npx @astrojs/upgrade` in the blog folder before I scaffold anything else]. I can't run it for you, because the project lives on your machine.",
+		"gap": "\n\n",
+		"hasMarkers": true,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "marker",
+				"tag": "open-ask",
+				"known": true,
+				"label": [
+					{
+						"kind": "text",
+						"text": "Run "
+					},
+					{
+						"kind": "code",
+						"text": "npx @astrojs/upgrade"
+					},
+					{
+						"kind": "text",
+						"text": " in the blog folder before I scaffold anything else"
+					}
+				],
+				"labelText": "Run npx @astrojs/upgrade in the blog folder before I scaffold anything else",
+				"attrs": {},
+				"source": ":open-ask[Run `npx @astrojs/upgrade` in the blog folder before I scaffold anything else]",
+				"start": 48,
+				"end": 136
+			},
+			{
+				"kind": "text",
+				"text": ". I can't run it for you, because the project lives on your machine."
+			}
+		]
+	},
+	{
+		"source": ":decided[Old post URLs must keep working]{#D2}, so I'll check the redirects again once the upgrade is done.",
+		"gap": "\n\n",
+		"hasMarkers": true,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "marker",
+				"tag": "decided",
+				"known": true,
+				"label": [
+					{
+						"kind": "text",
+						"text": "Old post URLs must keep working"
+					}
+				],
+				"labelText": "Old post URLs must keep working",
+				"id": "D2",
+				"attrs": {},
+				"source": ":decided[Old post URLs must keep working]{#D2}",
+				"start": 206,
+				"end": 252
+			},
+			{
+				"kind": "text",
+				"text": ", so I'll check the redirects again once the upgrade is done."
+			}
+		]
+	},
+	{
+		"source": ":changed[nothing]. Everything else waits on that command.",
+		"gap": "\n\n",
+		"hasMarkers": true,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "marker",
+				"tag": "changed",
+				"known": true,
+				"label": [
+					{
+						"kind": "text",
+						"text": "nothing"
+					}
+				],
+				"labelText": "nothing",
+				"attrs": {},
+				"source": ":changed[nothing]",
+				"start": 315,
+				"end": 332
+			},
+			{
+				"kind": "text",
+				"text": ". Everything else waits on that command."
+			}
+		]
+	},
+	{
+		"source": "---",
+		"gap": "\n\n",
+		"hasMarkers": false,
+		"kind": "thematicBreak"
+	},
+	{
+		"source": "Your preferences say labels shouldn't contain formatting, so this is a good edge case for the renderer. If the label breaks at the backticks, you'll need to either escape them or allow inline code as the one exception.",
+		"gap": "",
+		"hasMarkers": false,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "text",
+				"text": "Your preferences say labels shouldn't contain formatting, so this is a good edge case for the renderer. If the label breaks at the backticks, you'll need to either escape them or allow inline code as the one exception."
+			}
+		]
+	}
+]

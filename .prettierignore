@@ -1,0 +1,19 @@
+# Generated
+pnpm-lock.yaml
+
+
+# Claude Code settings (2-space JSON, edited by Claude Code and by hand), and the mod in .claude/skills/
+.claude/
+
+# Docs: Prettier would re-pad every Markdown table
+*.md
+
+# Snapshots: written by the snapshot test, compared as data
+core/test/snapshots/
+mod/test/snapshots/
+
+# Fixtures: real output, never reformatted
+fixtures/
+
+# The public explainer: kept byte for byte as published, so the artifact and the file can be compared
+site/

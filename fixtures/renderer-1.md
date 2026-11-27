@@ -1,0 +1,33 @@
+I'll work out the core problem first, then check it against the spec doc.
+
+## The core problem
+
+The renderer turns text Claude wrote into a quick visual index. It must do this without changing what the reply says, and without misreporting what's in it. That gives two kinds of failure:
+
+1. **It changes the reply.** Text gets dropped, duplicated or moved, links break, or code gets touched. This is the worse kind, because you can't see it happened.
+2. **It misreads the reply.** A real marker is missed, prose gets styled as a marker, the type or ID is wrong, or the footer's count is off. This kind is visible, because the raw text is still there to compare against.
+
+What makes this hard is the input. The renderer never sees Claude's markdown. It sees the page claude.ai already built from that markdown, so the parsing step is a black box you don't control. A label can come out split across page elements. Quotes in `src="…"` may get changed. A bracket next to a link may turn into something else. So you can't test with markdown you write yourself and run through any markdown library. Test cases have to be real claude.ai pages.
+
+That leads to the testing idea I'd start from. For each test reply, keep a pair:
+- **The rendered page HTML**: the renderer's input.
+- **The raw markdown**: the answer key. Run a directive parser like remark-directive over it to get the true list of markers: type, label, ID and src.
+
+Then compare what the renderer found with that list. Nobody has to tag anything by hand, and every real reply becomes a test case for free. :guess[The copy button on a claude.ai reply gives the raw markdown, directives included.] If so, you collect each pair by hand, so it stays within the spec's rule against calling internal endpoints.
+
+## What to test, in layers
+
+- **Checks that must always hold.** The reply's visible text is the same before and after rendering, ignoring the footer and superscripts the renderer adds. Running the renderer twice gives the same result as running it once. Nothing inside code gets styled.
+- **Parser edge cases.** Labels split across page elements, `10:30[`, URLs, a link right after a marker, an unknown tag name, a marker that's never closed, and markers in lists, tables and headings.
+- **Surviving the live page.** :guess[claude.ai's page framework may undo or break changes made directly to its text], so check that the styling holds through regenerate, editing a message, switching branches, scrolling a long chat, switching theme, and the moment streaming ends. The spec doesn't cover this yet.
+- **Visual check by eye.** 25-word underlines that wrap across lines, dark mode, the footer reading as a status line rather than a legend, and colour not being the only cue.
+
+## Compared with the spec
+
+The spec's "For the rendering session" section agrees on most of this: :checked[skip code, style only after streaming ends, use a directive parser as the reference, and test against the trial replies]{src="explorations/2026-10-14-response-markup-spec.md"}. It names the page-element splitting as the known hard part. It doesn't say how to tell whether the renderer got a reply right, and the copy-button pairing above fills that gap. It also doesn't cover the page re-drawing itself under the renderer.
+
+:guess[The CSS Custom Highlight API could draw the underlines without editing the page's text at all.] That would make "never remove text" hold by design and avoid clashing with the page framework. The ID superscripts and the footer would still need added elements.
+
+One thing changes what "changes the reply" means: :open[When the spec says "never remove or hide text", should the directive syntax (`:open[`, `]{#ID}`) stay visible, or can the renderer hide it and keep only the label?] The mock that shows IDs as superscripts suggests hiding it. Your answer decides what the "visible text is unchanged" check compares against.
+
+:changed[nothing] I haven't saved anything to the project. If it's useful, I can collect the first pairs from the five trial replies using Claude in Chrome, or write this up as an exploration doc.

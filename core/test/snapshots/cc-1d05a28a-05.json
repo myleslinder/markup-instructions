@@ -1,0 +1,200 @@
+[
+	{
+		"source": "I added a \"Reading Claude's replies\" section at the end of `README.md`.",
+		"gap": "\n\n",
+		"hasMarkers": false,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "text",
+				"text": "I added a \"Reading Claude's replies\" section at the end of "
+			},
+			{
+				"kind": "code",
+				"text": "README.md"
+			},
+			{
+				"kind": "text",
+				"text": "."
+			}
+		]
+	},
+	{
+		"source": ":changed[added the section to README.md]. It has:",
+		"gap": "\n",
+		"hasMarkers": true,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "marker",
+				"tag": "changed",
+				"known": true,
+				"label": [
+					{
+						"kind": "text",
+						"text": "added the section to README.md"
+					}
+				],
+				"labelText": "added the section to README.md",
+				"attrs": {},
+				"source": ":changed[added the section to README.md]",
+				"start": 73,
+				"end": 113
+			},
+			{
+				"kind": "text",
+				"text": ". It has:"
+			}
+		]
+	},
+	{
+		"source": "- a short explanation of the `:type[label]` form;\n- a table of the six markers and what each one means;\n- a line on the `{src=\"…\"}` and `{#ID}` sources;\n- a three-line example from this session's 0.2 work, with what each line means.",
+		"gap": "\n\n",
+		"hasMarkers": false,
+		"kind": "list",
+		"ordered": false,
+		"spread": false,
+		"items": [
+			{
+				"blocks": [
+					{
+						"source": "a short explanation of the `:type[label]` form;",
+						"gap": "",
+						"hasMarkers": false,
+						"kind": "paragraph",
+						"runs": [
+							{
+								"kind": "text",
+								"text": "a short explanation of the "
+							},
+							{
+								"kind": "code",
+								"text": ":type[label]"
+							},
+							{
+								"kind": "text",
+								"text": " form;"
+							}
+						]
+					}
+				]
+			},
+			{
+				"blocks": [
+					{
+						"source": "a table of the six markers and what each one means;",
+						"gap": "",
+						"hasMarkers": false,
+						"kind": "paragraph",
+						"runs": [
+							{
+								"kind": "text",
+								"text": "a table of the six markers and what each one means;"
+							}
+						]
+					}
+				]
+			},
+			{
+				"blocks": [
+					{
+						"source": "a line on the `{src=\"…\"}` and `{#ID}` sources;",
+						"gap": "",
+						"hasMarkers": false,
+						"kind": "paragraph",
+						"runs": [
+							{
+								"kind": "text",
+								"text": "a line on the "
+							},
+							{
+								"kind": "code",
+								"text": "{src=\"…\"}"
+							},
+							{
+								"kind": "text",
+								"text": " and "
+							},
+							{
+								"kind": "code",
+								"text": "{#ID}"
+							},
+							{
+								"kind": "text",
+								"text": " sources;"
+							}
+						]
+					}
+				]
+			},
+			{
+				"blocks": [
+					{
+						"source": "a three-line example from this session's 0.2 work, with what each line means.",
+						"gap": "",
+						"hasMarkers": false,
+						"kind": "paragraph",
+						"runs": [
+							{
+								"kind": "text",
+								"text": "a three-line example from this session's 0.2 work, with what each line means."
+							}
+						]
+					}
+				]
+			}
+		]
+	},
+	{
+		"source": "The example is in a code block, so your friend sees the markers exactly as written, whether or not their viewer highlights them. The descriptions say \"the person running the session\" rather than \"you\", since the questions and defaults are aimed at you, not at them.",
+		"gap": "\n\n",
+		"hasMarkers": false,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "text",
+				"text": "The example is in a code block, so your friend sees the markers exactly as written, whether or not their viewer highlights them. The descriptions say \"the person running the session\" rather than \"you\", since the questions and defaults are aimed at you, not at them."
+			}
+		]
+	},
+	{
+		"source": "One thing to weigh before 0.2 ships: npm publishes the README as the package's front page, so library users would see this section too. :open-default[I'll leave it in the README for now; it could move to a CONTRIBUTING.md before you publish.]",
+		"gap": "\n\n",
+		"hasMarkers": true,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "text",
+				"text": "One thing to weigh before 0.2 ships: npm publishes the README as the package's front page, so library users would see this section too. "
+			},
+			{
+				"kind": "marker",
+				"tag": "open-default",
+				"known": true,
+				"label": [
+					{
+						"kind": "text",
+						"text": "I'll leave it in the README for now; it could move to a CONTRIBUTING.md before you publish."
+					}
+				],
+				"labelText": "I'll leave it in the README for now; it could move to a CONTRIBUTING.md before you publish.",
+				"attrs": {},
+				"source": ":open-default[I'll leave it in the README for now; it could move to a CONTRIBUTING.md before you publish.]",
+				"start": 760,
+				"end": 866
+			}
+		]
+	},
+	{
+		"source": "Nothing is committed.",
+		"gap": "",
+		"hasMarkers": false,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "text",
+				"text": "Nothing is committed."
+			}
+		]
+	}
+]

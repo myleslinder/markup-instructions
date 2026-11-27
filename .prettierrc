@@ -1,0 +1,14 @@
+{
+	"useTabs": true,
+	"printWidth": 150,
+	"semi": true,
+	"singleQuote": false,
+	"trailingComma": "all",
+	"overrides": [
+		{
+			"files": ["package.json"],
+			"options": { "useTabs": false, "tabWidth": 2 }
+		},
+		{ "files": ["*.jsonc"], "options": { "trailingComma": "none" } }
+	]
+}

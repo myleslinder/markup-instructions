@@ -1,0 +1,155 @@
+{
+	"type": "Box",
+	"layout": {
+		"flexDirection": "column",
+		"gap": 1
+	},
+	"children": [
+		{
+			"type": "Text",
+			"style": {},
+			"children": [
+				{
+					"type": "Text",
+					"style": {
+						"tone": "code"
+					},
+					"children": [
+						"convert"
+					]
+				},
+				" now accepts amounts typed as text, like ",
+				{
+					"type": "Text",
+					"style": {
+						"tone": "code"
+					},
+					"children": [
+						"\"1.5\""
+					]
+				},
+				", and throws a clear error for anything that isn't a plain number. ",
+				{
+					"type": "Text",
+					"style": {
+						"tone": "checked"
+					},
+					"children": [
+						{
+							"type": "Text",
+							"style": {
+								"bold": true
+							},
+							"children": [
+								{
+									"type": "Symbol",
+									"tag": "checked"
+								}
+							]
+						},
+						" ",
+						"All 8 tests pass, including the 2 new ones",
+						{
+							"type": "Text",
+							"style": {
+								"tone": "checked",
+								"note": true,
+								"added": true
+							},
+							"children": [
+								" src: node --test"
+							]
+						}
+					]
+				},
+				"."
+			]
+		},
+		{
+			"type": "Text",
+			"style": {},
+			"children": [
+				{
+					"type": "Text",
+					"style": {
+						"tone": "changed"
+					},
+					"children": [
+						{
+							"type": "Text",
+							"style": {
+								"bold": true
+							},
+							"children": [
+								{
+									"type": "Symbol",
+									"tag": "changed"
+								}
+							]
+						},
+						" ",
+						"edited src/convert.js and test/convert.test.js"
+					]
+				},
+				". Nothing was committed."
+			]
+		},
+		{
+			"type": "Markdown",
+			"text": "**What it accepts:**"
+		},
+		{
+			"type": "Markdown",
+			"text": "- Real numbers, as before. NaN and Infinity now throw instead of producing a junk result.\n- Text written as a plain decimal number: `\"2\"`, `\"1.5\"`, `\".5\"`, `\"1.\"`. Spaces around it are fine, so `\" 1.5 \"` works."
+		},
+		{
+			"type": "Markdown",
+			"text": "**What it rejects:** everything else, including a blank field, `\"1,5\"`, `\"1/2\"`, `\"0x10\"`, `\"1e3\"`, `\"Infinity\"`, `null`, `undefined` and `true`. The error is a `TypeError` that shows the bad value and what was expected:"
+		},
+		{
+			"type": "Markdown",
+			"text": "```\ninvalid amount: \"1,5\" (expected a number or a decimal string like \"1.5\")\n```"
+		},
+		{
+			"type": "Markdown",
+			"text": "**Tests added:** one checks that `\"1.5\"`, `\" 2 \"` and `\".5\"` convert correctly. The other runs each rejected value above and checks it throws `invalid amount`."
+		},
+		{
+			"type": "Text",
+			"style": {},
+			"children": [
+				{
+					"type": "Text",
+					"style": {
+						"tone": "open-default"
+					},
+					"children": [
+						{
+							"type": "Text",
+							"style": {
+								"bold": true
+							},
+							"children": [
+								{
+									"type": "Symbol",
+									"tag": "open-default"
+								}
+							]
+						},
+						" ",
+						"Negative amounts like \"-1.5\" are still accepted"
+					]
+				},
+				". I kept that so text input behaves the same as numbers (−1.5 was already allowed). A negative amount means nothing in a recipe, so I can reject both if you want."
+			]
+		},
+		{
+			"type": "Markdown",
+			"text": "**Not changed, from my earlier check:**"
+		},
+		{
+			"type": "Markdown",
+			"text": "- Unit names like `\"constructor\"` still pass the unit check and return NaN instead of throwing \"unknown unit\".\n- Small amounts still round to whole millilitres, so ¼ tsp gives 1 ml (issue I5).\n- README.md line 32 still has the stray, out-of-date marker."
+		}
+	]
+}

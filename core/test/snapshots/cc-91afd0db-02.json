@@ -1,0 +1,203 @@
+[
+	{
+		"source": "Both decisions are now recorded in the plan.",
+		"gap": "\n\n",
+		"hasMarkers": false,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "text",
+				"text": "Both decisions are now recorded in the plan."
+			}
+		]
+	},
+	{
+		"source": ":changed[Updated docs/plan.md with both decisions and the link to the issues file]{src=\"docs/plan.md\"}:",
+		"gap": "\n",
+		"hasMarkers": true,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "marker",
+				"tag": "changed",
+				"known": true,
+				"label": [
+					{
+						"kind": "text",
+						"text": "Updated docs/plan.md with both decisions and the link to the issues file"
+					}
+				],
+				"labelText": "Updated docs/plan.md with both decisions and the link to the issues file",
+				"src": "docs/plan.md",
+				"attrs": {},
+				"source": ":changed[Updated docs/plan.md with both decisions and the link to the issues file]{src=\"docs/plan.md\"}",
+				"start": 46,
+				"end": 148
+			},
+			{
+				"kind": "text",
+				"text": ":"
+			}
+		]
+	},
+	{
+		"source": "- :decided[Library only, no CLI, recorded as decision D4]. I removed Q2 from the open questions.\n- :decided[No density table in 0.2; Q1 stays open for 0.3]. Q1 is still in the open questions, now labelled for 0.3.\n- 0.2 goal 1 now links to [`docs/issues.md`](issues.md). Goal 2 says what happened to each question.",
+		"gap": "\n\n",
+		"hasMarkers": true,
+		"kind": "list",
+		"ordered": false,
+		"spread": false,
+		"items": [
+			{
+				"blocks": [
+					{
+						"source": ":decided[Library only, no CLI, recorded as decision D4]. I removed Q2 from the open questions.",
+						"gap": "",
+						"hasMarkers": true,
+						"kind": "paragraph",
+						"runs": [
+							{
+								"kind": "marker",
+								"tag": "decided",
+								"known": true,
+								"label": [
+									{
+										"kind": "text",
+										"text": "Library only, no CLI, recorded as decision D4"
+									}
+								],
+								"labelText": "Library only, no CLI, recorded as decision D4",
+								"attrs": {},
+								"source": ":decided[Library only, no CLI, recorded as decision D4]",
+								"start": 152,
+								"end": 207
+							},
+							{
+								"kind": "text",
+								"text": ". I removed Q2 from the open questions."
+							}
+						]
+					}
+				]
+			},
+			{
+				"blocks": [
+					{
+						"source": ":decided[No density table in 0.2; Q1 stays open for 0.3]. Q1 is still in the open questions, now labelled for 0.3.",
+						"gap": "",
+						"hasMarkers": true,
+						"kind": "paragraph",
+						"runs": [
+							{
+								"kind": "marker",
+								"tag": "decided",
+								"known": true,
+								"label": [
+									{
+										"kind": "text",
+										"text": "No density table in 0.2; Q1 stays open for 0.3"
+									}
+								],
+								"labelText": "No density table in 0.2; Q1 stays open for 0.3",
+								"attrs": {},
+								"source": ":decided[No density table in 0.2; Q1 stays open for 0.3]",
+								"start": 249,
+								"end": 305
+							},
+							{
+								"kind": "text",
+								"text": ". Q1 is still in the open questions, now labelled for 0.3."
+							}
+						]
+					}
+				]
+			},
+			{
+				"blocks": [
+					{
+						"source": "0.2 goal 1 now links to [`docs/issues.md`](issues.md). Goal 2 says what happened to each question.",
+						"gap": "",
+						"hasMarkers": false,
+						"kind": "paragraph",
+						"runs": [
+							{
+								"kind": "text",
+								"text": "0.2 goal 1 now links to "
+							},
+							{
+								"kind": "link",
+								"url": "issues.md",
+								"runs": [
+									{
+										"kind": "code",
+										"text": "docs/issues.md"
+									}
+								]
+							},
+							{
+								"kind": "text",
+								"text": ". Goal 2 says what happened to each question."
+							}
+						]
+					}
+				]
+			}
+		]
+	},
+	{
+		"source": ":guess[I didn't add weight units (g, kg, oz, lb) to the plan], because you skipped the density table but didn't say yes or no to them. That idea is still open, and I can add it to Q1 as a step for 0.3 if you want.",
+		"gap": "\n\n",
+		"hasMarkers": true,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "marker",
+				"tag": "guess",
+				"known": true,
+				"label": [
+					{
+						"kind": "text",
+						"text": "I didn't add weight units (g, kg, oz, lb) to the plan"
+					}
+				],
+				"labelText": "I didn't add weight units (g, kg, oz, lb) to the plan",
+				"attrs": {},
+				"source": ":guess[I didn't add weight units (g, kg, oz, lb) to the plan]",
+				"start": 466,
+				"end": 527
+			},
+			{
+				"kind": "text",
+				"text": ", because you skipped the density table but didn't say yes or no to them. That idea is still open, and I can add it to Q1 as a step for 0.3 if you want."
+			}
+		]
+	},
+	{
+		"source": ":open-ask[Should I write I5 and I6 into the plan as blockers for 0.2, and then fix them?] You didn't say yes to that list yet, so the plan doesn't name any blockers.",
+		"gap": "",
+		"hasMarkers": true,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "marker",
+				"tag": "open-ask",
+				"known": true,
+				"label": [
+					{
+						"kind": "text",
+						"text": "Should I write I5 and I6 into the plan as blockers for 0.2, and then fix them?"
+					}
+				],
+				"labelText": "Should I write I5 and I6 into the plan as blockers for 0.2, and then fix them?",
+				"attrs": {},
+				"source": ":open-ask[Should I write I5 and I6 into the plan as blockers for 0.2, and then fix them?]",
+				"start": 681,
+				"end": 770
+			},
+			{
+				"kind": "text",
+				"text": " You didn't say yes to that list yet, so the plan doesn't name any blockers."
+			}
+		]
+	}
+]

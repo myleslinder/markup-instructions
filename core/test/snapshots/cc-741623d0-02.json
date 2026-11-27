@@ -1,0 +1,438 @@
+[
+	{
+		"source": "`convert` now accepts amounts typed as text, like `\"1.5\"`, and throws a clear error for anything that isn't a plain number. :checked[All 8 tests pass, including the 2 new ones]{src=\"node --test\"}.",
+		"gap": "\n\n",
+		"hasMarkers": true,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "code",
+				"text": "convert"
+			},
+			{
+				"kind": "text",
+				"text": " now accepts amounts typed as text, like "
+			},
+			{
+				"kind": "code",
+				"text": "\"1.5\""
+			},
+			{
+				"kind": "text",
+				"text": ", and throws a clear error for anything that isn't a plain number. "
+			},
+			{
+				"kind": "marker",
+				"tag": "checked",
+				"known": true,
+				"label": [
+					{
+						"kind": "text",
+						"text": "All 8 tests pass, including the 2 new ones"
+					}
+				],
+				"labelText": "All 8 tests pass, including the 2 new ones",
+				"src": "node --test",
+				"attrs": {},
+				"source": ":checked[All 8 tests pass, including the 2 new ones]{src=\"node --test\"}",
+				"start": 124,
+				"end": 195
+			},
+			{
+				"kind": "text",
+				"text": "."
+			}
+		]
+	},
+	{
+		"source": ":changed[edited src/convert.js and test/convert.test.js]. Nothing was committed.",
+		"gap": "\n\n",
+		"hasMarkers": true,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "marker",
+				"tag": "changed",
+				"known": true,
+				"label": [
+					{
+						"kind": "text",
+						"text": "edited src/convert.js and test/convert.test.js"
+					}
+				],
+				"labelText": "edited src/convert.js and test/convert.test.js",
+				"attrs": {},
+				"source": ":changed[edited src/convert.js and test/convert.test.js]",
+				"start": 198,
+				"end": 254
+			},
+			{
+				"kind": "text",
+				"text": ". Nothing was committed."
+			}
+		]
+	},
+	{
+		"source": "**What it accepts:**",
+		"gap": "\n",
+		"hasMarkers": false,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "strong",
+				"runs": [
+					{
+						"kind": "text",
+						"text": "What it accepts:"
+					}
+				]
+			}
+		]
+	},
+	{
+		"source": "- Real numbers, as before. NaN and Infinity now throw instead of producing a junk result.\n- Text written as a plain decimal number: `\"2\"`, `\"1.5\"`, `\".5\"`, `\"1.\"`. Spaces around it are fine, so `\" 1.5 \"` works.",
+		"gap": "\n\n",
+		"hasMarkers": false,
+		"kind": "list",
+		"ordered": false,
+		"spread": false,
+		"items": [
+			{
+				"blocks": [
+					{
+						"source": "Real numbers, as before. NaN and Infinity now throw instead of producing a junk result.",
+						"gap": "",
+						"hasMarkers": false,
+						"kind": "paragraph",
+						"runs": [
+							{
+								"kind": "text",
+								"text": "Real numbers, as before. NaN and Infinity now throw instead of producing a junk result."
+							}
+						]
+					}
+				]
+			},
+			{
+				"blocks": [
+					{
+						"source": "Text written as a plain decimal number: `\"2\"`, `\"1.5\"`, `\".5\"`, `\"1.\"`. Spaces around it are fine, so `\" 1.5 \"` works.",
+						"gap": "",
+						"hasMarkers": false,
+						"kind": "paragraph",
+						"runs": [
+							{
+								"kind": "text",
+								"text": "Text written as a plain decimal number: "
+							},
+							{
+								"kind": "code",
+								"text": "\"2\""
+							},
+							{
+								"kind": "text",
+								"text": ", "
+							},
+							{
+								"kind": "code",
+								"text": "\"1.5\""
+							},
+							{
+								"kind": "text",
+								"text": ", "
+							},
+							{
+								"kind": "code",
+								"text": "\".5\""
+							},
+							{
+								"kind": "text",
+								"text": ", "
+							},
+							{
+								"kind": "code",
+								"text": "\"1.\""
+							},
+							{
+								"kind": "text",
+								"text": ". Spaces around it are fine, so "
+							},
+							{
+								"kind": "code",
+								"text": "\" 1.5 \""
+							},
+							{
+								"kind": "text",
+								"text": " works."
+							}
+						]
+					}
+				]
+			}
+		]
+	},
+	{
+		"source": "**What it rejects:** everything else, including a blank field, `\"1,5\"`, `\"1/2\"`, `\"0x10\"`, `\"1e3\"`, `\"Infinity\"`, `null`, `undefined` and `true`. The error is a `TypeError` that shows the bad value and what was expected:",
+		"gap": "\n\n",
+		"hasMarkers": false,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "strong",
+				"runs": [
+					{
+						"kind": "text",
+						"text": "What it rejects:"
+					}
+				]
+			},
+			{
+				"kind": "text",
+				"text": " everything else, including a blank field, "
+			},
+			{
+				"kind": "code",
+				"text": "\"1,5\""
+			},
+			{
+				"kind": "text",
+				"text": ", "
+			},
+			{
+				"kind": "code",
+				"text": "\"1/2\""
+			},
+			{
+				"kind": "text",
+				"text": ", "
+			},
+			{
+				"kind": "code",
+				"text": "\"0x10\""
+			},
+			{
+				"kind": "text",
+				"text": ", "
+			},
+			{
+				"kind": "code",
+				"text": "\"1e3\""
+			},
+			{
+				"kind": "text",
+				"text": ", "
+			},
+			{
+				"kind": "code",
+				"text": "\"Infinity\""
+			},
+			{
+				"kind": "text",
+				"text": ", "
+			},
+			{
+				"kind": "code",
+				"text": "null"
+			},
+			{
+				"kind": "text",
+				"text": ", "
+			},
+			{
+				"kind": "code",
+				"text": "undefined"
+			},
+			{
+				"kind": "text",
+				"text": " and "
+			},
+			{
+				"kind": "code",
+				"text": "true"
+			},
+			{
+				"kind": "text",
+				"text": ". The error is a "
+			},
+			{
+				"kind": "code",
+				"text": "TypeError"
+			},
+			{
+				"kind": "text",
+				"text": " that shows the bad value and what was expected:"
+			}
+		]
+	},
+	{
+		"source": "```\ninvalid amount: \"1,5\" (expected a number or a decimal string like \"1.5\")\n```",
+		"gap": "\n\n",
+		"hasMarkers": false,
+		"kind": "code",
+		"value": "invalid amount: \"1,5\" (expected a number or a decimal string like \"1.5\")"
+	},
+	{
+		"source": "**Tests added:** one checks that `\"1.5\"`, `\" 2 \"` and `\".5\"` convert correctly. The other runs each rejected value above and checks it throws `invalid amount`.",
+		"gap": "\n\n",
+		"hasMarkers": false,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "strong",
+				"runs": [
+					{
+						"kind": "text",
+						"text": "Tests added:"
+					}
+				]
+			},
+			{
+				"kind": "text",
+				"text": " one checks that "
+			},
+			{
+				"kind": "code",
+				"text": "\"1.5\""
+			},
+			{
+				"kind": "text",
+				"text": ", "
+			},
+			{
+				"kind": "code",
+				"text": "\" 2 \""
+			},
+			{
+				"kind": "text",
+				"text": " and "
+			},
+			{
+				"kind": "code",
+				"text": "\".5\""
+			},
+			{
+				"kind": "text",
+				"text": " convert correctly. The other runs each rejected value above and checks it throws "
+			},
+			{
+				"kind": "code",
+				"text": "invalid amount"
+			},
+			{
+				"kind": "text",
+				"text": "."
+			}
+		]
+	},
+	{
+		"source": ":open-default[Negative amounts like \"-1.5\" are still accepted]. I kept that so text input behaves the same as numbers (−1.5 was already allowed). A negative amount means nothing in a recipe, so I can reject both if you want.",
+		"gap": "\n\n",
+		"hasMarkers": true,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "marker",
+				"tag": "open-default",
+				"known": true,
+				"label": [
+					{
+						"kind": "text",
+						"text": "Negative amounts like \"-1.5\" are still accepted"
+					}
+				],
+				"labelText": "Negative amounts like \"-1.5\" are still accepted",
+				"attrs": {},
+				"source": ":open-default[Negative amounts like \"-1.5\" are still accepted]",
+				"start": 978,
+				"end": 1040
+			},
+			{
+				"kind": "text",
+				"text": ". I kept that so text input behaves the same as numbers (−1.5 was already allowed). A negative amount means nothing in a recipe, so I can reject both if you want."
+			}
+		]
+	},
+	{
+		"source": "**Not changed, from my earlier check:**",
+		"gap": "\n",
+		"hasMarkers": false,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "strong",
+				"runs": [
+					{
+						"kind": "text",
+						"text": "Not changed, from my earlier check:"
+					}
+				]
+			}
+		]
+	},
+	{
+		"source": "- Unit names like `\"constructor\"` still pass the unit check and return NaN instead of throwing \"unknown unit\".\n- Small amounts still round to whole millilitres, so ¼ tsp gives 1 ml (issue I5).\n- README.md line 32 still has the stray, out-of-date marker.",
+		"gap": "",
+		"hasMarkers": false,
+		"kind": "list",
+		"ordered": false,
+		"spread": false,
+		"items": [
+			{
+				"blocks": [
+					{
+						"source": "Unit names like `\"constructor\"` still pass the unit check and return NaN instead of throwing \"unknown unit\".",
+						"gap": "",
+						"hasMarkers": false,
+						"kind": "paragraph",
+						"runs": [
+							{
+								"kind": "text",
+								"text": "Unit names like "
+							},
+							{
+								"kind": "code",
+								"text": "\"constructor\""
+							},
+							{
+								"kind": "text",
+								"text": " still pass the unit check and return NaN instead of throwing \"unknown unit\"."
+							}
+						]
+					}
+				]
+			},
+			{
+				"blocks": [
+					{
+						"source": "Small amounts still round to whole millilitres, so ¼ tsp gives 1 ml (issue I5).",
+						"gap": "",
+						"hasMarkers": false,
+						"kind": "paragraph",
+						"runs": [
+							{
+								"kind": "text",
+								"text": "Small amounts still round to whole millilitres, so ¼ tsp gives 1 ml (issue I5)."
+							}
+						]
+					}
+				]
+			},
+			{
+				"blocks": [
+					{
+						"source": "README.md line 32 still has the stray, out-of-date marker.",
+						"gap": "",
+						"hasMarkers": false,
+						"kind": "paragraph",
+						"runs": [
+							{
+								"kind": "text",
+								"text": "README.md line 32 still has the stray, out-of-date marker."
+							}
+						]
+					}
+				]
+			}
+		]
+	}
+]

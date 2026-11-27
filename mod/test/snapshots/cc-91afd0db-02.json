@@ -1,0 +1,308 @@
+{
+	"type": "Box",
+	"layout": {
+		"flexDirection": "column",
+		"gap": 1
+	},
+	"children": [
+		{
+			"type": "Markdown",
+			"text": "Both decisions are now recorded in the plan."
+		},
+		{
+			"type": "Text",
+			"style": {},
+			"children": [
+				{
+					"type": "Text",
+					"style": {
+						"tone": "changed"
+					},
+					"children": [
+						{
+							"type": "Text",
+							"style": {
+								"bold": true
+							},
+							"children": [
+								{
+									"type": "Symbol",
+									"tag": "changed"
+								}
+							]
+						},
+						" ",
+						"Updated docs/plan.md with both decisions and the link to the issues file",
+						{
+							"type": "Text",
+							"style": {
+								"tone": "changed",
+								"note": true,
+								"added": true
+							},
+							"children": [
+								" src: docs/plan.md"
+							]
+						}
+					]
+				},
+				":"
+			]
+		},
+		{
+			"type": "Box",
+			"layout": {
+				"flexDirection": "column"
+			},
+			"children": [
+				{
+					"type": "Box",
+					"layout": {
+						"flexDirection": "row"
+					},
+					"children": [
+						{
+							"type": "Box",
+							"layout": {
+								"width": 2,
+								"flexShrink": 0
+							},
+							"children": [
+								{
+									"type": "Text",
+									"style": {
+										"added": true
+									},
+									"children": [
+										"- "
+									]
+								}
+							]
+						},
+						{
+							"type": "Box",
+							"layout": {
+								"flexDirection": "column",
+								"flexShrink": 1,
+								"flexGrow": 1
+							},
+							"children": [
+								{
+									"type": "Text",
+									"style": {},
+									"children": [
+										{
+											"type": "Text",
+											"style": {
+												"tone": "decided"
+											},
+											"children": [
+												{
+													"type": "Text",
+													"style": {
+														"bold": true
+													},
+													"children": [
+														{
+															"type": "Symbol",
+															"tag": "decided"
+														}
+													]
+												},
+												" ",
+												"Library only, no CLI, recorded as decision D4"
+											]
+										},
+										". I removed Q2 from the open questions."
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"type": "Box",
+					"layout": {
+						"flexDirection": "row"
+					},
+					"children": [
+						{
+							"type": "Box",
+							"layout": {
+								"width": 2,
+								"flexShrink": 0
+							},
+							"children": [
+								{
+									"type": "Text",
+									"style": {
+										"added": true
+									},
+									"children": [
+										"- "
+									]
+								}
+							]
+						},
+						{
+							"type": "Box",
+							"layout": {
+								"flexDirection": "column",
+								"flexShrink": 1,
+								"flexGrow": 1
+							},
+							"children": [
+								{
+									"type": "Text",
+									"style": {},
+									"children": [
+										{
+											"type": "Text",
+											"style": {
+												"tone": "decided"
+											},
+											"children": [
+												{
+													"type": "Text",
+													"style": {
+														"bold": true
+													},
+													"children": [
+														{
+															"type": "Symbol",
+															"tag": "decided"
+														}
+													]
+												},
+												" ",
+												"No density table in 0.2; Q1 stays open for 0.3"
+											]
+										},
+										". Q1 is still in the open questions, now labelled for 0.3."
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"type": "Box",
+					"layout": {
+						"flexDirection": "row"
+					},
+					"children": [
+						{
+							"type": "Box",
+							"layout": {
+								"width": 2,
+								"flexShrink": 0
+							},
+							"children": [
+								{
+									"type": "Text",
+									"style": {
+										"added": true
+									},
+									"children": [
+										"- "
+									]
+								}
+							]
+						},
+						{
+							"type": "Box",
+							"layout": {
+								"flexDirection": "column",
+								"flexShrink": 1,
+								"flexGrow": 1
+							},
+							"children": [
+								{
+									"type": "Text",
+									"style": {},
+									"children": [
+										"0.2 goal 1 now links to ",
+										{
+											"type": "Link",
+											"href": "issues.md",
+											"children": [
+												{
+													"type": "Text",
+													"style": {
+														"tone": "code"
+													},
+													"children": [
+														"docs/issues.md"
+													]
+												}
+											]
+										},
+										". Goal 2 says what happened to each question."
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"type": "Text",
+			"style": {},
+			"children": [
+				{
+					"type": "Text",
+					"style": {
+						"tone": "guess"
+					},
+					"children": [
+						{
+							"type": "Text",
+							"style": {
+								"bold": true
+							},
+							"children": [
+								{
+									"type": "Symbol",
+									"tag": "guess"
+								}
+							]
+						},
+						" ",
+						"I didn't add weight units (g, kg, oz, lb) to the plan"
+					]
+				},
+				", because you skipped the density table but didn't say yes or no to them. That idea is still open, and I can add it to Q1 as a step for 0.3 if you want."
+			]
+		},
+		{
+			"type": "Text",
+			"style": {},
+			"children": [
+				{
+					"type": "Text",
+					"style": {
+						"tone": "open-ask"
+					},
+					"children": [
+						{
+							"type": "Text",
+							"style": {
+								"bold": true
+							},
+							"children": [
+								{
+									"type": "Symbol",
+									"tag": "open-ask"
+								}
+							]
+						},
+						" ",
+						"Should I write I5 and I6 into the plan as blockers for 0.2, and then fix them?"
+					]
+				},
+				" You didn't say yes to that list yet, so the plan doesn't name any blockers."
+			]
+		}
+	]
+}

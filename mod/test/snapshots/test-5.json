@@ -1,0 +1,726 @@
+{
+	"type": "Box",
+	"layout": {
+		"flexDirection": "column",
+		"gap": 1
+	},
+	"children": [
+		{
+			"type": "Markdown",
+			"text": "The [\"Feed walkthrough review\"](https://claude.ai/chat/00000000-0000-4000-8000-000000000001) chat was from today. It began as a cold review of your build 4 recording and became a full redesign of the kind marks. Session numbers below are the plan's log entries 2026-10-14 (3)–(17)."
+		},
+		{
+			"type": "Markdown",
+			"text": "**1. Cold read (3).** Without the docs, I sorted posts into now and later only from the words on each card. I didn't notice the wider \"later\" tab and said all the marks looked the same. Against your eight checks, only \"kind readable without label\" failed outright. The bigger gap was that none of the checks asked whether the mark itself tells now from later."
+		},
+		{
+			"type": "Markdown",
+			"text": "**2. History review (3).** I traced every step since P3j into `design/post-marks-review.md`. Each step fixed the last complaint but weakened the now/later cue. The avatar clash came from the \"quieter\" step's mint, not from the original solid colors. There are no distinct, calm colors left to use."
+		},
+		{
+			"type": "Markdown",
+			"text": "**3. Your answers (4):**"
+		},
+		{
+			"type": "Box",
+			"layout": {
+				"flexDirection": "column"
+			},
+			"children": [
+				{
+					"type": "Box",
+					"layout": {
+						"flexDirection": "row"
+					},
+					"children": [
+						{
+							"type": "Box",
+							"layout": {
+								"width": 2,
+								"flexShrink": 0
+							},
+							"children": [
+								{
+									"type": "Text",
+									"style": {
+										"added": true
+									},
+									"children": [
+										"- "
+									]
+								}
+							]
+						},
+						{
+							"type": "Box",
+							"layout": {
+								"flexDirection": "column",
+								"flexShrink": 1,
+								"flexGrow": 1
+							},
+							"children": [
+								{
+									"type": "Text",
+									"style": {},
+									"children": [
+										{
+											"type": "Text",
+											"style": {
+												"tone": "decided"
+											},
+											"children": [
+												{
+													"type": "Text",
+													"style": {
+														"bold": true
+													},
+													"children": [
+														{
+															"type": "Symbol",
+															"tag": "decided"
+														}
+													]
+												},
+												" ",
+												"YouTube videos become \"later\" (P3p)"
+											]
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"type": "Box",
+					"layout": {
+						"flexDirection": "row"
+					},
+					"children": [
+						{
+							"type": "Box",
+							"layout": {
+								"width": 2,
+								"flexShrink": 0
+							},
+							"children": [
+								{
+									"type": "Text",
+									"style": {
+										"added": true
+									},
+									"children": [
+										"- "
+									]
+								}
+							]
+						},
+						{
+							"type": "Box",
+							"layout": {
+								"flexDirection": "column",
+								"flexShrink": 1,
+								"flexGrow": 1
+							},
+							"children": [
+								{
+									"type": "Text",
+									"style": {},
+									"children": [
+										{
+											"type": "Text",
+											"style": {
+												"tone": "decided"
+											},
+											"children": [
+												{
+													"type": "Text",
+													"style": {
+														"bold": true
+													},
+													"children": [
+														{
+															"type": "Symbol",
+															"tag": "decided"
+														}
+													]
+												},
+												" ",
+												"photos get no mark"
+											]
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"type": "Box",
+					"layout": {
+						"flexDirection": "row"
+					},
+					"children": [
+						{
+							"type": "Box",
+							"layout": {
+								"width": 2,
+								"flexShrink": 0
+							},
+							"children": [
+								{
+									"type": "Text",
+									"style": {
+										"added": true
+									},
+									"children": [
+										"- "
+									]
+								}
+							]
+						},
+						{
+							"type": "Box",
+							"layout": {
+								"flexDirection": "column",
+								"flexShrink": 1,
+								"flexGrow": 1
+							},
+							"children": [
+								{
+									"type": "Text",
+									"style": {},
+									"children": [
+										{
+											"type": "Text",
+											"style": {
+												"tone": "decided"
+											},
+											"children": [
+												{
+													"type": "Text",
+													"style": {
+														"bold": true
+													},
+													"children": [
+														{
+															"type": "Symbol",
+															"tag": "decided"
+														}
+													]
+												},
+												" ",
+												"short labels are allowed"
+											]
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"type": "Box",
+					"layout": {
+						"flexDirection": "row"
+					},
+					"children": [
+						{
+							"type": "Box",
+							"layout": {
+								"width": 2,
+								"flexShrink": 0
+							},
+							"children": [
+								{
+									"type": "Text",
+									"style": {
+										"added": true
+									},
+									"children": [
+										"- "
+									]
+								}
+							]
+						},
+						{
+							"type": "Box",
+							"layout": {
+								"flexDirection": "column",
+								"flexShrink": 1,
+								"flexGrow": 1
+							},
+							"children": [
+								{
+									"type": "Text",
+									"style": {},
+									"children": [
+										"The Fast ",
+										{
+											"type": "Text",
+											"style": {
+												"tone": "code"
+											},
+											"children": [
+												"bolt"
+											]
+										},
+										" icon can be replaced."
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"type": "Markdown",
+			"text": "The P3p note to dev is in `handoffs/2026-10-14-video-later-p3p.md`."
+		},
+		{
+			"type": "Markdown",
+			"text": "**4. Rounds of drawings (4–15).** We went through the A, D, F, G, H, I, J, K and M rounds, from labels on the image tab, to marks in the post line, to a two-row × two-column header. Along the way you dropped the \"shared an X\" verb and brought the time back. I suggested sun/moon symbols so the two states look different without one looking more urgent."
+		},
+		{
+			"type": "Markdown",
+			"text": "**5. Approved direction (16):**"
+		},
+		{
+			"type": "Box",
+			"layout": {
+				"flexDirection": "column"
+			},
+			"children": [
+				{
+					"type": "Box",
+					"layout": {
+						"flexDirection": "row"
+					},
+					"children": [
+						{
+							"type": "Box",
+							"layout": {
+								"width": 2,
+								"flexShrink": 0
+							},
+							"children": [
+								{
+									"type": "Text",
+									"style": {
+										"added": true
+									},
+									"children": [
+										"- "
+									]
+								}
+							]
+						},
+						{
+							"type": "Box",
+							"layout": {
+								"flexDirection": "column",
+								"flexShrink": 1,
+								"flexGrow": 1
+							},
+							"children": [
+								{
+									"type": "Text",
+									"style": {},
+									"children": [
+										{
+											"type": "Text",
+											"style": {
+												"tone": "decided"
+											},
+											"children": [
+												{
+													"type": "Text",
+													"style": {
+														"bold": true
+													},
+													"children": [
+														{
+															"type": "Symbol",
+															"tag": "decided"
+														}
+													]
+												},
+												" ",
+												"Post header: name over time on the left; the kind in a teal pill over a grey sun \"For now\" or moon \"For later\" on the right"
+											]
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"type": "Box",
+					"layout": {
+						"flexDirection": "row"
+					},
+					"children": [
+						{
+							"type": "Box",
+							"layout": {
+								"width": 2,
+								"flexShrink": 0
+							},
+							"children": [
+								{
+									"type": "Text",
+									"style": {
+										"added": true
+									},
+									"children": [
+										"- "
+									]
+								}
+							]
+						},
+						{
+							"type": "Box",
+							"layout": {
+								"flexDirection": "column",
+								"flexShrink": 1,
+								"flexGrow": 1
+							},
+							"children": [
+								{
+									"type": "Text",
+									"style": {},
+									"children": [
+										{
+											"type": "Text",
+											"style": {
+												"tone": "decided"
+											},
+											"children": [
+												{
+													"type": "Text",
+													"style": {
+														"bold": true
+													},
+													"children": [
+														{
+															"type": "Symbol",
+															"tag": "decided"
+														}
+													]
+												},
+												" ",
+												"A ⋯ centred beside both rows; the whole block highlights when pressed"
+											]
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"type": "Box",
+					"layout": {
+						"flexDirection": "row"
+					},
+					"children": [
+						{
+							"type": "Box",
+							"layout": {
+								"width": 2,
+								"flexShrink": 0
+							},
+							"children": [
+								{
+									"type": "Text",
+									"style": {
+										"added": true
+									},
+									"children": [
+										"- "
+									]
+								}
+							]
+						},
+						{
+							"type": "Box",
+							"layout": {
+								"flexDirection": "column",
+								"flexShrink": 1,
+								"flexGrow": 1
+							},
+							"children": [
+								{
+									"type": "Text",
+									"style": {},
+									"children": [
+										{
+											"type": "Text",
+											"style": {
+												"tone": "decided"
+											},
+											"children": [
+												{
+													"type": "Text",
+													"style": {
+														"bold": true
+													},
+													"children": [
+														{
+															"type": "Symbol",
+															"tag": "decided"
+														}
+													]
+												},
+												" ",
+												"The right column is one menu button alongside long press, with Send to List… in it"
+											]
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"type": "Markdown",
+			"text": "You flagged that the sketches' spacing and alignment are off, so §21 of the review lists their known errors for the spec session."
+		},
+		{
+			"type": "Markdown",
+			"text": "**6. Beta screens for the tester (17).** Screens 3–5 of [Shelf — Beta: Now or Later](https://claude.ai/artifact/AAAAAAAAAAAAAAAAAAAAAA) now show the feed, the composer and the ⋯ menu in the new design."
+		},
+		{
+			"type": "Markdown",
+			"text": "**Still open:**"
+		},
+		{
+			"type": "Box",
+			"layout": {
+				"flexDirection": "column"
+			},
+			"children": [
+				{
+					"type": "Box",
+					"layout": {
+						"flexDirection": "row"
+					},
+					"children": [
+						{
+							"type": "Box",
+							"layout": {
+								"width": 2,
+								"flexShrink": 0
+							},
+							"children": [
+								{
+									"type": "Text",
+									"style": {
+										"added": true
+									},
+									"children": [
+										"- "
+									]
+								}
+							]
+						},
+						{
+							"type": "Box",
+							"layout": {
+								"flexDirection": "column",
+								"flexShrink": 1,
+								"flexGrow": 1
+							},
+							"children": [
+								{
+									"type": "Text",
+									"style": {},
+									"children": [
+										{
+											"type": "Text",
+											"style": {
+												"tone": "unknown"
+											},
+											"children": [
+												{
+													"type": "Text",
+													"style": {
+														"added": true
+													},
+													"children": [
+														"[open] "
+													]
+												},
+												"The tester's read of the beta screens"
+											]
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"type": "Box",
+					"layout": {
+						"flexDirection": "row"
+					},
+					"children": [
+						{
+							"type": "Box",
+							"layout": {
+								"width": 2,
+								"flexShrink": 0
+							},
+							"children": [
+								{
+									"type": "Text",
+									"style": {
+										"added": true
+									},
+									"children": [
+										"- "
+									]
+								}
+							]
+						},
+						{
+							"type": "Box",
+							"layout": {
+								"flexDirection": "column",
+								"flexShrink": 1,
+								"flexGrow": 1
+							},
+							"children": [
+								{
+									"type": "Text",
+									"style": {},
+									"children": [
+										{
+											"type": "Text",
+											"style": {
+												"tone": "unknown"
+											},
+											"children": [
+												{
+													"type": "Text",
+													"style": {
+														"added": true
+													},
+													"children": [
+														"[open] "
+													]
+												},
+												"Send the P3p note to dev"
+											]
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"type": "Box",
+					"layout": {
+						"flexDirection": "row"
+					},
+					"children": [
+						{
+							"type": "Box",
+							"layout": {
+								"width": 2,
+								"flexShrink": 0
+							},
+							"children": [
+								{
+									"type": "Text",
+									"style": {
+										"added": true
+									},
+									"children": [
+										"- "
+									]
+								}
+							]
+						},
+						{
+							"type": "Box",
+							"layout": {
+								"flexDirection": "column",
+								"flexShrink": 1,
+								"flexGrow": 1
+							},
+							"children": [
+								{
+									"type": "Text",
+									"style": {},
+									"children": [
+										"Write P3p and P3q into ",
+										{
+											"type": "Text",
+											"style": {
+												"tone": "code"
+											},
+											"children": [
+												"decisions.md"
+											]
+										},
+										" together in one pass. This hasn't been done yet."
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"type": "Box",
+					"layout": {
+						"flexDirection": "row"
+					},
+					"children": [
+						{
+							"type": "Box",
+							"layout": {
+								"width": 2,
+								"flexShrink": 0
+							},
+							"children": [
+								{
+									"type": "Text",
+									"style": {
+										"added": true
+									},
+									"children": [
+										"- "
+									]
+								}
+							]
+						},
+						{
+							"type": "Box",
+							"layout": {
+								"flexDirection": "column",
+								"flexShrink": 1,
+								"flexGrow": 1
+							},
+							"children": [
+								{
+									"type": "Text",
+									"style": {},
+									"children": [
+										"At the spec stage: dark mode, VoiceOver, large text, and a flag proposal for showing \"later\" as a visible word."
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	]
+}

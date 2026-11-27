@@ -1,0 +1,430 @@
+{
+	"type": "Box",
+	"layout": {
+		"flexDirection": "column",
+		"gap": 1
+	},
+	"children": [
+		{
+			"type": "Markdown",
+			"text": "I'll read the project's README and plan, then find a recent mid-sized reply of mine to rework with your new markers."
+		},
+		{
+			"type": "Markdown",
+			"text": "I used the reply from **2026-10-14 (2)**, where I logged BL7 (the Watch verb wrapping the post line). It's an ordinary backlog-and-plan reply, so it shows how the markers look on typical work. I skipped the build 4 review because the last test already used it. The content below is the same as the original; only the marking is new."
+		},
+		{
+			"type": "Markdown",
+			"text": "---"
+		},
+		{
+			"type": "Markdown",
+			"text": "**Simulated reply**"
+		},
+		{
+			"type": "Text",
+			"style": {},
+			"children": [
+				{
+					"type": "Text",
+					"style": {
+						"tone": "changed"
+					},
+					"children": [
+						{
+							"type": "Text",
+							"style": {
+								"bold": true
+							},
+							"children": [
+								{
+									"type": "Symbol",
+									"tag": "changed"
+								}
+							]
+						},
+						" ",
+						"added BL7 to plan.md",
+						{
+							"type": "Text",
+							"style": {
+								"tone": "changed",
+								"note": true,
+								"added": true
+							},
+							"children": [
+								" #BL7"
+							]
+						}
+					]
+				},
+				": \"shared something to watch\" is much longer than the other post-line verbs, and it's the only one that wraps the post line on small phones."
+			]
+		},
+		{
+			"type": "Text",
+			"style": {},
+			"children": [
+				{
+					"type": "Text",
+					"style": {
+						"tone": "guess"
+					},
+					"children": [
+						{
+							"type": "Text",
+							"style": {
+								"bold": true
+							},
+							"children": [
+								{
+									"type": "Symbol",
+									"tag": "guess"
+								}
+							]
+						},
+						" ",
+						"possible fixes"
+					]
+				},
+				", none decided:"
+			]
+		},
+		{
+			"type": "Box",
+			"layout": {
+				"flexDirection": "column"
+			},
+			"children": [
+				{
+					"type": "Box",
+					"layout": {
+						"flexDirection": "row"
+					},
+					"children": [
+						{
+							"type": "Box",
+							"layout": {
+								"width": 2,
+								"flexShrink": 0
+							},
+							"children": [
+								{
+									"type": "Text",
+									"style": {
+										"added": true
+									},
+									"children": [
+										"- "
+									]
+								}
+							]
+						},
+						{
+							"type": "Box",
+							"layout": {
+								"flexDirection": "column",
+								"flexShrink": 1,
+								"flexGrow": 1
+							},
+							"children": [
+								{
+									"type": "Text",
+									"style": {},
+									"children": [
+										{
+											"type": "Text",
+											"style": {
+												"bold": true
+											},
+											"children": [
+												"\"a show or movie\":"
+											]
+										},
+										" still true when the app can't tell which, and a little shorter."
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"type": "Box",
+					"layout": {
+						"flexDirection": "row"
+					},
+					"children": [
+						{
+							"type": "Box",
+							"layout": {
+								"width": 2,
+								"flexShrink": 0
+							},
+							"children": [
+								{
+									"type": "Text",
+									"style": {
+										"added": true
+									},
+									"children": [
+										"- "
+									]
+								}
+							]
+						},
+						{
+							"type": "Box",
+							"layout": {
+								"flexDirection": "column",
+								"flexShrink": 1,
+								"flexGrow": 1
+							},
+							"children": [
+								{
+									"type": "Text",
+									"style": {},
+									"children": [
+										{
+											"type": "Text",
+											"style": {
+												"bold": true
+											},
+											"children": [
+												"\"a title\":"
+											]
+										},
+										" short, but it's streaming-industry jargon."
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"type": "Box",
+					"layout": {
+						"flexDirection": "row"
+					},
+					"children": [
+						{
+							"type": "Box",
+							"layout": {
+								"width": 2,
+								"flexShrink": 0
+							},
+							"children": [
+								{
+									"type": "Text",
+									"style": {
+										"added": true
+									},
+									"children": [
+										"- "
+									]
+								}
+							]
+						},
+						{
+							"type": "Box",
+							"layout": {
+								"flexDirection": "column",
+								"flexShrink": 1,
+								"flexGrow": 1
+							},
+							"children": [
+								{
+									"type": "Text",
+									"style": {},
+									"children": [
+										{
+											"type": "Text",
+											"style": {
+												"bold": true
+											},
+											"children": [
+												"Fewer links that fall back to this verb:"
+											]
+										},
+										" ",
+										{
+											"type": "Text",
+											"style": {
+												"tone": "checked"
+											},
+											"children": [
+												{
+													"type": "Text",
+													"style": {
+														"bold": true
+													},
+													"children": [
+														{
+															"type": "Symbol",
+															"tag": "checked"
+														}
+													]
+												},
+												" ",
+												"only IMDb title links are Watch in build 4",
+												{
+													"type": "Text",
+													"style": {
+														"tone": "checked",
+														"note": true,
+														"added": true
+													},
+													"children": [
+														" src: plan.md"
+													]
+												}
+											]
+										},
+										". If Netflix and Prime links can tell a show from a movie, fewer posts would need it."
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"type": "Markdown",
+			"text": "To test a fix, look at it on a 375 pt phone with the longest name in the beta group."
+		},
+		{
+			"type": "Text",
+			"style": {},
+			"children": [
+				{
+					"type": "Text",
+					"style": {
+						"tone": "changed"
+					},
+					"children": [
+						{
+							"type": "Text",
+							"style": {
+								"bold": true
+							},
+							"children": [
+								{
+									"type": "Symbol",
+									"tag": "changed"
+								}
+							]
+						},
+						" ",
+						"added a style reminder to plan.md"
+					]
+				},
+				" saying ",
+				{
+					"type": "Text",
+					"style": {
+						"tone": "guess"
+					},
+					"children": [
+						{
+							"type": "Text",
+							"style": {
+								"bold": true
+							},
+							"children": [
+								{
+									"type": "Symbol",
+									"tag": "guess"
+								}
+							]
+						},
+						" ",
+						"post-line verbs fit one line"
+					]
+				},
+				" on a 375 pt phone. That's my reading of your note, not something you decided, so say if you'd rather I take it out."
+			]
+		},
+		{
+			"type": "Text",
+			"style": {},
+			"children": [
+				{
+					"type": "Text",
+					"style": {
+						"tone": "unknown"
+					},
+					"children": [
+						{
+							"type": "Text",
+							"style": {
+								"added": true
+							},
+							"children": [
+								"[open] "
+							]
+						},
+						"same dev note as BL6?",
+						{
+							"type": "Text",
+							"style": {
+								"tone": "unknown",
+								"note": true,
+								"added": true
+							},
+							"children": [
+								" #BL7"
+							]
+						}
+					]
+				},
+				" BL7 could go with BL6 (YouTube as \"for later\") and the build 4 follow-ups."
+			]
+		},
+		{
+			"type": "Markdown",
+			"text": "I also saw that the build 4 handback was reviewed in another session, so the plan now has those findings too."
+		},
+		{
+			"type": "Markdown",
+			"text": "---"
+		},
+		{
+			"type": "Markdown",
+			"text": "**What the test showed**"
+		},
+		{
+			"type": "Markdown",
+			"text": "- **This reply needed only five markers**, against about 18 for the build 4 review. It was easy to skim, and nothing important was left unmarked.\n- **The style reminder is the useful case.** It's both a saved change and my own reading, so it gets `:changed` and `:guess` together. That's exactly the thing you could have mistaken for a rule you'd agreed to.\n- **It had no `:decided` item**, and that's fine. Logging an item you asked for is covered by `:changed`.\n- **One gray area:** the last line is about the *other* session's work. I left it unmarked because I didn't change anything there. If you'd rather see `:changed` on anything that touched the plan, whoever did it, I'd need a rule for that.\n- **IDs:** BL7 got its ID twice. If one ID per item is enough, I'd drop the repeat."
+		},
+		{
+			"type": "Text",
+			"style": {},
+			"children": [
+				"This session: ",
+				{
+					"type": "Text",
+					"style": {
+						"tone": "changed"
+					},
+					"children": [
+						{
+							"type": "Text",
+							"style": {
+								"bold": true
+							},
+							"children": [
+								{
+									"type": "Symbol",
+									"tag": "changed"
+								}
+							]
+						},
+						" ",
+						"nothing"
+					]
+				},
+				" in the project. I only read the README, the plan and the recent chats."
+			]
+		}
+	]
+}

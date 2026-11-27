@@ -1,0 +1,525 @@
+[
+	{
+		"source": "I'll work out the core problem first, then check it against the spec doc.",
+		"gap": "\n\n",
+		"hasMarkers": false,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "text",
+				"text": "I'll work out the core problem first, then check it against the spec doc."
+			}
+		]
+	},
+	{
+		"source": "## The core problem",
+		"gap": "\n\n",
+		"hasMarkers": false,
+		"kind": "heading",
+		"depth": 2,
+		"runs": [
+			{
+				"kind": "text",
+				"text": "The core problem"
+			}
+		]
+	},
+	{
+		"source": "The renderer turns text Claude wrote into a quick visual index. It must do this without changing what the reply says, and without misreporting what's in it. That gives two kinds of failure:",
+		"gap": "\n\n",
+		"hasMarkers": false,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "text",
+				"text": "The renderer turns text Claude wrote into a quick visual index. It must do this without changing what the reply says, and without misreporting what's in it. That gives two kinds of failure:"
+			}
+		]
+	},
+	{
+		"source": "1. **It changes the reply.** Text gets dropped, duplicated or moved, links break, or code gets touched. This is the worse kind, because you can't see it happened.\n2. **It misreads the reply.** A real marker is missed, prose gets styled as a marker, the type or ID is wrong, or the footer's count is off. This kind is visible, because the raw text is still there to compare against.",
+		"gap": "\n\n",
+		"hasMarkers": false,
+		"kind": "list",
+		"ordered": true,
+		"start": 1,
+		"spread": false,
+		"items": [
+			{
+				"blocks": [
+					{
+						"source": "**It changes the reply.** Text gets dropped, duplicated or moved, links break, or code gets touched. This is the worse kind, because you can't see it happened.",
+						"gap": "",
+						"hasMarkers": false,
+						"kind": "paragraph",
+						"runs": [
+							{
+								"kind": "strong",
+								"runs": [
+									{
+										"kind": "text",
+										"text": "It changes the reply."
+									}
+								]
+							},
+							{
+								"kind": "text",
+								"text": " Text gets dropped, duplicated or moved, links break, or code gets touched. This is the worse kind, because you can't see it happened."
+							}
+						]
+					}
+				]
+			},
+			{
+				"blocks": [
+					{
+						"source": "**It misreads the reply.** A real marker is missed, prose gets styled as a marker, the type or ID is wrong, or the footer's count is off. This kind is visible, because the raw text is still there to compare against.",
+						"gap": "",
+						"hasMarkers": false,
+						"kind": "paragraph",
+						"runs": [
+							{
+								"kind": "strong",
+								"runs": [
+									{
+										"kind": "text",
+										"text": "It misreads the reply."
+									}
+								]
+							},
+							{
+								"kind": "text",
+								"text": " A real marker is missed, prose gets styled as a marker, the type or ID is wrong, or the footer's count is off. This kind is visible, because the raw text is still there to compare against."
+							}
+						]
+					}
+				]
+			}
+		]
+	},
+	{
+		"source": "What makes this hard is the input. The renderer never sees Claude's markdown. It sees the page claude.ai already built from that markdown, so the parsing step is a black box you don't control. A label can come out split across page elements. Quotes in `src=\"…\"` may get changed. A bracket next to a link may turn into something else. So you can't test with markdown you write yourself and run through any markdown library. Test cases have to be real claude.ai pages.",
+		"gap": "\n\n",
+		"hasMarkers": false,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "text",
+				"text": "What makes this hard is the input. The renderer never sees Claude's markdown. It sees the page claude.ai already built from that markdown, so the parsing step is a black box you don't control. A label can come out split across page elements. Quotes in "
+			},
+			{
+				"kind": "code",
+				"text": "src=\"…\""
+			},
+			{
+				"kind": "text",
+				"text": " may get changed. A bracket next to a link may turn into something else. So you can't test with markdown you write yourself and run through any markdown library. Test cases have to be real claude.ai pages."
+			}
+		]
+	},
+	{
+		"source": "That leads to the testing idea I'd start from. For each test reply, keep a pair:",
+		"gap": "\n",
+		"hasMarkers": false,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "text",
+				"text": "That leads to the testing idea I'd start from. For each test reply, keep a pair:"
+			}
+		]
+	},
+	{
+		"source": "- **The rendered page HTML**: the renderer's input.\n- **The raw markdown**: the answer key. Run a directive parser like remark-directive over it to get the true list of markers: type, label, ID and src.",
+		"gap": "\n\n",
+		"hasMarkers": false,
+		"kind": "list",
+		"ordered": false,
+		"spread": false,
+		"items": [
+			{
+				"blocks": [
+					{
+						"source": "**The rendered page HTML**: the renderer's input.",
+						"gap": "",
+						"hasMarkers": false,
+						"kind": "paragraph",
+						"runs": [
+							{
+								"kind": "strong",
+								"runs": [
+									{
+										"kind": "text",
+										"text": "The rendered page HTML"
+									}
+								]
+							},
+							{
+								"kind": "text",
+								"text": ": the renderer's input."
+							}
+						]
+					}
+				]
+			},
+			{
+				"blocks": [
+					{
+						"source": "**The raw markdown**: the answer key. Run a directive parser like remark-directive over it to get the true list of markers: type, label, ID and src.",
+						"gap": "",
+						"hasMarkers": false,
+						"kind": "paragraph",
+						"runs": [
+							{
+								"kind": "strong",
+								"runs": [
+									{
+										"kind": "text",
+										"text": "The raw markdown"
+									}
+								]
+							},
+							{
+								"kind": "text",
+								"text": ": the answer key. Run a directive parser like remark-directive over it to get the true list of markers: type, label, ID and src."
+							}
+						]
+					}
+				]
+			}
+		]
+	},
+	{
+		"source": "Then compare what the renderer found with that list. Nobody has to tag anything by hand, and every real reply becomes a test case for free. :guess[The copy button on a claude.ai reply gives the raw markdown, directives included.] If so, you collect each pair by hand, so it stays within the spec's rule against calling internal endpoints.",
+		"gap": "\n\n",
+		"hasMarkers": true,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "text",
+				"text": "Then compare what the renderer found with that list. Nobody has to tag anything by hand, and every real reply becomes a test case for free. "
+			},
+			{
+				"kind": "marker",
+				"tag": "guess",
+				"known": true,
+				"label": [
+					{
+						"kind": "text",
+						"text": "The copy button on a claude.ai reply gives the raw markdown, directives included."
+					}
+				],
+				"labelText": "The copy button on a claude.ai reply gives the raw markdown, directives included.",
+				"attrs": {},
+				"source": ":guess[The copy button on a claude.ai reply gives the raw markdown, directives included.]",
+				"start": 1563,
+				"end": 1652
+			},
+			{
+				"kind": "text",
+				"text": " If so, you collect each pair by hand, so it stays within the spec's rule against calling internal endpoints."
+			}
+		]
+	},
+	{
+		"source": "## What to test, in layers",
+		"gap": "\n\n",
+		"hasMarkers": false,
+		"kind": "heading",
+		"depth": 2,
+		"runs": [
+			{
+				"kind": "text",
+				"text": "What to test, in layers"
+			}
+		]
+	},
+	{
+		"source": "- **Checks that must always hold.** The reply's visible text is the same before and after rendering, ignoring the footer and superscripts the renderer adds. Running the renderer twice gives the same result as running it once. Nothing inside code gets styled.\n- **Parser edge cases.** Labels split across page elements, `10:30[`, URLs, a link right after a marker, an unknown tag name, a marker that's never closed, and markers in lists, tables and headings.\n- **Surviving the live page.** :guess[claude.ai's page framework may undo or break changes made directly to its text], so check that the styling holds through regenerate, editing a message, switching branches, scrolling a long chat, switching theme, and the moment streaming ends. The spec doesn't cover this yet.\n- **Visual check by eye.** 25-word underlines that wrap across lines, dark mode, the footer reading as a status line rather than a legend, and colour not being the only cue.",
+		"gap": "\n\n",
+		"hasMarkers": true,
+		"kind": "list",
+		"ordered": false,
+		"spread": false,
+		"items": [
+			{
+				"blocks": [
+					{
+						"source": "**Checks that must always hold.** The reply's visible text is the same before and after rendering, ignoring the footer and superscripts the renderer adds. Running the renderer twice gives the same result as running it once. Nothing inside code gets styled.",
+						"gap": "",
+						"hasMarkers": false,
+						"kind": "paragraph",
+						"runs": [
+							{
+								"kind": "strong",
+								"runs": [
+									{
+										"kind": "text",
+										"text": "Checks that must always hold."
+									}
+								]
+							},
+							{
+								"kind": "text",
+								"text": " The reply's visible text is the same before and after rendering, ignoring the footer and superscripts the renderer adds. Running the renderer twice gives the same result as running it once. Nothing inside code gets styled."
+							}
+						]
+					}
+				]
+			},
+			{
+				"blocks": [
+					{
+						"source": "**Parser edge cases.** Labels split across page elements, `10:30[`, URLs, a link right after a marker, an unknown tag name, a marker that's never closed, and markers in lists, tables and headings.",
+						"gap": "",
+						"hasMarkers": false,
+						"kind": "paragraph",
+						"runs": [
+							{
+								"kind": "strong",
+								"runs": [
+									{
+										"kind": "text",
+										"text": "Parser edge cases."
+									}
+								]
+							},
+							{
+								"kind": "text",
+								"text": " Labels split across page elements, "
+							},
+							{
+								"kind": "code",
+								"text": "10:30["
+							},
+							{
+								"kind": "text",
+								"text": ", URLs, a link right after a marker, an unknown tag name, a marker that's never closed, and markers in lists, tables and headings."
+							}
+						]
+					}
+				]
+			},
+			{
+				"blocks": [
+					{
+						"source": "**Surviving the live page.** :guess[claude.ai's page framework may undo or break changes made directly to its text], so check that the styling holds through regenerate, editing a message, switching branches, scrolling a long chat, switching theme, and the moment streaming ends. The spec doesn't cover this yet.",
+						"gap": "",
+						"hasMarkers": true,
+						"kind": "paragraph",
+						"runs": [
+							{
+								"kind": "strong",
+								"runs": [
+									{
+										"kind": "text",
+										"text": "Surviving the live page."
+									}
+								]
+							},
+							{
+								"kind": "text",
+								"text": " "
+							},
+							{
+								"kind": "marker",
+								"tag": "guess",
+								"known": true,
+								"label": [
+									{
+										"kind": "text",
+										"text": "claude.ai's page framework may undo or break changes made directly to its text"
+									}
+								],
+								"labelText": "claude.ai's page framework may undo or break changes made directly to its text",
+								"attrs": {},
+								"source": ":guess[claude.ai's page framework may undo or break changes made directly to its text]",
+								"start": 2280,
+								"end": 2366
+							},
+							{
+								"kind": "text",
+								"text": ", so check that the styling holds through regenerate, editing a message, switching branches, scrolling a long chat, switching theme, and the moment streaming ends. The spec doesn't cover this yet."
+							}
+						]
+					}
+				]
+			},
+			{
+				"blocks": [
+					{
+						"source": "**Visual check by eye.** 25-word underlines that wrap across lines, dark mode, the footer reading as a status line rather than a legend, and colour not being the only cue.",
+						"gap": "",
+						"hasMarkers": false,
+						"kind": "paragraph",
+						"runs": [
+							{
+								"kind": "strong",
+								"runs": [
+									{
+										"kind": "text",
+										"text": "Visual check by eye."
+									}
+								]
+							},
+							{
+								"kind": "text",
+								"text": " 25-word underlines that wrap across lines, dark mode, the footer reading as a status line rather than a legend, and colour not being the only cue."
+							}
+						]
+					}
+				]
+			}
+		]
+	},
+	{
+		"source": "## Compared with the spec",
+		"gap": "\n\n",
+		"hasMarkers": false,
+		"kind": "heading",
+		"depth": 2,
+		"runs": [
+			{
+				"kind": "text",
+				"text": "Compared with the spec"
+			}
+		]
+	},
+	{
+		"source": "The spec's \"For the rendering session\" section agrees on most of this: :checked[skip code, style only after streaming ends, use a directive parser as the reference, and test against the trial replies]{src=\"explorations/2026-10-14-response-markup-spec.md\"}. It names the page-element splitting as the known hard part. It doesn't say how to tell whether the renderer got a reply right, and the copy-button pairing above fills that gap. It also doesn't cover the page re-drawing itself under the renderer.",
+		"gap": "\n\n",
+		"hasMarkers": true,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "text",
+				"text": "The spec's \"For the rendering session\" section agrees on most of this: "
+			},
+			{
+				"kind": "marker",
+				"tag": "checked",
+				"known": true,
+				"label": [
+					{
+						"kind": "text",
+						"text": "skip code, style only after streaming ends, use a directive parser as the reference, and test against the trial replies"
+					}
+				],
+				"labelText": "skip code, style only after streaming ends, use a directive parser as the reference, and test against the trial replies",
+				"src": "explorations/2026-10-14-response-markup-spec.md",
+				"attrs": {},
+				"source": ":checked[skip code, style only after streaming ends, use a directive parser as the reference, and test against the trial replies]{src=\"explorations/2026-10-14-response-markup-spec.md\"}",
+				"start": 2836,
+				"end": 3020
+			},
+			{
+				"kind": "text",
+				"text": ". It names the page-element splitting as the known hard part. It doesn't say how to tell whether the renderer got a reply right, and the copy-button pairing above fills that gap. It also doesn't cover the page re-drawing itself under the renderer."
+			}
+		]
+	},
+	{
+		"source": ":guess[The CSS Custom Highlight API could draw the underlines without editing the page's text at all.] That would make \"never remove text\" hold by design and avoid clashing with the page framework. The ID superscripts and the footer would still need added elements.",
+		"gap": "\n\n",
+		"hasMarkers": true,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "marker",
+				"tag": "guess",
+				"known": true,
+				"label": [
+					{
+						"kind": "text",
+						"text": "The CSS Custom Highlight API could draw the underlines without editing the page's text at all."
+					}
+				],
+				"labelText": "The CSS Custom Highlight API could draw the underlines without editing the page's text at all.",
+				"attrs": {},
+				"source": ":guess[The CSS Custom Highlight API could draw the underlines without editing the page's text at all.]",
+				"start": 3269,
+				"end": 3371
+			},
+			{
+				"kind": "text",
+				"text": " That would make \"never remove text\" hold by design and avoid clashing with the page framework. The ID superscripts and the footer would still need added elements."
+			}
+		]
+	},
+	{
+		"source": "One thing changes what \"changes the reply\" means: :open[When the spec says \"never remove or hide text\", should the directive syntax (`:open[`, `]{#ID}`) stay visible, or can the renderer hide it and keep only the label?] The mock that shows IDs as superscripts suggests hiding it. Your answer decides what the \"visible text is unchanged\" check compares against.",
+		"gap": "\n\n",
+		"hasMarkers": true,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "text",
+				"text": "One thing changes what \"changes the reply\" means: "
+			},
+			{
+				"kind": "marker",
+				"tag": "open",
+				"known": false,
+				"label": [
+					{
+						"kind": "text",
+						"text": "When the spec says \"never remove or hide text\", should the directive syntax ("
+					},
+					{
+						"kind": "code",
+						"text": ":open["
+					},
+					{
+						"kind": "text",
+						"text": ", "
+					},
+					{
+						"kind": "code",
+						"text": "]{#ID}"
+					},
+					{
+						"kind": "text",
+						"text": ") stay visible, or can the renderer hide it and keep only the label?"
+					}
+				],
+				"labelText": "When the spec says \"never remove or hide text\", should the directive syntax (:open[, ]{#ID}) stay visible, or can the renderer hide it and keep only the label?",
+				"attrs": {},
+				"source": ":open[When the spec says \"never remove or hide text\", should the directive syntax (`:open[`, `]{#ID}`) stay visible, or can the renderer hide it and keep only the label?]",
+				"start": 3586,
+				"end": 3756
+			},
+			{
+				"kind": "text",
+				"text": " The mock that shows IDs as superscripts suggests hiding it. Your answer decides what the \"visible text is unchanged\" check compares against."
+			}
+		]
+	},
+	{
+		"source": ":changed[nothing] I haven't saved anything to the project. If it's useful, I can collect the first pairs from the five trial replies using Claude in Chrome, or write this up as an exploration doc.",
+		"gap": "",
+		"hasMarkers": true,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "marker",
+				"tag": "changed",
+				"known": true,
+				"label": [
+					{
+						"kind": "text",
+						"text": "nothing"
+					}
+				],
+				"labelText": "nothing",
+				"attrs": {},
+				"source": ":changed[nothing]",
+				"start": 3899,
+				"end": 3916
+			},
+			{
+				"kind": "text",
+				"text": " I haven't saved anything to the project. If it's useful, I can collect the first pairs from the five trial replies using Claude in Chrome, or write this up as an exploration doc."
+			}
+		]
+	}
+]

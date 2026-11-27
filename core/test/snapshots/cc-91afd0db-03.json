@@ -1,0 +1,471 @@
+[
+	{
+		"source": "Here's what's left before 0.2 can go out, in rough order. :changed[nothing] this turn.",
+		"gap": "\n\n",
+		"hasMarkers": true,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "text",
+				"text": "Here's what's left before 0.2 can go out, in rough order. "
+			},
+			{
+				"kind": "marker",
+				"tag": "changed",
+				"known": true,
+				"label": [
+					{
+						"kind": "text",
+						"text": "nothing"
+					}
+				],
+				"labelText": "nothing",
+				"attrs": {},
+				"source": ":changed[nothing]",
+				"start": 58,
+				"end": 75
+			},
+			{
+				"kind": "text",
+				"text": " this turn."
+			}
+		]
+	},
+	{
+		"source": "1. :open-ask[Confirm which issues block 0.2]. My proposal is that I5 and I6 block, I3 is optional and I4 waits for 0.3. The plan doesn't name any blockers yet.\n2. **Fix I5.** Remove the rounding from `convert`, then update the two tests and the README example that expect whole numbers (15 and 473).\n3. **Fix I6.** Put a space between the whole number and the fraction in `formatAmount` (\"1 ½\"), then update the tests that expect \"1½\" and \"2¾\".\n4. **Run the tests.** :guess[The I1 and I2 fixes already in your working tree probably pass], but I haven't run them because `npm test` needs your approval here.\n5. :open-ask[Decide whether the \"Reading Claude's replies\" section stays in the README]. :checked[That section is an uncommitted change in README.md]{src=\"git diff README.md\"}. Since npm shows the README as the package's page, it would be published there.\n6. **Commit** the I1 and I2 fixes, the plan update and whatever you decide for the README.\n7. **Bump the version.** :checked[package.json still says 0.1.0]{src=\"package.json:3\"}.\n8. **Check the package name.** :guess[The npm name \"pantry\" may already be taken]. Run `npm view pantry` to see.\n9. :open-default[Add a \"files\" field to package.json so only src/ is published]. :checked[package.json has no \"files\" field]{src=\"package.json\"}, so docs/ and test/ would ship too. They're harmless, so I'll leave it unless you want it changed.\n10. **Publish** with `npm publish`.",
+		"gap": "\n\n",
+		"hasMarkers": true,
+		"kind": "list",
+		"ordered": true,
+		"start": 1,
+		"spread": false,
+		"items": [
+			{
+				"blocks": [
+					{
+						"source": ":open-ask[Confirm which issues block 0.2]. My proposal is that I5 and I6 block, I3 is optional and I4 waits for 0.3. The plan doesn't name any blockers yet.",
+						"gap": "",
+						"hasMarkers": true,
+						"kind": "paragraph",
+						"runs": [
+							{
+								"kind": "marker",
+								"tag": "open-ask",
+								"known": true,
+								"label": [
+									{
+										"kind": "text",
+										"text": "Confirm which issues block 0.2"
+									}
+								],
+								"labelText": "Confirm which issues block 0.2",
+								"attrs": {},
+								"source": ":open-ask[Confirm which issues block 0.2]",
+								"start": 91,
+								"end": 132
+							},
+							{
+								"kind": "text",
+								"text": ". My proposal is that I5 and I6 block, I3 is optional and I4 waits for 0.3. The plan doesn't name any blockers yet."
+							}
+						]
+					}
+				]
+			},
+			{
+				"blocks": [
+					{
+						"source": "**Fix I5.** Remove the rounding from `convert`, then update the two tests and the README example that expect whole numbers (15 and 473).",
+						"gap": "",
+						"hasMarkers": false,
+						"kind": "paragraph",
+						"runs": [
+							{
+								"kind": "strong",
+								"runs": [
+									{
+										"kind": "text",
+										"text": "Fix I5."
+									}
+								]
+							},
+							{
+								"kind": "text",
+								"text": " Remove the rounding from "
+							},
+							{
+								"kind": "code",
+								"text": "convert"
+							},
+							{
+								"kind": "text",
+								"text": ", then update the two tests and the README example that expect whole numbers (15 and 473)."
+							}
+						]
+					}
+				]
+			},
+			{
+				"blocks": [
+					{
+						"source": "**Fix I6.** Put a space between the whole number and the fraction in `formatAmount` (\"1 ½\"), then update the tests that expect \"1½\" and \"2¾\".",
+						"gap": "",
+						"hasMarkers": false,
+						"kind": "paragraph",
+						"runs": [
+							{
+								"kind": "strong",
+								"runs": [
+									{
+										"kind": "text",
+										"text": "Fix I6."
+									}
+								]
+							},
+							{
+								"kind": "text",
+								"text": " Put a space between the whole number and the fraction in "
+							},
+							{
+								"kind": "code",
+								"text": "formatAmount"
+							},
+							{
+								"kind": "text",
+								"text": " (\"1 ½\"), then update the tests that expect \"1½\" and \"2¾\"."
+							}
+						]
+					}
+				]
+			},
+			{
+				"blocks": [
+					{
+						"source": "**Run the tests.** :guess[The I1 and I2 fixes already in your working tree probably pass], but I haven't run them because `npm test` needs your approval here.",
+						"gap": "",
+						"hasMarkers": true,
+						"kind": "paragraph",
+						"runs": [
+							{
+								"kind": "strong",
+								"runs": [
+									{
+										"kind": "text",
+										"text": "Run the tests."
+									}
+								]
+							},
+							{
+								"kind": "text",
+								"text": " "
+							},
+							{
+								"kind": "marker",
+								"tag": "guess",
+								"known": true,
+								"label": [
+									{
+										"kind": "text",
+										"text": "The I1 and I2 fixes already in your working tree probably pass"
+									}
+								],
+								"labelText": "The I1 and I2 fixes already in your working tree probably pass",
+								"attrs": {},
+								"source": ":guess[The I1 and I2 fixes already in your working tree probably pass]",
+								"start": 555,
+								"end": 625
+							},
+							{
+								"kind": "text",
+								"text": ", but I haven't run them because "
+							},
+							{
+								"kind": "code",
+								"text": "npm test"
+							},
+							{
+								"kind": "text",
+								"text": " needs your approval here."
+							}
+						]
+					}
+				]
+			},
+			{
+				"blocks": [
+					{
+						"source": ":open-ask[Decide whether the \"Reading Claude's replies\" section stays in the README]. :checked[That section is an uncommitted change in README.md]{src=\"git diff README.md\"}. Since npm shows the README as the package's page, it would be published there.",
+						"gap": "",
+						"hasMarkers": true,
+						"kind": "paragraph",
+						"runs": [
+							{
+								"kind": "marker",
+								"tag": "open-ask",
+								"known": true,
+								"label": [
+									{
+										"kind": "text",
+										"text": "Decide whether the \"Reading Claude's replies\" section stays in the README"
+									}
+								],
+								"labelText": "Decide whether the \"Reading Claude's replies\" section stays in the README",
+								"attrs": {},
+								"source": ":open-ask[Decide whether the \"Reading Claude's replies\" section stays in the README]",
+								"start": 698,
+								"end": 782
+							},
+							{
+								"kind": "text",
+								"text": ". "
+							},
+							{
+								"kind": "marker",
+								"tag": "checked",
+								"known": true,
+								"label": [
+									{
+										"kind": "text",
+										"text": "That section is an uncommitted change in README.md"
+									}
+								],
+								"labelText": "That section is an uncommitted change in README.md",
+								"src": "git diff README.md",
+								"attrs": {},
+								"source": ":checked[That section is an uncommitted change in README.md]{src=\"git diff README.md\"}",
+								"start": 784,
+								"end": 870
+							},
+							{
+								"kind": "text",
+								"text": ". Since npm shows the README as the package's page, it would be published there."
+							}
+						]
+					}
+				]
+			},
+			{
+				"blocks": [
+					{
+						"source": "**Commit** the I1 and I2 fixes, the plan update and whatever you decide for the README.",
+						"gap": "",
+						"hasMarkers": false,
+						"kind": "paragraph",
+						"runs": [
+							{
+								"kind": "strong",
+								"runs": [
+									{
+										"kind": "text",
+										"text": "Commit"
+									}
+								]
+							},
+							{
+								"kind": "text",
+								"text": " the I1 and I2 fixes, the plan update and whatever you decide for the README."
+							}
+						]
+					}
+				]
+			},
+			{
+				"blocks": [
+					{
+						"source": "**Bump the version.** :checked[package.json still says 0.1.0]{src=\"package.json:3\"}.",
+						"gap": "",
+						"hasMarkers": true,
+						"kind": "paragraph",
+						"runs": [
+							{
+								"kind": "strong",
+								"runs": [
+									{
+										"kind": "text",
+										"text": "Bump the version."
+									}
+								]
+							},
+							{
+								"kind": "text",
+								"text": " "
+							},
+							{
+								"kind": "marker",
+								"tag": "checked",
+								"known": true,
+								"label": [
+									{
+										"kind": "text",
+										"text": "package.json still says 0.1.0"
+									}
+								],
+								"labelText": "package.json still says 0.1.0",
+								"src": "package.json:3",
+								"attrs": {},
+								"source": ":checked[package.json still says 0.1.0]{src=\"package.json:3\"}",
+								"start": 1067,
+								"end": 1128
+							},
+							{
+								"kind": "text",
+								"text": "."
+							}
+						]
+					}
+				]
+			},
+			{
+				"blocks": [
+					{
+						"source": "**Check the package name.** :guess[The npm name \"pantry\" may already be taken]. Run `npm view pantry` to see.",
+						"gap": "",
+						"hasMarkers": true,
+						"kind": "paragraph",
+						"runs": [
+							{
+								"kind": "strong",
+								"runs": [
+									{
+										"kind": "text",
+										"text": "Check the package name."
+									}
+								]
+							},
+							{
+								"kind": "text",
+								"text": " "
+							},
+							{
+								"kind": "marker",
+								"tag": "guess",
+								"known": true,
+								"label": [
+									{
+										"kind": "text",
+										"text": "The npm name \"pantry\" may already be taken"
+									}
+								],
+								"labelText": "The npm name \"pantry\" may already be taken",
+								"attrs": {},
+								"source": ":guess[The npm name \"pantry\" may already be taken]",
+								"start": 1161,
+								"end": 1211
+							},
+							{
+								"kind": "text",
+								"text": ". Run "
+							},
+							{
+								"kind": "code",
+								"text": "npm view pantry"
+							},
+							{
+								"kind": "text",
+								"text": " to see."
+							}
+						]
+					}
+				]
+			},
+			{
+				"blocks": [
+					{
+						"source": ":open-default[Add a \"files\" field to package.json so only src/ is published]. :checked[package.json has no \"files\" field]{src=\"package.json\"}, so docs/ and test/ would ship too. They're harmless, so I'll leave it unless you want it changed.",
+						"gap": "",
+						"hasMarkers": true,
+						"kind": "paragraph",
+						"runs": [
+							{
+								"kind": "marker",
+								"tag": "open-default",
+								"known": true,
+								"label": [
+									{
+										"kind": "text",
+										"text": "Add a \"files\" field to package.json so only src/ is published"
+									}
+								],
+								"labelText": "Add a \"files\" field to package.json so only src/ is published",
+								"attrs": {},
+								"source": ":open-default[Add a \"files\" field to package.json so only src/ is published]",
+								"start": 1246,
+								"end": 1322
+							},
+							{
+								"kind": "text",
+								"text": ". "
+							},
+							{
+								"kind": "marker",
+								"tag": "checked",
+								"known": true,
+								"label": [
+									{
+										"kind": "text",
+										"text": "package.json has no \"files\" field"
+									}
+								],
+								"labelText": "package.json has no \"files\" field",
+								"src": "package.json",
+								"attrs": {},
+								"source": ":checked[package.json has no \"files\" field]{src=\"package.json\"}",
+								"start": 1324,
+								"end": 1387
+							},
+							{
+								"kind": "text",
+								"text": ", so docs/ and test/ would ship too. They're harmless, so I'll leave it unless you want it changed."
+							}
+						]
+					}
+				]
+			},
+			{
+				"blocks": [
+					{
+						"source": "**Publish** with `npm publish`.",
+						"gap": "",
+						"hasMarkers": false,
+						"kind": "paragraph",
+						"runs": [
+							{
+								"kind": "strong",
+								"runs": [
+									{
+										"kind": "text",
+										"text": "Publish"
+									}
+								]
+							},
+							{
+								"kind": "text",
+								"text": " with "
+							},
+							{
+								"kind": "code",
+								"text": "npm publish"
+							},
+							{
+								"kind": "text",
+								"text": "."
+							}
+						]
+					}
+				]
+			}
+		]
+	},
+	{
+		"source": "I can do steps 2 to 4 and 7 as soon as you confirm step 1.",
+		"gap": "",
+		"hasMarkers": false,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "text",
+				"text": "I can do steps 2 to 4 and 7 as soon as you confirm step 1."
+			}
+		]
+	}
+]

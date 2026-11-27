@@ -1,0 +1,808 @@
+{
+	"type": "Box",
+	"layout": {
+		"flexDirection": "column",
+		"gap": 1
+	},
+	"children": [
+		{
+			"type": "Text",
+			"style": {},
+			"children": [
+				"Here's what's left before 0.2 can go out, in rough order. ",
+				{
+					"type": "Text",
+					"style": {
+						"tone": "changed"
+					},
+					"children": [
+						{
+							"type": "Text",
+							"style": {
+								"bold": true
+							},
+							"children": [
+								{
+									"type": "Symbol",
+									"tag": "changed"
+								}
+							]
+						},
+						" ",
+						"nothing"
+					]
+				},
+				" this turn."
+			]
+		},
+		{
+			"type": "Box",
+			"layout": {
+				"flexDirection": "column"
+			},
+			"children": [
+				{
+					"type": "Box",
+					"layout": {
+						"flexDirection": "row"
+					},
+					"children": [
+						{
+							"type": "Box",
+							"layout": {
+								"width": 3,
+								"flexShrink": 0
+							},
+							"children": [
+								{
+									"type": "Text",
+									"style": {
+										"added": true
+									},
+									"children": [
+										"1. "
+									]
+								}
+							]
+						},
+						{
+							"type": "Box",
+							"layout": {
+								"flexDirection": "column",
+								"flexShrink": 1,
+								"flexGrow": 1
+							},
+							"children": [
+								{
+									"type": "Text",
+									"style": {},
+									"children": [
+										{
+											"type": "Text",
+											"style": {
+												"tone": "open-ask"
+											},
+											"children": [
+												{
+													"type": "Text",
+													"style": {
+														"bold": true
+													},
+													"children": [
+														{
+															"type": "Symbol",
+															"tag": "open-ask"
+														}
+													]
+												},
+												" ",
+												"Confirm which issues block 0.2"
+											]
+										},
+										". My proposal is that I5 and I6 block, I3 is optional and I4 waits for 0.3. The plan doesn't name any blockers yet."
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"type": "Box",
+					"layout": {
+						"flexDirection": "row"
+					},
+					"children": [
+						{
+							"type": "Box",
+							"layout": {
+								"width": 3,
+								"flexShrink": 0
+							},
+							"children": [
+								{
+									"type": "Text",
+									"style": {
+										"added": true
+									},
+									"children": [
+										"2. "
+									]
+								}
+							]
+						},
+						{
+							"type": "Box",
+							"layout": {
+								"flexDirection": "column",
+								"flexShrink": 1,
+								"flexGrow": 1
+							},
+							"children": [
+								{
+									"type": "Text",
+									"style": {},
+									"children": [
+										{
+											"type": "Text",
+											"style": {
+												"bold": true
+											},
+											"children": [
+												"Fix I5."
+											]
+										},
+										" Remove the rounding from ",
+										{
+											"type": "Text",
+											"style": {
+												"tone": "code"
+											},
+											"children": [
+												"convert"
+											]
+										},
+										", then update the two tests and the README example that expect whole numbers (15 and 473)."
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"type": "Box",
+					"layout": {
+						"flexDirection": "row"
+					},
+					"children": [
+						{
+							"type": "Box",
+							"layout": {
+								"width": 3,
+								"flexShrink": 0
+							},
+							"children": [
+								{
+									"type": "Text",
+									"style": {
+										"added": true
+									},
+									"children": [
+										"3. "
+									]
+								}
+							]
+						},
+						{
+							"type": "Box",
+							"layout": {
+								"flexDirection": "column",
+								"flexShrink": 1,
+								"flexGrow": 1
+							},
+							"children": [
+								{
+									"type": "Text",
+									"style": {},
+									"children": [
+										{
+											"type": "Text",
+											"style": {
+												"bold": true
+											},
+											"children": [
+												"Fix I6."
+											]
+										},
+										" Put a space between the whole number and the fraction in ",
+										{
+											"type": "Text",
+											"style": {
+												"tone": "code"
+											},
+											"children": [
+												"formatAmount"
+											]
+										},
+										" (\"1 ½\"), then update the tests that expect \"1½\" and \"2¾\"."
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"type": "Box",
+					"layout": {
+						"flexDirection": "row"
+					},
+					"children": [
+						{
+							"type": "Box",
+							"layout": {
+								"width": 3,
+								"flexShrink": 0
+							},
+							"children": [
+								{
+									"type": "Text",
+									"style": {
+										"added": true
+									},
+									"children": [
+										"4. "
+									]
+								}
+							]
+						},
+						{
+							"type": "Box",
+							"layout": {
+								"flexDirection": "column",
+								"flexShrink": 1,
+								"flexGrow": 1
+							},
+							"children": [
+								{
+									"type": "Text",
+									"style": {},
+									"children": [
+										{
+											"type": "Text",
+											"style": {
+												"bold": true
+											},
+											"children": [
+												"Run the tests."
+											]
+										},
+										" ",
+										{
+											"type": "Text",
+											"style": {
+												"tone": "guess"
+											},
+											"children": [
+												{
+													"type": "Text",
+													"style": {
+														"bold": true
+													},
+													"children": [
+														{
+															"type": "Symbol",
+															"tag": "guess"
+														}
+													]
+												},
+												" ",
+												"The I1 and I2 fixes already in your working tree probably pass"
+											]
+										},
+										", but I haven't run them because ",
+										{
+											"type": "Text",
+											"style": {
+												"tone": "code"
+											},
+											"children": [
+												"npm test"
+											]
+										},
+										" needs your approval here."
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"type": "Box",
+					"layout": {
+						"flexDirection": "row"
+					},
+					"children": [
+						{
+							"type": "Box",
+							"layout": {
+								"width": 3,
+								"flexShrink": 0
+							},
+							"children": [
+								{
+									"type": "Text",
+									"style": {
+										"added": true
+									},
+									"children": [
+										"5. "
+									]
+								}
+							]
+						},
+						{
+							"type": "Box",
+							"layout": {
+								"flexDirection": "column",
+								"flexShrink": 1,
+								"flexGrow": 1
+							},
+							"children": [
+								{
+									"type": "Text",
+									"style": {},
+									"children": [
+										{
+											"type": "Text",
+											"style": {
+												"tone": "open-ask"
+											},
+											"children": [
+												{
+													"type": "Text",
+													"style": {
+														"bold": true
+													},
+													"children": [
+														{
+															"type": "Symbol",
+															"tag": "open-ask"
+														}
+													]
+												},
+												" ",
+												"Decide whether the \"Reading Claude's replies\" section stays in the README"
+											]
+										},
+										". ",
+										{
+											"type": "Text",
+											"style": {
+												"tone": "checked"
+											},
+											"children": [
+												{
+													"type": "Text",
+													"style": {
+														"bold": true
+													},
+													"children": [
+														{
+															"type": "Symbol",
+															"tag": "checked"
+														}
+													]
+												},
+												" ",
+												"That section is an uncommitted change in README.md",
+												{
+													"type": "Text",
+													"style": {
+														"tone": "checked",
+														"note": true,
+														"added": true
+													},
+													"children": [
+														" src: git diff README.md"
+													]
+												}
+											]
+										},
+										". Since npm shows the README as the package's page, it would be published there."
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"type": "Box",
+					"layout": {
+						"flexDirection": "row"
+					},
+					"children": [
+						{
+							"type": "Box",
+							"layout": {
+								"width": 3,
+								"flexShrink": 0
+							},
+							"children": [
+								{
+									"type": "Text",
+									"style": {
+										"added": true
+									},
+									"children": [
+										"6. "
+									]
+								}
+							]
+						},
+						{
+							"type": "Box",
+							"layout": {
+								"flexDirection": "column",
+								"flexShrink": 1,
+								"flexGrow": 1
+							},
+							"children": [
+								{
+									"type": "Text",
+									"style": {},
+									"children": [
+										{
+											"type": "Text",
+											"style": {
+												"bold": true
+											},
+											"children": [
+												"Commit"
+											]
+										},
+										" the I1 and I2 fixes, the plan update and whatever you decide for the README."
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"type": "Box",
+					"layout": {
+						"flexDirection": "row"
+					},
+					"children": [
+						{
+							"type": "Box",
+							"layout": {
+								"width": 3,
+								"flexShrink": 0
+							},
+							"children": [
+								{
+									"type": "Text",
+									"style": {
+										"added": true
+									},
+									"children": [
+										"7. "
+									]
+								}
+							]
+						},
+						{
+							"type": "Box",
+							"layout": {
+								"flexDirection": "column",
+								"flexShrink": 1,
+								"flexGrow": 1
+							},
+							"children": [
+								{
+									"type": "Text",
+									"style": {},
+									"children": [
+										{
+											"type": "Text",
+											"style": {
+												"bold": true
+											},
+											"children": [
+												"Bump the version."
+											]
+										},
+										" ",
+										{
+											"type": "Text",
+											"style": {
+												"tone": "checked"
+											},
+											"children": [
+												{
+													"type": "Text",
+													"style": {
+														"bold": true
+													},
+													"children": [
+														{
+															"type": "Symbol",
+															"tag": "checked"
+														}
+													]
+												},
+												" ",
+												"package.json still says 0.1.0",
+												{
+													"type": "Text",
+													"style": {
+														"tone": "checked",
+														"note": true,
+														"added": true
+													},
+													"children": [
+														" src: package.json:3"
+													]
+												}
+											]
+										},
+										"."
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"type": "Box",
+					"layout": {
+						"flexDirection": "row"
+					},
+					"children": [
+						{
+							"type": "Box",
+							"layout": {
+								"width": 3,
+								"flexShrink": 0
+							},
+							"children": [
+								{
+									"type": "Text",
+									"style": {
+										"added": true
+									},
+									"children": [
+										"8. "
+									]
+								}
+							]
+						},
+						{
+							"type": "Box",
+							"layout": {
+								"flexDirection": "column",
+								"flexShrink": 1,
+								"flexGrow": 1
+							},
+							"children": [
+								{
+									"type": "Text",
+									"style": {},
+									"children": [
+										{
+											"type": "Text",
+											"style": {
+												"bold": true
+											},
+											"children": [
+												"Check the package name."
+											]
+										},
+										" ",
+										{
+											"type": "Text",
+											"style": {
+												"tone": "guess"
+											},
+											"children": [
+												{
+													"type": "Text",
+													"style": {
+														"bold": true
+													},
+													"children": [
+														{
+															"type": "Symbol",
+															"tag": "guess"
+														}
+													]
+												},
+												" ",
+												"The npm name \"pantry\" may already be taken"
+											]
+										},
+										". Run ",
+										{
+											"type": "Text",
+											"style": {
+												"tone": "code"
+											},
+											"children": [
+												"npm view pantry"
+											]
+										},
+										" to see."
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"type": "Box",
+					"layout": {
+						"flexDirection": "row"
+					},
+					"children": [
+						{
+							"type": "Box",
+							"layout": {
+								"width": 3,
+								"flexShrink": 0
+							},
+							"children": [
+								{
+									"type": "Text",
+									"style": {
+										"added": true
+									},
+									"children": [
+										"9. "
+									]
+								}
+							]
+						},
+						{
+							"type": "Box",
+							"layout": {
+								"flexDirection": "column",
+								"flexShrink": 1,
+								"flexGrow": 1
+							},
+							"children": [
+								{
+									"type": "Text",
+									"style": {},
+									"children": [
+										{
+											"type": "Text",
+											"style": {
+												"tone": "open-default"
+											},
+											"children": [
+												{
+													"type": "Text",
+													"style": {
+														"bold": true
+													},
+													"children": [
+														{
+															"type": "Symbol",
+															"tag": "open-default"
+														}
+													]
+												},
+												" ",
+												"Add a \"files\" field to package.json so only src/ is published"
+											]
+										},
+										". ",
+										{
+											"type": "Text",
+											"style": {
+												"tone": "checked"
+											},
+											"children": [
+												{
+													"type": "Text",
+													"style": {
+														"bold": true
+													},
+													"children": [
+														{
+															"type": "Symbol",
+															"tag": "checked"
+														}
+													]
+												},
+												" ",
+												"package.json has no \"files\" field",
+												{
+													"type": "Text",
+													"style": {
+														"tone": "checked",
+														"note": true,
+														"added": true
+													},
+													"children": [
+														" src: package.json"
+													]
+												}
+											]
+										},
+										", so docs/ and test/ would ship too. They're harmless, so I'll leave it unless you want it changed."
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"type": "Box",
+					"layout": {
+						"flexDirection": "row"
+					},
+					"children": [
+						{
+							"type": "Box",
+							"layout": {
+								"width": 4,
+								"flexShrink": 0
+							},
+							"children": [
+								{
+									"type": "Text",
+									"style": {
+										"added": true
+									},
+									"children": [
+										"10. "
+									]
+								}
+							]
+						},
+						{
+							"type": "Box",
+							"layout": {
+								"flexDirection": "column",
+								"flexShrink": 1,
+								"flexGrow": 1
+							},
+							"children": [
+								{
+									"type": "Text",
+									"style": {},
+									"children": [
+										{
+											"type": "Text",
+											"style": {
+												"bold": true
+											},
+											"children": [
+												"Publish"
+											]
+										},
+										" with ",
+										{
+											"type": "Text",
+											"style": {
+												"tone": "code"
+											},
+											"children": [
+												"npm publish"
+											]
+										},
+										"."
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"type": "Markdown",
+			"text": "I can do steps 2 to 4 and 7 as soon as you confirm step 1."
+		}
+	]
+}

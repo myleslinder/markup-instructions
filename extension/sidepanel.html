@@ -1,0 +1,790 @@
+<!doctype html>
+<!--
+	The extension's settings screen, in Chrome's side panel. Its script is built from src/sidepanel.ts.
+-->
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Markup Instructions</title>
+		<style>
+			:root {
+				color-scheme: light;
+				--bg: #f7f6f3;
+				--surface: #ffffff;
+				--line: #dcd9d2;
+				--line-strong: #b4b0a6;
+				--text: #22211e;
+				--dim: #6a675f;
+				--field: #ffffff;
+				--button: #efede8;
+				--button-hover: #e5e2db;
+				--primary: #22211e;
+				--primary-text: #ffffff;
+				--locked: #efede8;
+				--warn-bg: #fdf1dc;
+				--warn-line: #d9a54a;
+				--error: #b3261e;
+				--focus: #2f6fdb;
+				/* claude.ai's page in each theme, for the samples. */
+				--cl-dark-bg: #191919;
+				--cl-dark-text: #e6e4dd;
+				--cl-light-bg: #ffffff;
+				--cl-light-text: #1f1e1d;
+			}
+			@media (prefers-color-scheme: dark) {
+				:root:not([data-theme="light"]) {
+					color-scheme: dark;
+					--bg: #1e1e1d;
+					--surface: #262625;
+					--line: #3b3a37;
+					--line-strong: #5a5852;
+					--text: #ecebe7;
+					--dim: #a29f97;
+					--field: #1b1b1a;
+					--button: #33322f;
+					--button-hover: #3e3d39;
+					--primary: #ecebe7;
+					--primary-text: #1e1e1d;
+					--locked: #2d2c2a;
+					--warn-bg: #3a2f1a;
+					--warn-line: #8f6d2e;
+					--error: #ff8a80;
+					--focus: #7aa7ff;
+				}
+			}
+			:root[data-theme="dark"] {
+				color-scheme: dark;
+				--bg: #1e1e1d;
+				--surface: #262625;
+				--line: #3b3a37;
+				--line-strong: #5a5852;
+				--text: #ecebe7;
+				--dim: #a29f97;
+				--field: #1b1b1a;
+				--button: #33322f;
+				--button-hover: #3e3d39;
+				--primary: #ecebe7;
+				--primary-text: #1e1e1d;
+				--locked: #2d2c2a;
+				--warn-bg: #3a2f1a;
+				--warn-line: #8f6d2e;
+				--error: #ff8a80;
+				--focus: #7aa7ff;
+			}
+
+			* {
+				box-sizing: border-box;
+			}
+			body {
+				margin: 0;
+				background: var(--bg);
+				color: var(--text);
+				font:
+					13px/1.45 system-ui,
+					sans-serif;
+			}
+			.mono,
+			textarea.mono {
+				font-family: ui-monospace, "SF Mono", Menlo, monospace;
+				font-size: 12px;
+			}
+			h1,
+			h2 {
+				margin: 0;
+				font-size: 13px;
+			}
+			h2 {
+				font-size: 12px;
+				text-transform: uppercase;
+				letter-spacing: 0.04em;
+				color: var(--dim);
+			}
+			p {
+				margin: 0;
+			}
+			.dim {
+				color: var(--dim);
+			}
+			[hidden] {
+				display: none !important;
+			}
+			:focus-visible {
+				outline: 2px solid var(--focus);
+				outline-offset: 1px;
+			}
+
+			header {
+				position: sticky;
+				top: 0;
+				z-index: 2;
+				display: flex;
+				align-items: baseline;
+				gap: 6px;
+				padding: 10px 14px;
+				background: var(--bg);
+				border-bottom: 1px solid var(--line);
+			}
+			header .ver {
+				color: var(--dim);
+			}
+			#saved {
+				margin-left: auto;
+				color: var(--dim);
+				font-size: 12px;
+			}
+			#saved[data-state="error"] {
+				color: var(--error);
+			}
+
+			main {
+				padding: 4px 14px 24px;
+			}
+			section {
+				padding: 14px 0 16px;
+				border-bottom: 1px solid var(--line);
+			}
+			section:last-child {
+				border-bottom: 0;
+			}
+			.section-head {
+				display: flex;
+				align-items: baseline;
+				justify-content: space-between;
+				gap: 8px;
+				margin-bottom: 8px;
+			}
+			.hint {
+				color: var(--dim);
+				font-size: 12px;
+				margin-bottom: 8px;
+			}
+
+			button {
+				font: inherit;
+				color: var(--text);
+				background: var(--button);
+				border: 1px solid var(--line-strong);
+				border-radius: 6px;
+				padding: 4px 10px;
+				cursor: pointer;
+			}
+			button:hover {
+				background: var(--button-hover);
+			}
+			button.primary {
+				background: var(--primary);
+				color: var(--primary-text);
+				border-color: var(--primary);
+				font-weight: 600;
+			}
+			button.link {
+				background: none;
+				border: 0;
+				padding: 0;
+				color: var(--text);
+				text-decoration: underline;
+				text-underline-offset: 2px;
+			}
+			button.danger {
+				color: var(--error);
+			}
+
+			input[type="text"],
+			textarea {
+				width: 100%;
+				font: inherit;
+				color: var(--text);
+				background: var(--field);
+				border: 1px solid var(--line-strong);
+				border-radius: 5px;
+				padding: 4px 6px;
+			}
+			textarea {
+				resize: vertical;
+				line-height: 1.4;
+			}
+			input[aria-invalid="true"],
+			textarea[aria-invalid="true"] {
+				border-color: var(--error);
+			}
+			input[type="color"] {
+				width: 30px;
+				height: 26px;
+				padding: 1px;
+				border: 1px solid var(--line-strong);
+				border-radius: 5px;
+				background: var(--field);
+				flex: none;
+				cursor: pointer;
+			}
+			label.f {
+				display: flex;
+				flex-direction: column;
+				gap: 3px;
+				font-size: 12px;
+				color: var(--dim);
+				min-width: 0;
+			}
+			.err {
+				color: var(--error);
+				font-size: 12px;
+			}
+			.help {
+				font-size: 11.5px;
+				color: var(--dim);
+			}
+			div.f {
+				display: flex;
+				flex-direction: column;
+				gap: 3px;
+				font-size: 12px;
+				color: var(--dim);
+			}
+			.line-preview {
+				padding: 5px 7px;
+				border-radius: 5px;
+				background: var(--locked);
+				color: var(--text);
+				font-size: 12px;
+				overflow-wrap: anywhere;
+			}
+			details.attr > summary {
+				cursor: pointer;
+				font-size: 12px;
+				color: var(--dim);
+			}
+			details.attr[open] > summary {
+				margin-bottom: 6px;
+			}
+			details.attr .help {
+				display: block;
+				margin-top: 4px;
+			}
+
+			/* Unsaved changes */
+			.save-bar {
+				position: sticky;
+				bottom: 0;
+				z-index: 2;
+				display: flex;
+				flex-wrap: wrap;
+				align-items: center;
+				gap: 6px;
+				padding: 8px 14px;
+				background: var(--bg);
+				border-top: 1px solid var(--line-strong);
+			}
+			#unsaved {
+				margin-right: auto;
+				font-size: 12px;
+			}
+			#unsaved[data-state="error"] {
+				color: var(--error);
+			}
+			button:disabled {
+				opacity: 0.45;
+				cursor: default;
+			}
+
+			/* Notices */
+			.notice {
+				font-size: 12px;
+				padding: 6px 8px;
+				border-radius: 6px;
+				background: var(--surface);
+				border: 1px solid var(--line);
+				margin-bottom: 8px;
+			}
+			.warn {
+				background: var(--warn-bg);
+				border: 1px solid var(--warn-line);
+				border-radius: 6px;
+				padding: 8px 10px;
+				font-size: 12.5px;
+			}
+			.stored-problems {
+				margin-bottom: 8px;
+			}
+			.stored-problems ul {
+				margin: 4px 0 0;
+				padding-left: 18px;
+			}
+			.warn .buttons {
+				margin-top: 8px;
+			}
+			.buttons {
+				display: flex;
+				flex-wrap: wrap;
+				align-items: center;
+				gap: 6px;
+			}
+
+			/* Tags */
+			.tags {
+				display: flex;
+				flex-direction: column;
+				gap: 6px;
+			}
+			details.tag {
+				background: var(--surface);
+				border: 1px solid var(--line);
+				border-radius: 8px;
+			}
+			details.tag[open] {
+				border-color: var(--line-strong);
+			}
+			details.tag > summary {
+				display: flex;
+				align-items: center;
+				gap: 6px;
+				padding: 5px 8px 5px 6px;
+				cursor: pointer;
+				list-style: none;
+			}
+			details.tag > summary::-webkit-details-marker {
+				display: none;
+			}
+			.chev {
+				flex: none;
+				width: 14px;
+				color: var(--dim);
+				transition: transform 0.12s;
+				text-align: center;
+			}
+			details.tag[open] > summary .chev {
+				transform: rotate(90deg);
+			}
+			.chips {
+				flex: 1;
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				border-radius: 5px;
+				overflow: hidden;
+				min-width: 0;
+			}
+			.chip {
+				padding: 3px 8px;
+				white-space: nowrap;
+				overflow: hidden;
+				text-overflow: ellipsis;
+			}
+			.chip.on-dark {
+				background: var(--cl-dark-bg);
+				color: var(--c-dark);
+			}
+			.chip.on-light {
+				background: var(--cl-light-bg);
+				color: var(--c-light);
+				box-shadow: inset 0 0 0 1px var(--line);
+				border-radius: 0 5px 5px 0;
+			}
+			.row-flag {
+				flex: none;
+				color: var(--error);
+				font-weight: 700;
+			}
+			.fields {
+				display: flex;
+				flex-direction: column;
+				gap: 9px;
+				padding: 4px 10px 10px 26px;
+			}
+			.pair {
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				gap: 8px;
+			}
+			.pair.name-symbol {
+				grid-template-columns: 1fr 64px;
+			}
+			/* The Symbol field's tip: shown while the icon is hovered or focused, opening leftwards over the Name field. */
+			.f-head {
+				position: relative;
+				display: flex;
+				align-items: center;
+				gap: 4px;
+			}
+			button.info {
+				width: 15px;
+				height: 15px;
+				padding: 0;
+				border-radius: 50%;
+				font:
+					italic 600 10px/1 Georgia,
+					serif;
+				color: var(--dim);
+				background: transparent;
+			}
+			.tip {
+				display: none;
+				position: absolute;
+				top: calc(100% + 4px);
+				right: 0;
+				z-index: 3;
+				width: 230px;
+				padding: 6px 8px;
+				border: 1px solid var(--line-strong);
+				border-radius: 6px;
+				background: var(--surface);
+				color: var(--text);
+				font-size: 12px;
+				box-shadow: 0 2px 8px rgb(0 0 0 / 0.15);
+			}
+			button.info:hover + .tip,
+			button.info:focus-visible + .tip {
+				display: block;
+			}
+			.colour {
+				display: flex;
+				gap: 4px;
+				align-items: center;
+			}
+			.colour input[type="text"] {
+				min-width: 0;
+			}
+			.sample {
+				display: grid;
+				gap: 0;
+				border-radius: 6px;
+				overflow: hidden;
+				font-size: 13.5px;
+				line-height: 1.5;
+				box-shadow: 0 0 0 1px var(--line);
+			}
+			.sample p {
+				padding: 6px 9px;
+			}
+			.sample .on-dark {
+				background: var(--cl-dark-bg);
+				color: var(--cl-dark-text);
+			}
+			.sample .on-light {
+				background: var(--cl-light-bg);
+				color: var(--cl-light-text);
+			}
+			.sample .on-dark .lab {
+				color: var(--c-dark);
+			}
+			.sample .on-light .lab {
+				color: var(--c-light);
+			}
+			.row-actions {
+				display: flex;
+				justify-content: flex-end;
+			}
+			.add-row {
+				margin-top: 8px;
+			}
+			.sub-head {
+				margin: 14px 0 6px;
+				font-size: 12px;
+				color: var(--dim);
+			}
+			.reset-all {
+				margin-top: 14px;
+				font-size: 12px;
+			}
+
+			/* Markup instructions */
+			.rules {
+				background: var(--surface);
+				border: 1px solid var(--line);
+				border-radius: 8px;
+				padding: 4px;
+				font-size: 12.5px;
+				line-height: 1.45;
+			}
+			.rules .part {
+				padding: 5px 7px;
+				white-space: pre-wrap;
+				overflow-wrap: anywhere;
+			}
+			.rules .frame {
+				background: var(--locked);
+				border-radius: 5px;
+				color: var(--dim);
+			}
+			.rules .frame-label {
+				display: flex;
+				align-items: center;
+				gap: 4px;
+				font-size: 11px;
+				text-transform: uppercase;
+				letter-spacing: 0.04em;
+				margin-bottom: 2px;
+			}
+			.rules .frame-label svg {
+				width: 11px;
+				height: 11px;
+			}
+			.rules .frame textarea {
+				margin-top: 2px;
+				font-size: 12.5px;
+				color: var(--text);
+			}
+			.rules .tl + .tl {
+				margin-top: 2px;
+			}
+			.rules .tl .err {
+				display: block;
+				white-space: normal;
+				margin-top: 1px;
+			}
+			.copy-bar {
+				display: flex;
+				align-items: center;
+				gap: 8px;
+				margin-bottom: 8px;
+			}
+			#instructions-unsaved .buttons {
+				margin-top: 6px;
+			}
+			.rules .heading {
+				color: var(--dim);
+			}
+			#copied {
+				font-size: 12px;
+				color: var(--dim);
+			}
+			.frame-controls {
+				margin-top: 8px;
+				display: flex;
+				flex-direction: column;
+				gap: 8px;
+				font-size: 12px;
+			}
+
+			/* Log */
+			#health {
+				margin: 6px 0;
+				padding: 6px 8px;
+				border-radius: 6px;
+				background: var(--surface);
+				border: 1px solid var(--line);
+			}
+			#health[data-alert] {
+				border-color: var(--error);
+				background: color-mix(in srgb, var(--error) 12%, var(--surface));
+			}
+			#totals tr.sub td:first-child {
+				padding-left: 16px;
+			}
+			table {
+				border-collapse: collapse;
+				width: 100%;
+				margin: 6px 0 10px;
+			}
+			td {
+				padding: 1px 0;
+			}
+			td:last-child {
+				text-align: right;
+				font-variant-numeric: tabular-nums;
+			}
+			.log-buttons {
+				margin-top: 8px;
+			}
+		</style>
+	</head>
+	<body>
+		<header>
+			<h1>Markup Instructions</h1>
+			<span class="ver" id="version">0.3</span>
+			<span id="saved" role="status" aria-live="polite"></span>
+		</header>
+
+		<main>
+			<section id="tags-section" aria-labelledby="tags-h">
+				<div class="section-head"><h2 id="tags-h">Tags</h2></div>
+				<p class="hint">How each tag is drawn on claude.ai, and its line in your markup instructions.</p>
+				<div class="warn stored-problems" id="stored-problems" role="alert" hidden>
+					<p id="stored-problems-text"></p>
+					<ul id="stored-problems-list"></ul>
+				</div>
+				<p class="notice" id="reload" hidden>Reload claude.ai to see your changes.</p>
+				<div class="tags" id="tags"></div>
+				<button type="button" class="add-row" id="new-tag">+ New tag</button>
+
+				<p class="sub-head" id="fallback-h">Any other tag</p>
+				<div class="tags" id="fallback"></div>
+
+				<div class="reset-all buttons">
+					<button type="button" class="link" id="reset-all">Reset everything to the default</button>
+				</div>
+			</section>
+
+			<section id="instructions-section" aria-labelledby="instructions-h">
+				<div class="section-head"><h2 id="instructions-h">Markup instructions</h2></div>
+				<p class="hint">
+					Paste into claude.ai's Settings › Your Claude › Instructions, or into a project's instructions. Delete the lines of any tags you don't want
+					there.
+				</p>
+				<div class="buttons" id="show-row">
+					<button type="button" id="show-instructions">Show markup instructions</button>
+				</div>
+				<div class="notice" id="instructions-unsaved" role="status" hidden>
+					<p id="instructions-unsaved-text"></p>
+					<div class="buttons">
+						<button type="button" class="primary" id="save-and-show">Save and show</button>
+					</div>
+				</div>
+				<div id="instructions" hidden>
+					<div class="copy-bar">
+						<button type="button" class="primary" id="copy">Copy</button>
+						<span id="copied" role="status" aria-live="polite"></span>
+					</div>
+					<div class="rules" id="rules"></div>
+					<div class="frame-controls">
+						<div class="buttons" id="unlock-row">
+							<button type="button" class="link" id="unlock">Edit the surrounding text…</button>
+						</div>
+						<div class="buttons" id="lock-row" hidden>
+							<button type="button" class="link" id="lock">Lock the surrounding text</button>
+						</div>
+						<div class="warn" id="warning" role="alertdialog" aria-labelledby="warning-text" hidden>
+							<p id="warning-text">
+								This text decides how often and where Claude marks at all. Changing a few words here has changed how much Claude marks by two to five
+								times. Edit with care, and compare a few replies before and after.
+							</p>
+							<div class="buttons">
+								<button type="button" id="unlock-yes">Edit anyway</button>
+								<button type="button" id="unlock-no">Cancel</button>
+							</div>
+						</div>
+						<p id="differs" hidden>
+							The surrounding text differs from the default. <button type="button" class="link" id="reset-frame">Reset it</button>
+						</p>
+					</div>
+				</div>
+			</section>
+
+			<section id="log-section" aria-labelledby="log-h">
+				<div class="section-head"><h2 id="log-h">Log</h2></div>
+				<div id="dates" class="dim"></div>
+				<div id="health"></div>
+				<table id="totals"></table>
+				<label><input type="checkbox" id="snippets" checked /> Keep a short snippet around each missed marker</label>
+				<div class="buttons log-buttons">
+					<button type="button" id="log-copy">Copy log</button>
+					<button type="button" id="log-download">Save as file</button>
+					<button type="button" id="log-clear">Clear</button>
+				</div>
+				<div id="log-status" class="dim" role="status" aria-live="polite"></div>
+			</section>
+		</main>
+
+		<footer class="save-bar" id="save-bar" hidden>
+			<span id="unsaved" role="status" aria-live="polite">Unsaved changes</span>
+			<button type="button" id="discard">Discard changes</button>
+			<button type="button" class="primary" id="save">Save</button>
+		</footer>
+
+		<template id="tag-row">
+			<details class="tag">
+				<summary>
+					<span class="chev" aria-hidden="true">›</span>
+					<span class="chips"><span class="chip on-dark"></span><span class="chip on-light"></span></span>
+					<span class="row-flag" title="Something to fix in this tag" hidden>!</span>
+				</summary>
+				<div class="fields">
+					<div class="pair name-symbol">
+						<label class="f">Name <input type="text" class="mono name" spellcheck="false" autocomplete="off" /></label>
+						<div class="f">
+							<span class="f-head"
+								>Symbol
+								<button
+									type="button"
+									class="info"
+									aria-label="Typing a symbol: on a Mac, press Control, Command and Space, or right-click the box and choose Emoji & Symbols."
+								>
+									i</button
+								><span class="tip" aria-hidden="true"
+									>To type a symbol: on a Mac, press Ctrl+Cmd+Space, or right-click the box and choose Emoji &amp; Symbols.</span
+								></span
+							>
+							<input type="text" class="symbol" aria-label="Symbol" spellcheck="false" autocomplete="off" />
+						</div>
+					</div>
+					<p class="err name-err" hidden></p>
+					<div class="pair">
+						<label class="f"
+							>On dark
+							<span class="colour"><input type="color" class="pick-dark" /><input type="text" class="mono hex-dark" spellcheck="false" /></span
+						></label>
+						<label class="f"
+							>On light
+							<span class="colour"><input type="color" class="pick-light" /><input type="text" class="mono hex-light" spellcheck="false" /></span
+						></label>
+					</div>
+					<p class="err colour-err" hidden></p>
+					<label class="f"
+						>What it's for
+						<textarea class="desc" rows="3"></textarea>
+						<span class="help">Tells Claude when to use the tag, in your own words.</span></label
+					>
+					<label class="f"
+						>In the brackets
+						<input type="text" class="hint-in" spellcheck="false" autocomplete="off" />
+						<span class="help">What Claude writes in the label, such as claim; … for anything.</span></label
+					>
+					<details class="attr">
+						<summary>Attribute (optional)</summary>
+						<div class="pair">
+							<label class="f">Name <input type="text" class="mono attr-name" spellcheck="false" autocomplete="off" /></label>
+							<label class="f">Example value <input type="text" class="attr-example" spellcheck="false" autocomplete="off" /></label>
+						</div>
+						<span class="help">Something Claude adds after the label, such as src for the source of a checked claim.</span>
+					</details>
+					<p class="err line-err" hidden></p>
+					<div class="f">
+						Your line in the markup instructions
+						<p class="line-preview"></p>
+					</div>
+					<div class="sample" aria-label="How it looks on claude.ai">
+						<p class="on-dark">Some reply text, then <span class="lab"></span>, then more.</p>
+						<p class="on-light">Some reply text, then <span class="lab"></span>, then more.</p>
+					</div>
+					<div class="row-actions"><button type="button" class="link danger remove">Remove this tag</button></div>
+				</div>
+			</details>
+		</template>
+
+		<template id="fallback-row">
+			<details class="tag fallback">
+				<summary>
+					<span class="chev" aria-hidden="true">›</span>
+					<span class="chips"><span class="chip on-dark">[name] any other tag</span><span class="chip on-light">[name] any other tag</span></span>
+					<span class="row-flag" hidden>!</span>
+				</summary>
+				<div class="fields">
+					<p class="dim">A tag that isn't in your list, such as one from an older reply, is drawn in this colour with its name in brackets.</p>
+					<div class="pair">
+						<label class="f"
+							>On dark
+							<span class="colour"><input type="color" class="pick-dark" /><input type="text" class="mono hex-dark" spellcheck="false" /></span
+						></label>
+						<label class="f"
+							>On light
+							<span class="colour"><input type="color" class="pick-light" /><input type="text" class="mono hex-light" spellcheck="false" /></span
+						></label>
+					</div>
+					<p class="err colour-err" hidden></p>
+					<div class="sample" aria-label="How it looks on claude.ai">
+						<p class="on-dark">Some reply text, then <span class="lab">[name] a label</span>, then more.</p>
+						<p class="on-light">Some reply text, then <span class="lab">[name] a label</span>, then more.</p>
+					</div>
+				</div>
+			</details>
+		</template>
+
+		<template id="lock-icon">
+			<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+				<rect x="3" y="7" width="10" height="7" rx="1.5" />
+				<path d="M5.5 7V5a2.5 2.5 0 0 1 5 0v2" />
+			</svg>
+		</template>
+
+		<script src="sidepanel.js"></script>
+	</body>
+</html>

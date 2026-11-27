@@ -1,0 +1,241 @@
+[
+	{
+		"source": "**Sample reply** (same made-up blog move, now with a web lookup)",
+		"gap": "\n\n",
+		"hasMarkers": false,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "strong",
+				"runs": [
+					{
+						"kind": "text",
+						"text": "Sample reply"
+					}
+				]
+			},
+			{
+				"kind": "text",
+				"text": " (same made-up blog move, now with a web lookup)"
+			}
+		]
+	},
+	{
+		"source": "---",
+		"gap": "\n\n",
+		"hasMarkers": false,
+		"kind": "thematicBreak"
+	},
+	{
+		"source": "I checked which Astro version to start the new site on. Astro 7 is described as the fastest version of Astro so far, and an existing project can be upgraded with the automated @astrojs/upgrade CLI tool. Most custom Vite plugins should keep working, because Rolldown supports the same plugin API as Rollup.",
+		"gap": "\n\n",
+		"hasMarkers": false,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "text",
+				"text": "I checked which Astro version to start the new site on. Astro 7 is described as the fastest version of Astro so far, and an existing project can be upgraded with the automated @astrojs/upgrade CLI tool. Most custom Vite plugins should keep working, because Rolldown supports the same plugin API as Rollup."
+			}
+		]
+	},
+	{
+		"source": ":guess[Astro 7 is the current major release]. The only source for that is a preview copy of the Astro blog, not the main site, so I haven't treated it as confirmed.",
+		"gap": "\n\n",
+		"hasMarkers": true,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "marker",
+				"tag": "guess",
+				"known": true,
+				"label": [
+					{
+						"kind": "text",
+						"text": "Astro 7 is the current major release"
+					}
+				],
+				"labelText": "Astro 7 is the current major release",
+				"attrs": {},
+				"source": ":guess[Astro 7 is the current major release]",
+				"start": 378,
+				"end": 422
+			},
+			{
+				"kind": "text",
+				"text": ". The only source for that is a preview copy of the Astro blog, not the main site, so I haven't treated it as confirmed."
+			}
+		]
+	},
+	{
+		"source": ":open-default[The new blog starts on Astro 7] unless you'd rather stay on the version you already know. That fits D1, because :decided[The new site uses Astro]{#D1} doesn't name a version.",
+		"gap": "\n\n",
+		"hasMarkers": true,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "marker",
+				"tag": "open-default",
+				"known": true,
+				"label": [
+					{
+						"kind": "text",
+						"text": "The new blog starts on Astro 7"
+					}
+				],
+				"labelText": "The new blog starts on Astro 7",
+				"attrs": {},
+				"source": ":open-default[The new blog starts on Astro 7]",
+				"start": 544,
+				"end": 589
+			},
+			{
+				"kind": "text",
+				"text": " unless you'd rather stay on the version you already know. That fits D1, because "
+			},
+			{
+				"kind": "marker",
+				"tag": "decided",
+				"known": true,
+				"label": [
+					{
+						"kind": "text",
+						"text": "The new site uses Astro"
+					}
+				],
+				"labelText": "The new site uses Astro",
+				"id": "D1",
+				"attrs": {},
+				"source": ":decided[The new site uses Astro]{#D1}",
+				"start": 670,
+				"end": 708
+			},
+			{
+				"kind": "text",
+				"text": " doesn't name a version."
+			}
+		]
+	},
+	{
+		"source": "| Step | Status |\n|---|---|\n| Scaffold project | :open-ask[Confirm Astro 7 before I scaffold the project] |\n| Redirects | Ready, as agreed in D2 |",
+		"gap": "\n\n",
+		"hasMarkers": true,
+		"kind": "table",
+		"align": [
+			null,
+			null
+		],
+		"rows": [
+			[
+				[
+					{
+						"kind": "text",
+						"text": "Step"
+					}
+				],
+				[
+					{
+						"kind": "text",
+						"text": "Status"
+					}
+				]
+			],
+			[
+				[
+					{
+						"kind": "text",
+						"text": "Scaffold project"
+					}
+				],
+				[
+					{
+						"kind": "marker",
+						"tag": "open-ask",
+						"known": true,
+						"label": [
+							{
+								"kind": "text",
+								"text": "Confirm Astro 7 before I scaffold the project"
+							}
+						],
+						"labelText": "Confirm Astro 7 before I scaffold the project",
+						"attrs": {},
+						"source": ":open-ask[Confirm Astro 7 before I scaffold the project]",
+						"start": 783,
+						"end": 839
+					}
+				]
+			],
+			[
+				[
+					{
+						"kind": "text",
+						"text": "Redirects"
+					}
+				],
+				[
+					{
+						"kind": "text",
+						"text": "Ready, as agreed in D2"
+					}
+				]
+			]
+		]
+	},
+	{
+		"source": ":parked[Testing a Notion content loader waits until after launch]{#P2}.",
+		"gap": "\n\n",
+		"hasMarkers": true,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "marker",
+				"tag": "parked",
+				"known": false,
+				"label": [
+					{
+						"kind": "text",
+						"text": "Testing a Notion content loader waits until after launch"
+					}
+				],
+				"labelText": "Testing a Notion content loader waits until after launch",
+				"id": "P2",
+				"attrs": {},
+				"source": ":parked[Testing a Notion content loader waits until after launch]{#P2}",
+				"start": 882,
+				"end": 952
+			},
+			{
+				"kind": "text",
+				"text": "."
+			}
+		]
+	},
+	{
+		"source": ":changed[nothing]. The scaffold is on hold until you confirm the version.",
+		"gap": "",
+		"hasMarkers": true,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "marker",
+				"tag": "changed",
+				"known": true,
+				"label": [
+					{
+						"kind": "text",
+						"text": "nothing"
+					}
+				],
+				"labelText": "nothing",
+				"attrs": {},
+				"source": ":changed[nothing]",
+				"start": 955,
+				"end": 972
+			},
+			{
+				"kind": "text",
+				"text": ". The scaffold is on hold until you confirm the version."
+			}
+		]
+	}
+]

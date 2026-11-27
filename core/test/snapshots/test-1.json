@@ -1,0 +1,1027 @@
+[
+	{
+		"source": "I'll read the project's README and plan, then look through recent sessions for a good response to rework with your new markers.",
+		"gap": "\n\n",
+		"hasMarkers": false,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "text",
+				"text": "I'll read the project's README and plan, then look through recent sessions for a good response to rework with your new markers."
+			}
+		]
+	},
+	{
+		"source": "The build 4 handback review looks like the best test: it has things that were changed, checked, decided and left open, so every marker gets used. I'll pull its full final reply.",
+		"gap": "\n\n",
+		"hasMarkers": false,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "text",
+				"text": "The build 4 handback review looks like the best test: it has things that were changed, checked, decided and left open, so every marker gets used. I'll pull its full final reply."
+			}
+		]
+	},
+	{
+		"source": "I picked my reply from the **build 4 handback review** (earlier today). It has edits, checks, your calls and open items, so all five markers get a real use. The content is the same; only the marking is new.",
+		"gap": "\n\n",
+		"hasMarkers": false,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "text",
+				"text": "I picked my reply from the "
+			},
+			{
+				"kind": "strong",
+				"runs": [
+					{
+						"kind": "text",
+						"text": "build 4 handback review"
+					}
+				]
+			},
+			{
+				"kind": "text",
+				"text": " (earlier today). It has edits, checks, your calls and open items, so all five markers get a real use. The content is the same; only the marking is new."
+			}
+		]
+	},
+	{
+		"source": "---",
+		"gap": "\n\n",
+		"hasMarkers": false,
+		"kind": "thematicBreak"
+	},
+	{
+		"source": "**Simulated reply**",
+		"gap": "\n\n",
+		"hasMarkers": false,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "strong",
+				"runs": [
+					{
+						"kind": "text",
+						"text": "Simulated reply"
+					}
+				]
+			}
+		]
+	},
+	{
+		"source": "I've gone through the build 4 handback. :checked[Build 4 matches the specs]{src=\"build 4 renders\"}. The picture/tab centre line and the left edge of the \"later\" tab are exact in the 4× close-ups. The teal, fallback and loading images, large-text stacking, New Post, Edit Post, the welcome pages and Home's digest card all match. :changed[wrote design/render-check-2.md] with the full review.",
+		"gap": "\n\n",
+		"hasMarkers": true,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "text",
+				"text": "I've gone through the build 4 handback. "
+			},
+			{
+				"kind": "marker",
+				"tag": "checked",
+				"known": true,
+				"label": [
+					{
+						"kind": "text",
+						"text": "Build 4 matches the specs"
+					}
+				],
+				"labelText": "Build 4 matches the specs",
+				"src": "build 4 renders",
+				"attrs": {},
+				"source": ":checked[Build 4 matches the specs]{src=\"build 4 renders\"}",
+				"start": 582,
+				"end": 640
+			},
+			{
+				"kind": "text",
+				"text": ". The picture/tab centre line and the left edge of the \"later\" tab are exact in the 4× close-ups. The teal, fallback and loading images, large-text stacking, New Post, Edit Post, the welcome pages and Home's digest card all match. "
+			},
+			{
+				"kind": "marker",
+				"tag": "changed",
+				"known": true,
+				"label": [
+					{
+						"kind": "text",
+						"text": "wrote design/render-check-2.md"
+					}
+				],
+				"labelText": "wrote design/render-check-2.md",
+				"attrs": {},
+				"source": ":changed[wrote design/render-check-2.md]",
+				"start": 871,
+				"end": 911
+			},
+			{
+				"kind": "text",
+				"text": " with the full review."
+			}
+		]
+	},
+	{
+		"source": "**What I did**",
+		"gap": "\n",
+		"hasMarkers": false,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "strong",
+				"runs": [
+					{
+						"kind": "text",
+						"text": "What I did"
+					}
+				]
+			}
+		]
+	},
+	{
+		"source": "- **Dev's as-built changes are folded into the specs.** :decided[no tab edge in dark mode] was your call. :guess[accepted the rest as built]: Home's cover column at the cover's width, the play mark replacing the link glyph, Home re-sorting on return, early by weekday, only IMDb titles as Watch, no site icon.\n- :changed[replaced tokens, components, composer, home] with dev's build 4 copies, then re-applied ours: \"a band\", Paste before iOS 18, the early-digest reason, the welcome-page note.\n- :checked[invite footer wording]{#P3g src=\"9-join\"} is confirmed in dev's join spec.\n- :changed[edited plan.md] and :changed[moved old log entries to archive/plan-history-2.md].",
+		"gap": "\n\n",
+		"hasMarkers": true,
+		"kind": "list",
+		"ordered": false,
+		"spread": false,
+		"items": [
+			{
+				"blocks": [
+					{
+						"source": "**Dev's as-built changes are folded into the specs.** :decided[no tab edge in dark mode] was your call. :guess[accepted the rest as built]: Home's cover column at the cover's width, the play mark replacing the link glyph, Home re-sorting on return, early by weekday, only IMDb titles as Watch, no site icon.",
+						"gap": "",
+						"hasMarkers": true,
+						"kind": "paragraph",
+						"runs": [
+							{
+								"kind": "strong",
+								"runs": [
+									{
+										"kind": "text",
+										"text": "Dev's as-built changes are folded into the specs."
+									}
+								]
+							},
+							{
+								"kind": "text",
+								"text": " "
+							},
+							{
+								"kind": "marker",
+								"tag": "decided",
+								"known": true,
+								"label": [
+									{
+										"kind": "text",
+										"text": "no tab edge in dark mode"
+									}
+								],
+								"labelText": "no tab edge in dark mode",
+								"attrs": {},
+								"source": ":decided[no tab edge in dark mode]",
+								"start": 1006,
+								"end": 1040
+							},
+							{
+								"kind": "text",
+								"text": " was your call. "
+							},
+							{
+								"kind": "marker",
+								"tag": "guess",
+								"known": true,
+								"label": [
+									{
+										"kind": "text",
+										"text": "accepted the rest as built"
+									}
+								],
+								"labelText": "accepted the rest as built",
+								"attrs": {},
+								"source": ":guess[accepted the rest as built]",
+								"start": 1056,
+								"end": 1090
+							},
+							{
+								"kind": "text",
+								"text": ": Home's cover column at the cover's width, the play mark replacing the link glyph, Home re-sorting on return, early by weekday, only IMDb titles as Watch, no site icon."
+							}
+						]
+					}
+				]
+			},
+			{
+				"blocks": [
+					{
+						"source": ":changed[replaced tokens, components, composer, home] with dev's build 4 copies, then re-applied ours: \"a band\", Paste before iOS 18, the early-digest reason, the welcome-page note.",
+						"gap": "",
+						"hasMarkers": true,
+						"kind": "paragraph",
+						"runs": [
+							{
+								"kind": "marker",
+								"tag": "changed",
+								"known": true,
+								"label": [
+									{
+										"kind": "text",
+										"text": "replaced tokens, components, composer, home"
+									}
+								],
+								"labelText": "replaced tokens, components, composer, home",
+								"attrs": {},
+								"source": ":changed[replaced tokens, components, composer, home]",
+								"start": 1262,
+								"end": 1315
+							},
+							{
+								"kind": "text",
+								"text": " with dev's build 4 copies, then re-applied ours: \"a band\", Paste before iOS 18, the early-digest reason, the welcome-page note."
+							}
+						]
+					}
+				]
+			},
+			{
+				"blocks": [
+					{
+						"source": ":checked[invite footer wording]{#P3g src=\"9-join\"} is confirmed in dev's join spec.",
+						"gap": "",
+						"hasMarkers": true,
+						"kind": "paragraph",
+						"runs": [
+							{
+								"kind": "marker",
+								"tag": "checked",
+								"known": true,
+								"label": [
+									{
+										"kind": "text",
+										"text": "invite footer wording"
+									}
+								],
+								"labelText": "invite footer wording",
+								"id": "P3g",
+								"src": "9-join",
+								"attrs": {},
+								"source": ":checked[invite footer wording]{#P3g src=\"9-join\"}",
+								"start": 1446,
+								"end": 1496
+							},
+							{
+								"kind": "text",
+								"text": " is confirmed in dev's join spec."
+							}
+						]
+					}
+				]
+			},
+			{
+				"blocks": [
+					{
+						"source": ":changed[edited plan.md] and :changed[moved old log entries to archive/plan-history-2.md].",
+						"gap": "",
+						"hasMarkers": true,
+						"kind": "paragraph",
+						"runs": [
+							{
+								"kind": "marker",
+								"tag": "changed",
+								"known": true,
+								"label": [
+									{
+										"kind": "text",
+										"text": "edited plan.md"
+									}
+								],
+								"labelText": "edited plan.md",
+								"attrs": {},
+								"source": ":changed[edited plan.md]",
+								"start": 1532,
+								"end": 1556
+							},
+							{
+								"kind": "text",
+								"text": " and "
+							},
+							{
+								"kind": "marker",
+								"tag": "changed",
+								"known": true,
+								"label": [
+									{
+										"kind": "text",
+										"text": "moved old log entries to archive/plan-history-2.md"
+									}
+								],
+								"labelText": "moved old log entries to archive/plan-history-2.md",
+								"attrs": {},
+								"source": ":changed[moved old log entries to archive/plan-history-2.md]",
+								"start": 1561,
+								"end": 1621
+							},
+							{
+								"kind": "text",
+								"text": "."
+							}
+						]
+					}
+				]
+			}
+		]
+	},
+	{
+		"source": "**Needs your call**",
+		"gap": "\n",
+		"hasMarkers": false,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "strong",
+				"runs": [
+					{
+						"kind": "text",
+						"text": "Needs your call"
+					}
+				]
+			}
+		]
+	},
+	{
+		"source": "1. :open[IMDb and Netflix title trims]. Example: \"The Lord of the Rings: The Rings of Power (TV Series 2022– ) ⭐ 6.8 | Action, Adventure, Dra…\". :guess[trimming rules] are in render-check-2 §4. If you approve, it's a short note to dev.\n2. :open[three questions for dev], which can go in the same note:\n   - A YouTube title shows \"StormClipsDaily\", :guess[likely the channel name].\n   - A failed YouTube post shows the link glyph instead of the play mark. :guess[screenshot predates the change].\n   - At AX3, \"Digest #12 · Yesterday\" wraps, so a line starts with \"· Yesterday\".\n3. Apple Music's white plate is now the brightest thing in a dark feed. :guess[watch only for now], since we left it out of the redesign.\n4. :open[lists second look]{#P3k}: dev wants it before building lists in build 5. It's waiting on your answers in lists-review.md §6.",
+		"gap": "\n\n",
+		"hasMarkers": true,
+		"kind": "list",
+		"ordered": true,
+		"start": 1,
+		"spread": false,
+		"items": [
+			{
+				"blocks": [
+					{
+						"source": ":open[IMDb and Netflix title trims]. Example: \"The Lord of the Rings: The Rings of Power (TV Series 2022– ) ⭐ 6.8 | Action, Adventure, Dra…\". :guess[trimming rules] are in render-check-2 §4. If you approve, it's a short note to dev.",
+						"gap": "",
+						"hasMarkers": true,
+						"kind": "paragraph",
+						"runs": [
+							{
+								"kind": "marker",
+								"tag": "open",
+								"known": false,
+								"label": [
+									{
+										"kind": "text",
+										"text": "IMDb and Netflix title trims"
+									}
+								],
+								"labelText": "IMDb and Netflix title trims",
+								"attrs": {},
+								"source": ":open[IMDb and Netflix title trims]",
+								"start": 1647,
+								"end": 1682
+							},
+							{
+								"kind": "text",
+								"text": ". Example: \"The Lord of the Rings: The Rings of Power (TV Series 2022– ) ⭐ 6.8 | Action, Adventure, Dra…\". "
+							},
+							{
+								"kind": "marker",
+								"tag": "guess",
+								"known": true,
+								"label": [
+									{
+										"kind": "text",
+										"text": "trimming rules"
+									}
+								],
+								"labelText": "trimming rules",
+								"attrs": {},
+								"source": ":guess[trimming rules]",
+								"start": 1789,
+								"end": 1811
+							},
+							{
+								"kind": "text",
+								"text": " are in render-check-2 §4. If you approve, it's a short note to dev."
+							}
+						]
+					}
+				]
+			},
+			{
+				"blocks": [
+					{
+						"source": ":open[three questions for dev], which can go in the same note:",
+						"gap": "\n   ",
+						"hasMarkers": true,
+						"kind": "paragraph",
+						"runs": [
+							{
+								"kind": "marker",
+								"tag": "open",
+								"known": false,
+								"label": [
+									{
+										"kind": "text",
+										"text": "three questions for dev"
+									}
+								],
+								"labelText": "three questions for dev",
+								"attrs": {},
+								"source": ":open[three questions for dev]",
+								"start": 1883,
+								"end": 1913
+							},
+							{
+								"kind": "text",
+								"text": ", which can go in the same note:"
+							}
+						]
+					},
+					{
+						"source": "- A YouTube title shows \"StormClipsDaily\", :guess[likely the channel name].\n   - A failed YouTube post shows the link glyph instead of the play mark. :guess[screenshot predates the change].\n   - At AX3, \"Digest #12 · Yesterday\" wraps, so a line starts with \"· Yesterday\".",
+						"gap": "",
+						"hasMarkers": true,
+						"kind": "list",
+						"ordered": false,
+						"spread": false,
+						"items": [
+							{
+								"blocks": [
+									{
+										"source": "A YouTube title shows \"StormClipsDaily\", :guess[likely the channel name].",
+										"gap": "",
+										"hasMarkers": true,
+										"kind": "paragraph",
+										"runs": [
+											{
+												"kind": "text",
+												"text": "A YouTube title shows \"StormClipsDaily\", "
+											},
+											{
+												"kind": "marker",
+												"tag": "guess",
+												"known": true,
+												"label": [
+													{
+														"kind": "text",
+														"text": "likely the channel name"
+													}
+												],
+												"labelText": "likely the channel name",
+												"attrs": {},
+												"source": ":guess[likely the channel name]",
+												"start": 1992,
+												"end": 2023
+											},
+											{
+												"kind": "text",
+												"text": "."
+											}
+										]
+									}
+								]
+							},
+							{
+								"blocks": [
+									{
+										"source": "A failed YouTube post shows the link glyph instead of the play mark. :guess[screenshot predates the change].",
+										"gap": "",
+										"hasMarkers": true,
+										"kind": "paragraph",
+										"runs": [
+											{
+												"kind": "text",
+												"text": "A failed YouTube post shows the link glyph instead of the play mark. "
+											},
+											{
+												"kind": "marker",
+												"tag": "guess",
+												"known": true,
+												"label": [
+													{
+														"kind": "text",
+														"text": "screenshot predates the change"
+													}
+												],
+												"labelText": "screenshot predates the change",
+												"attrs": {},
+												"source": ":guess[screenshot predates the change]",
+												"start": 2099,
+												"end": 2137
+											},
+											{
+												"kind": "text",
+												"text": "."
+											}
+										]
+									}
+								]
+							},
+							{
+								"blocks": [
+									{
+										"source": "At AX3, \"Digest #12 · Yesterday\" wraps, so a line starts with \"· Yesterday\".",
+										"gap": "",
+										"hasMarkers": false,
+										"kind": "paragraph",
+										"runs": [
+											{
+												"kind": "text",
+												"text": "At AX3, \"Digest #12 · Yesterday\" wraps, so a line starts with \"· Yesterday\"."
+											}
+										]
+									}
+								]
+							}
+						]
+					}
+				]
+			},
+			{
+				"blocks": [
+					{
+						"source": "Apple Music's white plate is now the brightest thing in a dark feed. :guess[watch only for now], since we left it out of the redesign.",
+						"gap": "",
+						"hasMarkers": true,
+						"kind": "paragraph",
+						"runs": [
+							{
+								"kind": "text",
+								"text": "Apple Music's white plate is now the brightest thing in a dark feed. "
+							},
+							{
+								"kind": "marker",
+								"tag": "guess",
+								"known": true,
+								"label": [
+									{
+										"kind": "text",
+										"text": "watch only for now"
+									}
+								],
+								"labelText": "watch only for now",
+								"attrs": {},
+								"source": ":guess[watch only for now]",
+								"start": 2293,
+								"end": 2319
+							},
+							{
+								"kind": "text",
+								"text": ", since we left it out of the redesign."
+							}
+						]
+					}
+				]
+			},
+			{
+				"blocks": [
+					{
+						"source": ":open[lists second look]{#P3k}: dev wants it before building lists in build 5. It's waiting on your answers in lists-review.md §6.",
+						"gap": "",
+						"hasMarkers": true,
+						"kind": "paragraph",
+						"runs": [
+							{
+								"kind": "marker",
+								"tag": "open",
+								"known": false,
+								"label": [
+									{
+										"kind": "text",
+										"text": "lists second look"
+									}
+								],
+								"labelText": "lists second look",
+								"id": "P3k",
+								"attrs": {},
+								"source": ":open[lists second look]{#P3k}",
+								"start": 2362,
+								"end": 2392
+							},
+							{
+								"kind": "text",
+								"text": ": dev wants it before building lists in build 5. It's waiting on your answers in lists-review.md §6."
+							}
+						]
+					}
+				]
+			}
+		]
+	},
+	{
+		"source": "**Not done this session**",
+		"gap": "\n",
+		"hasMarkers": false,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "strong",
+				"runs": [
+					{
+						"kind": "text",
+						"text": "Not done this session"
+					}
+				]
+			}
+		]
+	},
+	{
+		"source": "- :changed[nothing] in decisions.md or flags.md. Both have to be rewritten whole, so the build 4 entries wait for the next spec merge.\n- :open[re-attach repo-note-build4.zip] next session. It's the base for the remaining spec merges.\n- :open[refreshed brief]: it's in the zip but not yet copied into the project.",
+		"gap": "\n\n",
+		"hasMarkers": true,
+		"kind": "list",
+		"ordered": false,
+		"spread": false,
+		"items": [
+			{
+				"blocks": [
+					{
+						"source": ":changed[nothing] in decisions.md or flags.md. Both have to be rewritten whole, so the build 4 entries wait for the next spec merge.",
+						"gap": "",
+						"hasMarkers": true,
+						"kind": "paragraph",
+						"runs": [
+							{
+								"kind": "marker",
+								"tag": "changed",
+								"known": true,
+								"label": [
+									{
+										"kind": "text",
+										"text": "nothing"
+									}
+								],
+								"labelText": "nothing",
+								"attrs": {},
+								"source": ":changed[nothing]",
+								"start": 2522,
+								"end": 2539
+							},
+							{
+								"kind": "text",
+								"text": " in decisions.md or flags.md. Both have to be rewritten whole, so the build 4 entries wait for the next spec merge."
+							}
+						]
+					}
+				]
+			},
+			{
+				"blocks": [
+					{
+						"source": ":open[re-attach repo-note-build4.zip] next session. It's the base for the remaining spec merges.",
+						"gap": "",
+						"hasMarkers": true,
+						"kind": "paragraph",
+						"runs": [
+							{
+								"kind": "marker",
+								"tag": "open",
+								"known": false,
+								"label": [
+									{
+										"kind": "text",
+										"text": "re-attach repo-note-build4.zip"
+									}
+								],
+								"labelText": "re-attach repo-note-build4.zip",
+								"attrs": {},
+								"source": ":open[re-attach repo-note-build4.zip]",
+								"start": 2657,
+								"end": 2694
+							},
+							{
+								"kind": "text",
+								"text": " next session. It's the base for the remaining spec merges."
+							}
+						]
+					}
+				]
+			},
+			{
+				"blocks": [
+					{
+						"source": ":open[refreshed brief]: it's in the zip but not yet copied into the project.",
+						"gap": "",
+						"hasMarkers": true,
+						"kind": "paragraph",
+						"runs": [
+							{
+								"kind": "marker",
+								"tag": "open",
+								"known": false,
+								"label": [
+									{
+										"kind": "text",
+										"text": "refreshed brief"
+									}
+								],
+								"labelText": "refreshed brief",
+								"attrs": {},
+								"source": ":open[refreshed brief]",
+								"start": 2756,
+								"end": 2778
+							},
+							{
+								"kind": "text",
+								"text": ": it's in the zip but not yet copied into the project."
+							}
+						]
+					}
+				]
+			}
+		]
+	},
+	{
+		"source": "---",
+		"gap": "\n\n",
+		"hasMarkers": false,
+		"kind": "thematicBreak"
+	},
+	{
+		"source": "**What the test showed**",
+		"gap": "\n",
+		"hasMarkers": false,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "strong",
+				"runs": [
+					{
+						"kind": "text",
+						"text": "What the test showed"
+					}
+				]
+			}
+		]
+	},
+	{
+		"source": "- **It caught a blur in the original.** My reply said \"Accepted all of dev's changes,\" but the plan only credits you with the dark-mode tab edge. Accepting the rest was my reading, so it gets :guess.\n- **`:checked` fit well** for renders and repo spec copies. The original reply mixed what I verified with what I assumed.\n- **It gets dense.** That's about 18 markers in one reply. Bold lead-ins plus markers say things twice, so the markers could replace most of the bold.\n- **Two gaps in the rules:**\n  - Something that's both yours and the repo's (an \"as built\" item you OK'd). Is that `:decided`?\n  - A proposal of mine you've approved. Is it `:decided` from then on?\n- **IDs:** only P3g and P3k got one. render-check-2's §4 numbers are section numbers, not project IDs, so I left them off.",
+		"gap": "\n\n",
+		"hasMarkers": false,
+		"kind": "list",
+		"ordered": false,
+		"spread": false,
+		"items": [
+			{
+				"blocks": [
+					{
+						"source": "**It caught a blur in the original.** My reply said \"Accepted all of dev's changes,\" but the plan only credits you with the dark-mode tab edge. Accepting the rest was my reading, so it gets :guess.",
+						"gap": "",
+						"hasMarkers": false,
+						"kind": "paragraph",
+						"runs": [
+							{
+								"kind": "strong",
+								"runs": [
+									{
+										"kind": "text",
+										"text": "It caught a blur in the original."
+									}
+								]
+							},
+							{
+								"kind": "text",
+								"text": " My reply said \"Accepted all of dev's changes,\" but the plan only credits you with the dark-mode tab edge. Accepting the rest was my reading, so it gets "
+							},
+							{
+								"kind": "bare",
+								"tag": "guess",
+								"text": ":guess",
+								"start": 3056,
+								"end": 3062
+							},
+							{
+								"kind": "text",
+								"text": "."
+							}
+						]
+					}
+				]
+			},
+			{
+				"blocks": [
+					{
+						"source": "**`:checked` fit well** for renders and repo spec copies. The original reply mixed what I verified with what I assumed.",
+						"gap": "",
+						"hasMarkers": false,
+						"kind": "paragraph",
+						"runs": [
+							{
+								"kind": "strong",
+								"runs": [
+									{
+										"kind": "code",
+										"text": ":checked"
+									},
+									{
+										"kind": "text",
+										"text": " fit well"
+									}
+								]
+							},
+							{
+								"kind": "text",
+								"text": " for renders and repo spec copies. The original reply mixed what I verified with what I assumed."
+							}
+						]
+					}
+				]
+			},
+			{
+				"blocks": [
+					{
+						"source": "**It gets dense.** That's about 18 markers in one reply. Bold lead-ins plus markers say things twice, so the markers could replace most of the bold.",
+						"gap": "",
+						"hasMarkers": false,
+						"kind": "paragraph",
+						"runs": [
+							{
+								"kind": "strong",
+								"runs": [
+									{
+										"kind": "text",
+										"text": "It gets dense."
+									}
+								]
+							},
+							{
+								"kind": "text",
+								"text": " That's about 18 markers in one reply. Bold lead-ins plus markers say things twice, so the markers could replace most of the bold."
+							}
+						]
+					}
+				]
+			},
+			{
+				"blocks": [
+					{
+						"source": "**Two gaps in the rules:**",
+						"gap": "\n  ",
+						"hasMarkers": false,
+						"kind": "paragraph",
+						"runs": [
+							{
+								"kind": "strong",
+								"runs": [
+									{
+										"kind": "text",
+										"text": "Two gaps in the rules:"
+									}
+								]
+							}
+						]
+					},
+					{
+						"source": "- Something that's both yours and the repo's (an \"as built\" item you OK'd). Is that `:decided`?\n  - A proposal of mine you've approved. Is it `:decided` from then on?",
+						"gap": "",
+						"hasMarkers": false,
+						"kind": "list",
+						"ordered": false,
+						"spread": false,
+						"items": [
+							{
+								"blocks": [
+									{
+										"source": "Something that's both yours and the repo's (an \"as built\" item you OK'd). Is that `:decided`?",
+										"gap": "",
+										"hasMarkers": false,
+										"kind": "paragraph",
+										"runs": [
+											{
+												"kind": "text",
+												"text": "Something that's both yours and the repo's (an \"as built\" item you OK'd). Is that "
+											},
+											{
+												"kind": "code",
+												"text": ":decided"
+											},
+											{
+												"kind": "text",
+												"text": "?"
+											}
+										]
+									}
+								]
+							},
+							{
+								"blocks": [
+									{
+										"source": "A proposal of mine you've approved. Is it `:decided` from then on?",
+										"gap": "",
+										"hasMarkers": false,
+										"kind": "paragraph",
+										"runs": [
+											{
+												"kind": "text",
+												"text": "A proposal of mine you've approved. Is it "
+											},
+											{
+												"kind": "code",
+												"text": ":decided"
+											},
+											{
+												"kind": "text",
+												"text": " from then on?"
+											}
+										]
+									}
+								]
+							}
+						]
+					}
+				]
+			},
+			{
+				"blocks": [
+					{
+						"source": "**IDs:** only P3g and P3k got one. render-check-2's §4 numbers are section numbers, not project IDs, so I left them off.",
+						"gap": "",
+						"hasMarkers": false,
+						"kind": "paragraph",
+						"runs": [
+							{
+								"kind": "strong",
+								"runs": [
+									{
+										"kind": "text",
+										"text": "IDs:"
+									}
+								]
+							},
+							{
+								"kind": "text",
+								"text": " only P3g and P3k got one. render-check-2's §4 numbers are section numbers, not project IDs, so I left them off."
+							}
+						]
+					}
+				]
+			}
+		]
+	},
+	{
+		"source": "**This session:** :changed[nothing] in the project. I only read the README and plan, and didn't add a session-log entry because this was a test. :open[log this test in the plan?] Say if you want one.",
+		"gap": "",
+		"hasMarkers": true,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "strong",
+				"runs": [
+					{
+						"kind": "text",
+						"text": "This session:"
+					}
+				]
+			},
+			{
+				"kind": "text",
+				"text": " "
+			},
+			{
+				"kind": "marker",
+				"tag": "changed",
+				"known": true,
+				"label": [
+					{
+						"kind": "text",
+						"text": "nothing"
+					}
+				],
+				"labelText": "nothing",
+				"attrs": {},
+				"source": ":changed[nothing]",
+				"start": 3677,
+				"end": 3694
+			},
+			{
+				"kind": "text",
+				"text": " in the project. I only read the README and plan, and didn't add a session-log entry because this was a test. "
+			},
+			{
+				"kind": "marker",
+				"tag": "open",
+				"known": false,
+				"label": [
+					{
+						"kind": "text",
+						"text": "log this test in the plan?"
+					}
+				],
+				"labelText": "log this test in the plan?",
+				"attrs": {},
+				"source": ":open[log this test in the plan?]",
+				"start": 3804,
+				"end": 3837
+			},
+			{
+				"kind": "text",
+				"text": " Say if you want one."
+			}
+		]
+	}
+]

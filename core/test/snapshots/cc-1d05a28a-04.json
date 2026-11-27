@@ -1,0 +1,400 @@
+[
+	{
+		"source": "I1 and I2 are fixed, and all 6 tests pass.",
+		"gap": "\n\n",
+		"hasMarkers": false,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "text",
+				"text": "I1 and I2 are fixed, and all 6 tests pass."
+			}
+		]
+	},
+	{
+		"source": "`npm test` needed approval, so I ran the same suite directly with `node --test`. Before the fix, the cups test was failing.",
+		"gap": "\n\n",
+		"hasMarkers": false,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "code",
+				"text": "npm test"
+			},
+			{
+				"kind": "text",
+				"text": " needed approval, so I ran the same suite directly with "
+			},
+			{
+				"kind": "code",
+				"text": "node --test"
+			},
+			{
+				"kind": "text",
+				"text": ". Before the fix, the cups test was failing."
+			}
+		]
+	},
+	{
+		"source": ":changed[edited three files and the issues list]:",
+		"gap": "\n",
+		"hasMarkers": true,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "marker",
+				"tag": "changed",
+				"known": true,
+				"label": [
+					{
+						"kind": "text",
+						"text": "edited three files and the issues list"
+					}
+				],
+				"labelText": "edited three files and the issues list",
+				"attrs": {},
+				"source": ":changed[edited three files and the issues list]",
+				"start": 169,
+				"end": 217
+			},
+			{
+				"kind": "text",
+				"text": ":"
+			}
+		]
+	},
+	{
+		"source": "- **I1:** :decided[the cup is now the US cup, 236.588 ml]. The change is at `src/convert.js:7`, so 2 cups now converts to 473 ml.\n- **I2:** :decided[formatAmount now rounds to the nearest quarter, as D3 says]. It can only show ¼, ½ or ¾ now, and the code comment cites D3 (`src/scale.js:12-17`).\n- **New test:** `test/scale.test.js` checks values where eighths and quarters give different answers. For example, 0.33 now shows ¼ where it used to show ⅜.\n- **Issues file:** `docs/issues.md` marks I1 and I2 as fixed, with a line on each explaining the cause.",
+		"gap": "\n\n",
+		"hasMarkers": true,
+		"kind": "list",
+		"ordered": false,
+		"spread": false,
+		"items": [
+			{
+				"blocks": [
+					{
+						"source": "**I1:** :decided[the cup is now the US cup, 236.588 ml]. The change is at `src/convert.js:7`, so 2 cups now converts to 473 ml.",
+						"gap": "",
+						"hasMarkers": true,
+						"kind": "paragraph",
+						"runs": [
+							{
+								"kind": "strong",
+								"runs": [
+									{
+										"kind": "text",
+										"text": "I1:"
+									}
+								]
+							},
+							{
+								"kind": "text",
+								"text": " "
+							},
+							{
+								"kind": "marker",
+								"tag": "decided",
+								"known": true,
+								"label": [
+									{
+										"kind": "text",
+										"text": "the cup is now the US cup, 236.588 ml"
+									}
+								],
+								"labelText": "the cup is now the US cup, 236.588 ml",
+								"attrs": {},
+								"source": ":decided[the cup is now the US cup, 236.588 ml]",
+								"start": 229,
+								"end": 276
+							},
+							{
+								"kind": "text",
+								"text": ". The change is at "
+							},
+							{
+								"kind": "code",
+								"text": "src/convert.js:7"
+							},
+							{
+								"kind": "text",
+								"text": ", so 2 cups now converts to 473 ml."
+							}
+						]
+					}
+				]
+			},
+			{
+				"blocks": [
+					{
+						"source": "**I2:** :decided[formatAmount now rounds to the nearest quarter, as D3 says]. It can only show ¼, ½ or ¾ now, and the code comment cites D3 (`src/scale.js:12-17`).",
+						"gap": "",
+						"hasMarkers": true,
+						"kind": "paragraph",
+						"runs": [
+							{
+								"kind": "strong",
+								"runs": [
+									{
+										"kind": "text",
+										"text": "I2:"
+									}
+								]
+							},
+							{
+								"kind": "text",
+								"text": " "
+							},
+							{
+								"kind": "marker",
+								"tag": "decided",
+								"known": true,
+								"label": [
+									{
+										"kind": "text",
+										"text": "formatAmount now rounds to the nearest quarter, as D3 says"
+									}
+								],
+								"labelText": "formatAmount now rounds to the nearest quarter, as D3 says",
+								"attrs": {},
+								"source": ":decided[formatAmount now rounds to the nearest quarter, as D3 says]",
+								"start": 359,
+								"end": 427
+							},
+							{
+								"kind": "text",
+								"text": ". It can only show ¼, ½ or ¾ now, and the code comment cites D3 ("
+							},
+							{
+								"kind": "code",
+								"text": "src/scale.js:12-17"
+							},
+							{
+								"kind": "text",
+								"text": ")."
+							}
+						]
+					}
+				]
+			},
+			{
+				"blocks": [
+					{
+						"source": "**New test:** `test/scale.test.js` checks values where eighths and quarters give different answers. For example, 0.33 now shows ¼ where it used to show ⅜.",
+						"gap": "",
+						"hasMarkers": false,
+						"kind": "paragraph",
+						"runs": [
+							{
+								"kind": "strong",
+								"runs": [
+									{
+										"kind": "text",
+										"text": "New test:"
+									}
+								]
+							},
+							{
+								"kind": "text",
+								"text": " "
+							},
+							{
+								"kind": "code",
+								"text": "test/scale.test.js"
+							},
+							{
+								"kind": "text",
+								"text": " checks values where eighths and quarters give different answers. For example, 0.33 now shows ¼ where it used to show ⅜."
+							}
+						]
+					}
+				]
+			},
+			{
+				"blocks": [
+					{
+						"source": "**Issues file:** `docs/issues.md` marks I1 and I2 as fixed, with a line on each explaining the cause.",
+						"gap": "",
+						"hasMarkers": false,
+						"kind": "paragraph",
+						"runs": [
+							{
+								"kind": "strong",
+								"runs": [
+									{
+										"kind": "text",
+										"text": "Issues file:"
+									}
+								]
+							},
+							{
+								"kind": "text",
+								"text": " "
+							},
+							{
+								"kind": "code",
+								"text": "docs/issues.md"
+							},
+							{
+								"kind": "text",
+								"text": " marks I1 and I2 as fixed, with a line on each explaining the cause."
+							}
+						]
+					}
+				]
+			}
+		]
+	},
+	{
+		"source": "I5 is untouched, and so is its entry in the issues file. Nothing is committed.",
+		"gap": "\n\n",
+		"hasMarkers": false,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "text",
+				"text": "I5 is untouched, and so is its entry in the issues file. Nothing is committed."
+			}
+		]
+	},
+	{
+		"source": "Two things to know:",
+		"gap": "\n",
+		"hasMarkers": false,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "text",
+				"text": "Two things to know:"
+			}
+		]
+	},
+	{
+		"source": "- **Rounding to quarters changes how small amounts show.** :guess[Under D3, ⅛ tsp now shows as ¼, and anything below ⅛ shows as \"0\".] That's a consequence of the decision, not a bug in the fix. But \"0 tsp salt\" on a recipe card may surprise people. :open-default[I'm leaving it as it is unless you want small amounts handled differently.]\n- **The I5 entry describes the problem too narrowly.** It says `convert` rounds to whole millilitres, but it actually rounds to whole units of whichever unit you convert to, so `convert(100, \"ml\", \"cup\")` returns 0. :open-default[I'll leave that entry as it is, since you said to leave I5 alone; I can add a note to it if you want.]",
+		"gap": "",
+		"hasMarkers": true,
+		"kind": "list",
+		"ordered": false,
+		"spread": false,
+		"items": [
+			{
+				"blocks": [
+					{
+						"source": "**Rounding to quarters changes how small amounts show.** :guess[Under D3, ⅛ tsp now shows as ¼, and anything below ⅛ shows as \"0\".] That's a consequence of the decision, not a bug in the fix. But \"0 tsp salt\" on a recipe card may surprise people. :open-default[I'm leaving it as it is unless you want small amounts handled differently.]",
+						"gap": "",
+						"hasMarkers": true,
+						"kind": "paragraph",
+						"runs": [
+							{
+								"kind": "strong",
+								"runs": [
+									{
+										"kind": "text",
+										"text": "Rounding to quarters changes how small amounts show."
+									}
+								]
+							},
+							{
+								"kind": "text",
+								"text": " "
+							},
+							{
+								"kind": "marker",
+								"tag": "guess",
+								"known": true,
+								"label": [
+									{
+										"kind": "text",
+										"text": "Under D3, ⅛ tsp now shows as ¼, and anything below ⅛ shows as \"0\"."
+									}
+								],
+								"labelText": "Under D3, ⅛ tsp now shows as ¼, and anything below ⅛ shows as \"0\".",
+								"attrs": {},
+								"source": ":guess[Under D3, ⅛ tsp now shows as ¼, and anything below ⅛ shows as \"0\".]",
+								"start": 936,
+								"end": 1010
+							},
+							{
+								"kind": "text",
+								"text": " That's a consequence of the decision, not a bug in the fix. But \"0 tsp salt\" on a recipe card may surprise people. "
+							},
+							{
+								"kind": "marker",
+								"tag": "open-default",
+								"known": true,
+								"label": [
+									{
+										"kind": "text",
+										"text": "I'm leaving it as it is unless you want small amounts handled differently."
+									}
+								],
+								"labelText": "I'm leaving it as it is unless you want small amounts handled differently.",
+								"attrs": {},
+								"source": ":open-default[I'm leaving it as it is unless you want small amounts handled differently.]",
+								"start": 1126,
+								"end": 1215
+							}
+						]
+					}
+				]
+			},
+			{
+				"blocks": [
+					{
+						"source": "**The I5 entry describes the problem too narrowly.** It says `convert` rounds to whole millilitres, but it actually rounds to whole units of whichever unit you convert to, so `convert(100, \"ml\", \"cup\")` returns 0. :open-default[I'll leave that entry as it is, since you said to leave I5 alone; I can add a note to it if you want.]",
+						"gap": "",
+						"hasMarkers": true,
+						"kind": "paragraph",
+						"runs": [
+							{
+								"kind": "strong",
+								"runs": [
+									{
+										"kind": "text",
+										"text": "The I5 entry describes the problem too narrowly."
+									}
+								]
+							},
+							{
+								"kind": "text",
+								"text": " It says "
+							},
+							{
+								"kind": "code",
+								"text": "convert"
+							},
+							{
+								"kind": "text",
+								"text": " rounds to whole millilitres, but it actually rounds to whole units of whichever unit you convert to, so "
+							},
+							{
+								"kind": "code",
+								"text": "convert(100, \"ml\", \"cup\")"
+							},
+							{
+								"kind": "text",
+								"text": " returns 0. "
+							},
+							{
+								"kind": "marker",
+								"tag": "open-default",
+								"known": true,
+								"label": [
+									{
+										"kind": "text",
+										"text": "I'll leave that entry as it is, since you said to leave I5 alone; I can add a note to it if you want."
+									}
+								],
+								"labelText": "I'll leave that entry as it is, since you said to leave I5 alone; I can add a note to it if you want.",
+								"attrs": {},
+								"source": ":open-default[I'll leave that entry as it is, since you said to leave I5 alone; I can add a note to it if you want.]",
+								"start": 1432,
+								"end": 1548
+							}
+						]
+					}
+				]
+			}
+		]
+	}
+]

@@ -1,0 +1,41 @@
+{
+  "name": "markup-instructions",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "test": "node --test \"core/test/**/*.test.ts\" \"mod/test/**/*.test.ts\" \"extension/test/**/*.test.ts\"",
+    "test:mod": "node scripts/check-mod.mjs",
+    "snapshots": "UPDATE_SNAPSHOTS=1 node --test core/test/snapshots.test.ts mod/test/snapshots.test.ts",
+    "preview": "node scripts/preview.mjs",
+    "typecheck": "tsc --noEmit -p core/src && tsc --noEmit && tsc --noEmit -p extension",
+    "build": "node scripts/build-core.mjs",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "build:ext": "node scripts/build-extension.mjs",
+    "install:user": "node scripts/install-user.mjs"
+  },
+  "dependencies": {
+    "remark-directive": "^4.0.0",
+    "remark-gfm": "^4.0.1",
+    "remark-parse": "^11.0.0",
+    "turndown": "^7.2.5",
+    "turndown-plugin-gfm": "^1.0.2",
+    "unified": "^11.0.5"
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.3.7",
+    "@types/jsdom": "^30.0.0",
+    "@types/mdast": "^4.0.4",
+    "@types/node": "^24.19.2",
+    "@types/turndown": "^5.0.6",
+    "esbuild": "^0.28.2",
+    "jsdom": "^31.0.1",
+    "mdast-util-directive": "^3.2.1",
+    "prettier": "^3.10.1",
+    "typescript": "^7.0.2"
+  },
+  "packageManager": "pnpm@12.18.0"
+}

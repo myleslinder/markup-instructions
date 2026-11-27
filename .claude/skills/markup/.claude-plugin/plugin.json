@@ -1,0 +1,6 @@
+{
+  "name": "markup",
+  "version": "0.6",
+  "description": "Draws markup directives in Claude's replies as coloured words with a symbol per tag",
+  "types": "./types/index.d.ts"
+}

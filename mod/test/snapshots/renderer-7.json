@@ -1,0 +1,160 @@
+{
+	"type": "Box",
+	"layout": {
+		"flexDirection": "column",
+		"gap": 1
+	},
+	"children": [
+		{
+			"type": "Markdown",
+			"text": "**Sample reply** (same made-up blog move)"
+		},
+		{
+			"type": "Markdown",
+			"text": "---"
+		},
+		{
+			"type": "Text",
+			"style": {},
+			"children": [
+				{
+					"type": "Text",
+					"style": {
+						"tone": "decided"
+					},
+					"children": [
+						{
+							"type": "Text",
+							"style": {
+								"bold": true
+							},
+							"children": [
+								{
+									"type": "Symbol",
+									"tag": "decided"
+								}
+							]
+						},
+						" ",
+						"Old post URLs must keep working",
+						{
+							"type": "Text",
+							"style": {
+								"tone": "decided",
+								"note": true,
+								"added": true
+							},
+							"children": [
+								" #D2"
+							]
+						}
+					]
+				},
+				". Here's the redirect config I'd add to the project:"
+			]
+		},
+		{
+			"type": "Markdown",
+			"text": "```js\n// astro.config.mjs\nimport { defineConfig } from 'astro/config';\n\nexport default defineConfig({\n  redirects: {\n    '/2019/03/hello-world/': '/posts/hello-world/',\n    '/2020/07/moving-house/': '/posts/moving-house/',\n  },\n});\n```"
+		},
+		{
+			"type": "Text",
+			"style": {},
+			"children": [
+				{
+					"type": "Text",
+					"style": {
+						"tone": "guess"
+					},
+					"children": [
+						{
+							"type": "Text",
+							"style": {
+								"bold": true
+							},
+							"children": [
+								{
+									"type": "Symbol",
+									"tag": "guess"
+								}
+							]
+						},
+						" ",
+						"The old WordPress URLs all follow the /year/month/slug/ pattern"
+					]
+				},
+				". I only looked at two of them, so it's worth spot-checking a few more."
+			]
+		},
+		{
+			"type": "Text",
+			"style": {},
+			"children": [
+				{
+					"type": "Text",
+					"style": {
+						"tone": "open-ask"
+					},
+					"children": [
+						{
+							"type": "Text",
+							"style": {
+								"bold": true
+							},
+							"children": [
+								{
+									"type": "Symbol",
+									"tag": "open-ask"
+								}
+							]
+						},
+						" ",
+						"Paste the config into astro.config.mjs and run the dev server"
+					]
+				},
+				". After that I can check that the redirects resolve."
+			]
+		},
+		{
+			"type": "Text",
+			"style": {},
+			"children": [
+				{
+					"type": "Text",
+					"style": {
+						"tone": "changed"
+					},
+					"children": [
+						{
+							"type": "Text",
+							"style": {
+								"bold": true
+							},
+							"children": [
+								{
+									"type": "Symbol",
+									"tag": "changed"
+								}
+							]
+						},
+						" ",
+						"nothing"
+					]
+				},
+				". The config exists only in this reply."
+			]
+		},
+		{
+			"type": "Markdown",
+			"text": "---"
+		},
+		{
+			"type": "Markdown",
+			"text": "To test the edge case your preferences mention, this block shows the marker syntax literally. It should come through as plain text, not highlighted:"
+		},
+		{
+			"type": "Markdown",
+			"text": "```markdown\n:decided[Old post URLs must keep working]{#D2}\n:open-ask[Point the domain's DNS at the new host]\n```"
+		}
+	]
+}

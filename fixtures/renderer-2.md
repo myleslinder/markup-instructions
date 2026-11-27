@@ -1,0 +1,16 @@
+I'll check what mods can do in the desktop app, and what's public about how the Mac app is built.
+
+Short answer: it isn't easier. The hard part stays the same, and getting code into the app is harder.
+
+**Mods don't reach the chat you use.** :checked[Mods run only in Claude Code in the terminal and in the Code tab of the desktop app, not in regular chats]{src="plugin-authoring skill"}. That matches the spec's mod spike notes. A mod might see raw markdown there, but only for Code-tab sessions, not the chats where you're running the trial.
+
+**The only other way in is unofficial.** The Mac app is an Electron app, and Electron bundles a version of Chromium. People have injected code into it by launching it with --remote-debugging-port=9222, then calling Runtime.evaluate() to inject a <style> tag into the live DOM. There's also an installer that generates a modified version of the Claude Desktop client with extension support enabled. Both are third-party hacks:
+- They break when the app updates. One such tool already warns that the CSS selectors for message elements and the stop button may not match the current Claude Desktop UI.
+- An open debugging port lets any local process control your signed-in app.
+- You'd have to launch the app in a special way every time.
+
+**The hard part doesn't go away.** :guess[The desktop chat is the same claude.ai interface running inside Electron], so the renderer would still get page HTML with labels split across elements, just as in Chrome. The copy-button testing approach works the same in both, so the choice doesn't affect how you'd test.
+
+**What does matter is where you read replies.** A Chrome extension only styles claude.ai in Chrome. :open[Do you read most of these replies in the Mac app or in Chrome?] If it's the Mac app, the extension won't show up where you look, and that's the real cost of going web-first. If it's Chrome, the spec's plan stands.
+
+:changed[nothing]

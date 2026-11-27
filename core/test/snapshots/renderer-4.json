@@ -1,0 +1,418 @@
+[
+	{
+		"source": "**Sample reply** (made-up scenario: moving a blog off WordPress)",
+		"gap": "\n\n",
+		"hasMarkers": false,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "strong",
+				"runs": [
+					{
+						"kind": "text",
+						"text": "Sample reply"
+					}
+				]
+			},
+			{
+				"kind": "text",
+				"text": " (made-up scenario: moving a blog off WordPress)"
+			}
+		]
+	},
+	{
+		"source": "---",
+		"gap": "\n\n",
+		"hasMarkers": false,
+		"kind": "thematicBreak"
+	},
+	{
+		"source": "The export is done and the new site builds locally. :decided[The new site uses Astro]{#D1}, and :decided[Old post URLs must keep working]{#D2}, so every post has a redirect.",
+		"gap": "\n\n",
+		"hasMarkers": true,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "text",
+				"text": "The export is done and the new site builds locally. "
+			},
+			{
+				"kind": "marker",
+				"tag": "decided",
+				"known": true,
+				"label": [
+					{
+						"kind": "text",
+						"text": "The new site uses Astro"
+					}
+				],
+				"labelText": "The new site uses Astro",
+				"id": "D1",
+				"attrs": {},
+				"source": ":decided[The new site uses Astro]{#D1}",
+				"start": 123,
+				"end": 161
+			},
+			{
+				"kind": "text",
+				"text": ", and "
+			},
+			{
+				"kind": "marker",
+				"tag": "decided",
+				"known": true,
+				"label": [
+					{
+						"kind": "text",
+						"text": "Old post URLs must keep working"
+					}
+				],
+				"labelText": "Old post URLs must keep working",
+				"id": "D2",
+				"attrs": {},
+				"source": ":decided[Old post URLs must keep working]{#D2}",
+				"start": 167,
+				"end": 213
+			},
+			{
+				"kind": "text",
+				"text": ", so every post has a redirect."
+			}
+		]
+	},
+	{
+		"source": ":changed[Saved 142 posts as Markdown in content/posts and added redirects.json]. :changed[Deleted the old wp-uploads/thumbnails folder], because Astro creates new thumbnails when it builds the site.",
+		"gap": "\n\n",
+		"hasMarkers": true,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "marker",
+				"tag": "changed",
+				"known": true,
+				"label": [
+					{
+						"kind": "text",
+						"text": "Saved 142 posts as Markdown in content/posts and added redirects.json"
+					}
+				],
+				"labelText": "Saved 142 posts as Markdown in content/posts and added redirects.json",
+				"attrs": {},
+				"source": ":changed[Saved 142 posts as Markdown in content/posts and added redirects.json]",
+				"start": 246,
+				"end": 325
+			},
+			{
+				"kind": "text",
+				"text": ". "
+			},
+			{
+				"kind": "marker",
+				"tag": "changed",
+				"known": true,
+				"label": [
+					{
+						"kind": "text",
+						"text": "Deleted the old wp-uploads/thumbnails folder"
+					}
+				],
+				"labelText": "Deleted the old wp-uploads/thumbnails folder",
+				"attrs": {},
+				"source": ":changed[Deleted the old wp-uploads/thumbnails folder]",
+				"start": 327,
+				"end": 381
+			},
+			{
+				"kind": "text",
+				"text": ", because Astro creates new thumbnails when it builds the site."
+			}
+		]
+	},
+	{
+		"source": ":checked[All 142 posts from the WordPress export are in the new site]{src=\"wordpress-export.xml\"}. :guess[The 9 posts without a featured image were meant to have none]. They're all short link posts, so I left them alone.",
+		"gap": "\n\n",
+		"hasMarkers": true,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "marker",
+				"tag": "checked",
+				"known": true,
+				"label": [
+					{
+						"kind": "text",
+						"text": "All 142 posts from the WordPress export are in the new site"
+					}
+				],
+				"labelText": "All 142 posts from the WordPress export are in the new site",
+				"src": "wordpress-export.xml",
+				"attrs": {},
+				"source": ":checked[All 142 posts from the WordPress export are in the new site]{src=\"wordpress-export.xml\"}",
+				"start": 446,
+				"end": 543
+			},
+			{
+				"kind": "text",
+				"text": ". "
+			},
+			{
+				"kind": "marker",
+				"tag": "guess",
+				"known": true,
+				"label": [
+					{
+						"kind": "text",
+						"text": "The 9 posts without a featured image were meant to have none"
+					}
+				],
+				"labelText": "The 9 posts without a featured image were meant to have none",
+				"attrs": {},
+				"source": ":guess[The 9 posts without a featured image were meant to have none]",
+				"start": 545,
+				"end": 613
+			},
+			{
+				"kind": "text",
+				"text": ". They're all short link posts, so I left them alone."
+			}
+		]
+	},
+	{
+		"source": "| Item | Status | Note |\n|---|---|---|\n| Post content | Migrated | Covered by D1 and D2 |\n| Comments | :open-default[Comments are left out of the new site] | Tell me if you want them kept as a static archive |\n| Domain | :open-ask[Point the domain's DNS at the new host] | This needs your registrar login |",
+		"gap": "\n\n",
+		"hasMarkers": true,
+		"kind": "table",
+		"align": [
+			null,
+			null,
+			null
+		],
+		"rows": [
+			[
+				[
+					{
+						"kind": "text",
+						"text": "Item"
+					}
+				],
+				[
+					{
+						"kind": "text",
+						"text": "Status"
+					}
+				],
+				[
+					{
+						"kind": "text",
+						"text": "Note"
+					}
+				]
+			],
+			[
+				[
+					{
+						"kind": "text",
+						"text": "Post content"
+					}
+				],
+				[
+					{
+						"kind": "text",
+						"text": "Migrated"
+					}
+				],
+				[
+					{
+						"kind": "text",
+						"text": "Covered by D1 and D2"
+					}
+				]
+			],
+			[
+				[
+					{
+						"kind": "text",
+						"text": "Comments"
+					}
+				],
+				[
+					{
+						"kind": "marker",
+						"tag": "open-default",
+						"known": true,
+						"label": [
+							{
+								"kind": "text",
+								"text": "Comments are left out of the new site"
+							}
+						],
+						"labelText": "Comments are left out of the new site",
+						"attrs": {},
+						"source": ":open-default[Comments are left out of the new site]",
+						"start": 771,
+						"end": 823
+					}
+				],
+				[
+					{
+						"kind": "text",
+						"text": "Tell me if you want them kept as a static archive"
+					}
+				]
+			],
+			[
+				[
+					{
+						"kind": "text",
+						"text": "Domain"
+					}
+				],
+				[
+					{
+						"kind": "marker",
+						"tag": "open-ask",
+						"known": true,
+						"label": [
+							{
+								"kind": "text",
+								"text": "Point the domain's DNS at the new host"
+							}
+						],
+						"labelText": "Point the domain's DNS at the new host",
+						"attrs": {},
+						"source": ":open-ask[Point the domain's DNS at the new host]",
+						"start": 889,
+						"end": 938
+					}
+				],
+				[
+					{
+						"kind": "text",
+						"text": "This needs your registrar login"
+					}
+				]
+			]
+		]
+	},
+	{
+		"source": ":parked[A newsletter signup form waits until after launch]{#P1}. You mentioned it, but it isn't part of this move.",
+		"gap": "\n\n",
+		"hasMarkers": true,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "marker",
+				"tag": "parked",
+				"known": false,
+				"label": [
+					{
+						"kind": "text",
+						"text": "A newsletter signup form waits until after launch"
+					}
+				],
+				"labelText": "A newsletter signup form waits until after launch",
+				"id": "P1",
+				"attrs": {},
+				"source": ":parked[A newsletter signup form waits until after launch]{#P1}",
+				"start": 976,
+				"end": 1039
+			},
+			{
+				"kind": "text",
+				"text": ". You mentioned it, but it isn't part of this move."
+			}
+		]
+	},
+	{
+		"source": "---",
+		"gap": "\n\n",
+		"hasMarkers": false,
+		"kind": "thematicBreak"
+	},
+	{
+		"source": "**The new tag: `:parked[…]`**",
+		"gap": "\n\n",
+		"hasMarkers": false,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "strong",
+				"runs": [
+					{
+						"kind": "text",
+						"text": "The new tag: "
+					},
+					{
+						"kind": "code",
+						"text": ":parked[…]"
+					}
+				]
+			}
+		]
+	},
+	{
+		"source": "I took this one from your notes file. :checked[The notes file's entry statuses are open, done, dropped and parked]{src=\"notes/how-i-work.md\"}. Your existing markers cover open questions, defaults, guesses and settled decisions. None of them marks something you chose to keep but put off. Without a marker, an item like that tends to read as either forgotten or waiting on you.",
+		"gap": "\n\n",
+		"hasMarkers": true,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "text",
+				"text": "I took this one from your notes file. "
+			},
+			{
+				"kind": "marker",
+				"tag": "checked",
+				"known": true,
+				"label": [
+					{
+						"kind": "text",
+						"text": "The notes file's entry statuses are open, done, dropped and parked"
+					}
+				],
+				"labelText": "The notes file's entry statuses are open, done, dropped and parked",
+				"src": "notes/how-i-work.md",
+				"attrs": {},
+				"source": ":checked[The notes file's entry statuses are open, done, dropped and parked]{src=\"notes/how-i-work.md\"}",
+				"start": 1166,
+				"end": 1269
+			},
+			{
+				"kind": "text",
+				"text": ". Your existing markers cover open questions, defaults, guesses and settled decisions. None of them marks something you chose to keep but put off. Without a marker, an item like that tends to read as either forgotten or waiting on you."
+			}
+		]
+	},
+	{
+		"source": "`:parked[…]` marks an item as kept but out of scope for now. With an ID like `{#P1}`, it works the way your log's `↳ builds on` links do: you can pick the item up later by name. That fits the idea from your 3 Oct planning note, where decision IDs work like citations instead of getting lost in the text.",
+		"gap": "",
+		"hasMarkers": false,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "code",
+				"text": ":parked[…]"
+			},
+			{
+				"kind": "text",
+				"text": " marks an item as kept but out of scope for now. With an ID like "
+			},
+			{
+				"kind": "code",
+				"text": "{#P1}"
+			},
+			{
+				"kind": "text",
+				"text": ", it works the way your log's "
+			},
+			{
+				"kind": "code",
+				"text": "↳ builds on"
+			},
+			{
+				"kind": "text",
+				"text": " links do: you can pick the item up later by name. That fits the idea from your 3 Oct planning note, where decision IDs work like citations instead of getting lost in the text."
+			}
+		]
+	}
+]

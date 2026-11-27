@@ -1,0 +1,300 @@
+{
+	"type": "Box",
+	"layout": {
+		"flexDirection": "column",
+		"gap": 1
+	},
+	"children": [
+		{
+			"type": "Markdown",
+			"text": "**Sample reply** (made-up scenario: moving a blog off WordPress)"
+		},
+		{
+			"type": "Markdown",
+			"text": "---"
+		},
+		{
+			"type": "Text",
+			"style": {},
+			"children": [
+				"The export is done and the new site builds locally. ",
+				{
+					"type": "Text",
+					"style": {
+						"tone": "decided"
+					},
+					"children": [
+						{
+							"type": "Text",
+							"style": {
+								"bold": true
+							},
+							"children": [
+								{
+									"type": "Symbol",
+									"tag": "decided"
+								}
+							]
+						},
+						" ",
+						"The new site uses Astro",
+						{
+							"type": "Text",
+							"style": {
+								"tone": "decided",
+								"note": true,
+								"added": true
+							},
+							"children": [
+								" #D1"
+							]
+						}
+					]
+				},
+				", and ",
+				{
+					"type": "Text",
+					"style": {
+						"tone": "decided"
+					},
+					"children": [
+						{
+							"type": "Text",
+							"style": {
+								"bold": true
+							},
+							"children": [
+								{
+									"type": "Symbol",
+									"tag": "decided"
+								}
+							]
+						},
+						" ",
+						"Old post URLs must keep working",
+						{
+							"type": "Text",
+							"style": {
+								"tone": "decided",
+								"note": true,
+								"added": true
+							},
+							"children": [
+								" #D2"
+							]
+						}
+					]
+				},
+				", so every post has a redirect."
+			]
+		},
+		{
+			"type": "Text",
+			"style": {},
+			"children": [
+				{
+					"type": "Text",
+					"style": {
+						"tone": "changed"
+					},
+					"children": [
+						{
+							"type": "Text",
+							"style": {
+								"bold": true
+							},
+							"children": [
+								{
+									"type": "Symbol",
+									"tag": "changed"
+								}
+							]
+						},
+						" ",
+						"Saved 142 posts as Markdown in content/posts and added redirects.json"
+					]
+				},
+				". ",
+				{
+					"type": "Text",
+					"style": {
+						"tone": "changed"
+					},
+					"children": [
+						{
+							"type": "Text",
+							"style": {
+								"bold": true
+							},
+							"children": [
+								{
+									"type": "Symbol",
+									"tag": "changed"
+								}
+							]
+						},
+						" ",
+						"Deleted the old wp-uploads/thumbnails folder"
+					]
+				},
+				", because Astro creates new thumbnails when it builds the site."
+			]
+		},
+		{
+			"type": "Text",
+			"style": {},
+			"children": [
+				{
+					"type": "Text",
+					"style": {
+						"tone": "checked"
+					},
+					"children": [
+						{
+							"type": "Text",
+							"style": {
+								"bold": true
+							},
+							"children": [
+								{
+									"type": "Symbol",
+									"tag": "checked"
+								}
+							]
+						},
+						" ",
+						"All 142 posts from the WordPress export are in the new site",
+						{
+							"type": "Text",
+							"style": {
+								"tone": "checked",
+								"note": true,
+								"added": true
+							},
+							"children": [
+								" src: wordpress-export.xml"
+							]
+						}
+					]
+				},
+				". ",
+				{
+					"type": "Text",
+					"style": {
+						"tone": "guess"
+					},
+					"children": [
+						{
+							"type": "Text",
+							"style": {
+								"bold": true
+							},
+							"children": [
+								{
+									"type": "Symbol",
+									"tag": "guess"
+								}
+							]
+						},
+						" ",
+						"The 9 posts without a featured image were meant to have none"
+					]
+				},
+				". They're all short link posts, so I left them alone."
+			]
+		},
+		{
+			"type": "Markdown",
+			"text": "| Item | Status | Note |\n|---|---|---|\n| Post content | Migrated | Covered by D1 and D2 |\n| Comments | :open-default[Comments are left out of the new site] | Tell me if you want them kept as a static archive |\n| Domain | :open-ask[Point the domain's DNS at the new host] | This needs your registrar login |"
+		},
+		{
+			"type": "Text",
+			"style": {},
+			"children": [
+				{
+					"type": "Text",
+					"style": {
+						"tone": "unknown"
+					},
+					"children": [
+						{
+							"type": "Text",
+							"style": {
+								"added": true
+							},
+							"children": [
+								"[parked] "
+							]
+						},
+						"A newsletter signup form waits until after launch",
+						{
+							"type": "Text",
+							"style": {
+								"tone": "unknown",
+								"note": true,
+								"added": true
+							},
+							"children": [
+								" #P1"
+							]
+						}
+					]
+				},
+				". You mentioned it, but it isn't part of this move."
+			]
+		},
+		{
+			"type": "Markdown",
+			"text": "---"
+		},
+		{
+			"type": "Markdown",
+			"text": "**The new tag: `:parked[…]`**"
+		},
+		{
+			"type": "Text",
+			"style": {},
+			"children": [
+				"I took this one from your notes file. ",
+				{
+					"type": "Text",
+					"style": {
+						"tone": "checked"
+					},
+					"children": [
+						{
+							"type": "Text",
+							"style": {
+								"bold": true
+							},
+							"children": [
+								{
+									"type": "Symbol",
+									"tag": "checked"
+								}
+							]
+						},
+						" ",
+						"The notes file's entry statuses are open, done, dropped and parked",
+						{
+							"type": "Text",
+							"style": {
+								"tone": "checked",
+								"note": true,
+								"added": true
+							},
+							"children": [
+								" src: notes/how-i-work.md"
+							]
+						}
+					]
+				},
+				". Your existing markers cover open questions, defaults, guesses and settled decisions. None of them marks something you chose to keep but put off. Without a marker, an item like that tends to read as either forgotten or waiting on you."
+			]
+		},
+		{
+			"type": "Markdown",
+			"text": "`:parked[…]` marks an item as kept but out of scope for now. With an ID like `{#P1}`, it works the way your log's `↳ builds on` links do: you can pick the item up later by name. That fits the idea from your 3 Oct planning note, where decision IDs work like citations instead of getting lost in the text."
+		}
+	]
+}

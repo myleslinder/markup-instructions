@@ -1,0 +1,83 @@
+{
+	"type": "Box",
+	"layout": {
+		"flexDirection": "column",
+		"gap": 1
+	},
+	"children": [
+		{
+			"type": "Markdown",
+			"text": "I added a \"Reading Claude's replies\" section at the end of `README.md`."
+		},
+		{
+			"type": "Text",
+			"style": {},
+			"children": [
+				{
+					"type": "Text",
+					"style": {
+						"tone": "changed"
+					},
+					"children": [
+						{
+							"type": "Text",
+							"style": {
+								"bold": true
+							},
+							"children": [
+								{
+									"type": "Symbol",
+									"tag": "changed"
+								}
+							]
+						},
+						" ",
+						"added the section to README.md"
+					]
+				},
+				". It has:"
+			]
+		},
+		{
+			"type": "Markdown",
+			"text": "- a short explanation of the `:type[label]` form;\n- a table of the six markers and what each one means;\n- a line on the `{src=\"…\"}` and `{#ID}` sources;\n- a three-line example from this session's 0.2 work, with what each line means."
+		},
+		{
+			"type": "Markdown",
+			"text": "The example is in a code block, so your friend sees the markers exactly as written, whether or not their viewer highlights them. The descriptions say \"the person running the session\" rather than \"you\", since the questions and defaults are aimed at you, not at them."
+		},
+		{
+			"type": "Text",
+			"style": {},
+			"children": [
+				"One thing to weigh before 0.2 ships: npm publishes the README as the package's front page, so library users would see this section too. ",
+				{
+					"type": "Text",
+					"style": {
+						"tone": "open-default"
+					},
+					"children": [
+						{
+							"type": "Text",
+							"style": {
+								"bold": true
+							},
+							"children": [
+								{
+									"type": "Symbol",
+									"tag": "open-default"
+								}
+							]
+						},
+						" ",
+						"I'll leave it in the README for now; it could move to a CONTRIBUTING.md before you publish."
+					]
+				}
+			]
+		},
+		{
+			"type": "Markdown",
+			"text": "Nothing is committed."
+		}
+	]
+}

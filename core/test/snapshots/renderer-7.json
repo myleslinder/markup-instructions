@@ -1,0 +1,176 @@
+[
+	{
+		"source": "**Sample reply** (same made-up blog move)",
+		"gap": "\n\n",
+		"hasMarkers": false,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "strong",
+				"runs": [
+					{
+						"kind": "text",
+						"text": "Sample reply"
+					}
+				]
+			},
+			{
+				"kind": "text",
+				"text": " (same made-up blog move)"
+			}
+		]
+	},
+	{
+		"source": "---",
+		"gap": "\n\n",
+		"hasMarkers": false,
+		"kind": "thematicBreak"
+	},
+	{
+		"source": ":decided[Old post URLs must keep working]{#D2}. Here's the redirect config I'd add to the project:",
+		"gap": "\n\n",
+		"hasMarkers": true,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "marker",
+				"tag": "decided",
+				"known": true,
+				"label": [
+					{
+						"kind": "text",
+						"text": "Old post URLs must keep working"
+					}
+				],
+				"labelText": "Old post URLs must keep working",
+				"id": "D2",
+				"attrs": {},
+				"source": ":decided[Old post URLs must keep working]{#D2}",
+				"start": 48,
+				"end": 94
+			},
+			{
+				"kind": "text",
+				"text": ". Here's the redirect config I'd add to the project:"
+			}
+		]
+	},
+	{
+		"source": "```js\n// astro.config.mjs\nimport { defineConfig } from 'astro/config';\n\nexport default defineConfig({\n  redirects: {\n    '/2019/03/hello-world/': '/posts/hello-world/',\n    '/2020/07/moving-house/': '/posts/moving-house/',\n  },\n});\n```",
+		"gap": "\n\n",
+		"hasMarkers": false,
+		"kind": "code",
+		"lang": "js",
+		"value": "// astro.config.mjs\nimport { defineConfig } from 'astro/config';\n\nexport default defineConfig({\n  redirects: {\n    '/2019/03/hello-world/': '/posts/hello-world/',\n    '/2020/07/moving-house/': '/posts/moving-house/',\n  },\n});"
+	},
+	{
+		"source": ":guess[The old WordPress URLs all follow the /year/month/slug/ pattern]. I only looked at two of them, so it's worth spot-checking a few more.",
+		"gap": "\n\n",
+		"hasMarkers": true,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "marker",
+				"tag": "guess",
+				"known": true,
+				"label": [
+					{
+						"kind": "text",
+						"text": "The old WordPress URLs all follow the /year/month/slug/ pattern"
+					}
+				],
+				"labelText": "The old WordPress URLs all follow the /year/month/slug/ pattern",
+				"attrs": {},
+				"source": ":guess[The old WordPress URLs all follow the /year/month/slug/ pattern]",
+				"start": 385,
+				"end": 456
+			},
+			{
+				"kind": "text",
+				"text": ". I only looked at two of them, so it's worth spot-checking a few more."
+			}
+		]
+	},
+	{
+		"source": ":open-ask[Paste the config into astro.config.mjs and run the dev server]. After that I can check that the redirects resolve.",
+		"gap": "\n\n",
+		"hasMarkers": true,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "marker",
+				"tag": "open-ask",
+				"known": true,
+				"label": [
+					{
+						"kind": "text",
+						"text": "Paste the config into astro.config.mjs and run the dev server"
+					}
+				],
+				"labelText": "Paste the config into astro.config.mjs and run the dev server",
+				"attrs": {},
+				"source": ":open-ask[Paste the config into astro.config.mjs and run the dev server]",
+				"start": 529,
+				"end": 601
+			},
+			{
+				"kind": "text",
+				"text": ". After that I can check that the redirects resolve."
+			}
+		]
+	},
+	{
+		"source": ":changed[nothing]. The config exists only in this reply.",
+		"gap": "\n\n",
+		"hasMarkers": true,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "marker",
+				"tag": "changed",
+				"known": true,
+				"label": [
+					{
+						"kind": "text",
+						"text": "nothing"
+					}
+				],
+				"labelText": "nothing",
+				"attrs": {},
+				"source": ":changed[nothing]",
+				"start": 655,
+				"end": 672
+			},
+			{
+				"kind": "text",
+				"text": ". The config exists only in this reply."
+			}
+		]
+	},
+	{
+		"source": "---",
+		"gap": "\n\n",
+		"hasMarkers": false,
+		"kind": "thematicBreak"
+	},
+	{
+		"source": "To test the edge case your preferences mention, this block shows the marker syntax literally. It should come through as plain text, not highlighted:",
+		"gap": "\n\n",
+		"hasMarkers": false,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "text",
+				"text": "To test the edge case your preferences mention, this block shows the marker syntax literally. It should come through as plain text, not highlighted:"
+			}
+		]
+	},
+	{
+		"source": "```markdown\n:decided[Old post URLs must keep working]{#D2}\n:open-ask[Point the domain's DNS at the new host]\n```",
+		"gap": "",
+		"hasMarkers": false,
+		"kind": "code",
+		"lang": "markdown",
+		"value": ":decided[Old post URLs must keep working]{#D2}\n:open-ask[Point the domain's DNS at the new host]"
+	}
+]

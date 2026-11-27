@@ -1,0 +1,620 @@
+[
+	{
+		"source": "**Short answer: a clean `\"1.5\"` works, but `convert` isn't safe to feed raw form input.** It never checks the amount. JavaScript quietly turns the string into a number when it multiplies, so good input works by accident, and bad input returns a wrong number instead of an error.",
+		"gap": "\n\n",
+		"hasMarkers": false,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "strong",
+				"runs": [
+					{
+						"kind": "text",
+						"text": "Short answer: a clean "
+					},
+					{
+						"kind": "code",
+						"text": "\"1.5\""
+					},
+					{
+						"kind": "text",
+						"text": " works, but "
+					},
+					{
+						"kind": "code",
+						"text": "convert"
+					},
+					{
+						"kind": "text",
+						"text": " isn't safe to feed raw form input."
+					}
+				]
+			},
+			{
+				"kind": "text",
+				"text": " It never checks the amount. JavaScript quietly turns the string into a number when it multiplies, so good input works by accident, and bad input returns a wrong number instead of an error."
+			}
+		]
+	},
+	{
+		"source": ":checked[convert does no type or validity check on amount]{src=\"src/convert.js:12-16\"}. It only checks the two unit names, then returns `Math.round(amount * UNITS[from] / UNITS[to])`.",
+		"gap": "\n\n",
+		"hasMarkers": true,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "marker",
+				"tag": "checked",
+				"known": true,
+				"label": [
+					{
+						"kind": "text",
+						"text": "convert does no type or validity check on amount"
+					}
+				],
+				"labelText": "convert does no type or validity check on amount",
+				"src": "src/convert.js:12-16",
+				"attrs": {},
+				"source": ":checked[convert does no type or validity check on amount]{src=\"src/convert.js:12-16\"}",
+				"start": 280,
+				"end": 366
+			},
+			{
+				"kind": "text",
+				"text": ". It only checks the two unit names, then returns "
+			},
+			{
+				"kind": "code",
+				"text": "Math.round(amount * UNITS[from] / UNITS[to])"
+			},
+			{
+				"kind": "text",
+				"text": "."
+			}
+		]
+	},
+	{
+		"source": "I ran it with form-style strings (cup → ml). Nothing threw:",
+		"gap": "\n\n",
+		"hasMarkers": false,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "text",
+				"text": "I ran it with form-style strings (cup → ml). Nothing threw:"
+			}
+		]
+	},
+	{
+		"source": "| Input | Result | Problem |\n|---|---|---|\n| `\"1.5\"`, `\" 1.5 \"` | 355 | fine |\n| `\"\"` (empty field), `null` | 0 | blank field silently means 0 |\n| `\"1,5\"` (comma decimal) | NaN | no error, NaN flows downstream |\n| `\"1/2\"` (common in recipes) | NaN | same |\n| `\"abc\"` | NaN | same |\n| `\"0x10\"` | 3785 | read as hex 16 |\n| `\"1e3\"` | 236588 | read as 1000 |\n| `\"Infinity\"` | Infinity | accepted |",
+		"gap": "\n\n",
+		"hasMarkers": false,
+		"kind": "table",
+		"align": [
+			null,
+			null,
+			null
+		],
+		"rows": [
+			[
+				[
+					{
+						"kind": "text",
+						"text": "Input"
+					}
+				],
+				[
+					{
+						"kind": "text",
+						"text": "Result"
+					}
+				],
+				[
+					{
+						"kind": "text",
+						"text": "Problem"
+					}
+				]
+			],
+			[
+				[
+					{
+						"kind": "code",
+						"text": "\"1.5\""
+					},
+					{
+						"kind": "text",
+						"text": ", "
+					},
+					{
+						"kind": "code",
+						"text": "\" 1.5 \""
+					}
+				],
+				[
+					{
+						"kind": "text",
+						"text": "355"
+					}
+				],
+				[
+					{
+						"kind": "text",
+						"text": "fine"
+					}
+				]
+			],
+			[
+				[
+					{
+						"kind": "code",
+						"text": "\"\""
+					},
+					{
+						"kind": "text",
+						"text": " (empty field), "
+					},
+					{
+						"kind": "code",
+						"text": "null"
+					}
+				],
+				[
+					{
+						"kind": "text",
+						"text": "0"
+					}
+				],
+				[
+					{
+						"kind": "text",
+						"text": "blank field silently means 0"
+					}
+				]
+			],
+			[
+				[
+					{
+						"kind": "code",
+						"text": "\"1,5\""
+					},
+					{
+						"kind": "text",
+						"text": " (comma decimal)"
+					}
+				],
+				[
+					{
+						"kind": "text",
+						"text": "NaN"
+					}
+				],
+				[
+					{
+						"kind": "text",
+						"text": "no error, NaN flows downstream"
+					}
+				]
+			],
+			[
+				[
+					{
+						"kind": "code",
+						"text": "\"1/2\""
+					},
+					{
+						"kind": "text",
+						"text": " (common in recipes)"
+					}
+				],
+				[
+					{
+						"kind": "text",
+						"text": "NaN"
+					}
+				],
+				[
+					{
+						"kind": "text",
+						"text": "same"
+					}
+				]
+			],
+			[
+				[
+					{
+						"kind": "code",
+						"text": "\"abc\""
+					}
+				],
+				[
+					{
+						"kind": "text",
+						"text": "NaN"
+					}
+				],
+				[
+					{
+						"kind": "text",
+						"text": "same"
+					}
+				]
+			],
+			[
+				[
+					{
+						"kind": "code",
+						"text": "\"0x10\""
+					}
+				],
+				[
+					{
+						"kind": "text",
+						"text": "3785"
+					}
+				],
+				[
+					{
+						"kind": "text",
+						"text": "read as hex 16"
+					}
+				]
+			],
+			[
+				[
+					{
+						"kind": "code",
+						"text": "\"1e3\""
+					}
+				],
+				[
+					{
+						"kind": "text",
+						"text": "236588"
+					}
+				],
+				[
+					{
+						"kind": "text",
+						"text": "read as 1000"
+					}
+				]
+			],
+			[
+				[
+					{
+						"kind": "code",
+						"text": "\"Infinity\""
+					}
+				],
+				[
+					{
+						"kind": "text",
+						"text": "Infinity"
+					}
+				],
+				[
+					{
+						"kind": "text",
+						"text": "accepted"
+					}
+				]
+			]
+		]
+	},
+	{
+		"source": "Two more things matter if the form input reaches this function:",
+		"gap": "\n\n",
+		"hasMarkers": false,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "text",
+				"text": "Two more things matter if the form input reaches this function:"
+			}
+		]
+	},
+	{
+		"source": "- **Unit names from a form can get past the check.** :checked[the unit check uses `in`, which also matches built-in object properties]{src=\"src/convert.js:13-14\"}, so `convert(1, \"constructor\", \"ml\")` returns NaN instead of throwing \"unknown unit\".\n- **Small amounts round badly.** `convert(\"1.5\", \"tsp\", \"tbsp\")` gives 1 (the true answer is 0.5), and ¼ tsp gives 1 ml. :checked[This rounding problem is already logged as I5]{src=\"docs/issues.md:9\"}. It isn't about strings, but form users will hit it with spoon measures.",
+		"gap": "\n\n",
+		"hasMarkers": true,
+		"kind": "list",
+		"ordered": false,
+		"spread": false,
+		"items": [
+			{
+				"blocks": [
+					{
+						"source": "**Unit names from a form can get past the check.** :checked[the unit check uses `in`, which also matches built-in object properties]{src=\"src/convert.js:13-14\"}, so `convert(1, \"constructor\", \"ml\")` returns NaN instead of throwing \"unknown unit\".",
+						"gap": "",
+						"hasMarkers": true,
+						"kind": "paragraph",
+						"runs": [
+							{
+								"kind": "strong",
+								"runs": [
+									{
+										"kind": "text",
+										"text": "Unit names from a form can get past the check."
+									}
+								]
+							},
+							{
+								"kind": "text",
+								"text": " "
+							},
+							{
+								"kind": "marker",
+								"tag": "checked",
+								"known": true,
+								"label": [
+									{
+										"kind": "text",
+										"text": "the unit check uses "
+									},
+									{
+										"kind": "code",
+										"text": "in"
+									},
+									{
+										"kind": "text",
+										"text": ", which also matches built-in object properties"
+									}
+								],
+								"labelText": "the unit check uses in, which also matches built-in object properties",
+								"src": "src/convert.js:13-14",
+								"attrs": {},
+								"source": ":checked[the unit check uses `in`, which also matches built-in object properties]{src=\"src/convert.js:13-14\"}",
+								"start": 1039,
+								"end": 1148
+							},
+							{
+								"kind": "text",
+								"text": ", so "
+							},
+							{
+								"kind": "code",
+								"text": "convert(1, \"constructor\", \"ml\")"
+							},
+							{
+								"kind": "text",
+								"text": " returns NaN instead of throwing \"unknown unit\"."
+							}
+						]
+					}
+				]
+			},
+			{
+				"blocks": [
+					{
+						"source": "**Small amounts round badly.** `convert(\"1.5\", \"tsp\", \"tbsp\")` gives 1 (the true answer is 0.5), and ¼ tsp gives 1 ml. :checked[This rounding problem is already logged as I5]{src=\"docs/issues.md:9\"}. It isn't about strings, but form users will hit it with spoon measures.",
+						"gap": "",
+						"hasMarkers": true,
+						"kind": "paragraph",
+						"runs": [
+							{
+								"kind": "strong",
+								"runs": [
+									{
+										"kind": "text",
+										"text": "Small amounts round badly."
+									}
+								]
+							},
+							{
+								"kind": "text",
+								"text": " "
+							},
+							{
+								"kind": "code",
+								"text": "convert(\"1.5\", \"tsp\", \"tbsp\")"
+							},
+							{
+								"kind": "text",
+								"text": " gives 1 (the true answer is 0.5), and ¼ tsp gives 1 ml. "
+							},
+							{
+								"kind": "marker",
+								"tag": "checked",
+								"known": true,
+								"label": [
+									{
+										"kind": "text",
+										"text": "This rounding problem is already logged as I5"
+									}
+								],
+								"labelText": "This rounding problem is already logged as I5",
+								"src": "docs/issues.md:9",
+								"attrs": {},
+								"source": ":checked[This rounding problem is already logged as I5]{src=\"docs/issues.md:9\"}",
+								"start": 1356,
+								"end": 1435
+							},
+							{
+								"kind": "text",
+								"text": ". It isn't about strings, but form users will hit it with spoon measures."
+							}
+						]
+					}
+				]
+			}
+		]
+	},
+	{
+		"source": ":guess[I'd fix this inside `convert` rather than in each form]: turn the amount into a number, throw unless it's a finite number ≥ 0, and check units with `Object.hasOwn`. :open-ask[Should blank, `\"1/2\"` and `\"1,5\"` throw, or should `convert` accept fractions and comma decimals?] That's a product decision.",
+		"gap": "\n\n",
+		"hasMarkers": true,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "marker",
+				"tag": "guess",
+				"known": true,
+				"label": [
+					{
+						"kind": "text",
+						"text": "I'd fix this inside "
+					},
+					{
+						"kind": "code",
+						"text": "convert"
+					},
+					{
+						"kind": "text",
+						"text": " rather than in each form"
+					}
+				],
+				"labelText": "I'd fix this inside convert rather than in each form",
+				"attrs": {},
+				"source": ":guess[I'd fix this inside `convert` rather than in each form]",
+				"start": 1510,
+				"end": 1572
+			},
+			{
+				"kind": "text",
+				"text": ": turn the amount into a number, throw unless it's a finite number ≥ 0, and check units with "
+			},
+			{
+				"kind": "code",
+				"text": "Object.hasOwn"
+			},
+			{
+				"kind": "text",
+				"text": ". "
+			},
+			{
+				"kind": "marker",
+				"tag": "open-ask",
+				"known": true,
+				"label": [
+					{
+						"kind": "text",
+						"text": "Should blank, "
+					},
+					{
+						"kind": "code",
+						"text": "\"1/2\""
+					},
+					{
+						"kind": "text",
+						"text": " and "
+					},
+					{
+						"kind": "code",
+						"text": "\"1,5\""
+					},
+					{
+						"kind": "text",
+						"text": " throw, or should "
+					},
+					{
+						"kind": "code",
+						"text": "convert"
+					},
+					{
+						"kind": "text",
+						"text": " accept fractions and comma decimals?"
+					}
+				],
+				"labelText": "Should blank, \"1/2\" and \"1,5\" throw, or should convert accept fractions and comma decimals?",
+				"attrs": {},
+				"source": ":open-ask[Should blank, `\"1/2\"` and `\"1,5\"` throw, or should `convert` accept fractions and comma decimals?]",
+				"start": 1682,
+				"end": 1790
+			},
+			{
+				"kind": "text",
+				"text": " That's a product decision."
+			}
+		]
+	},
+	{
+		"source": "Something else I noticed: :checked[README.md line 32 contains a `:checked[...]` marker]{src=\"README.md:32\"}. That markup is only meant for chat replies, never saved files. The line is also out of date: it says the cup is 250 ml, but your uncommitted change sets it to 236.588. :guess[It looks like another session wrote this into the README by mistake]; you may want to remove it before committing.",
+		"gap": "\n\n",
+		"hasMarkers": true,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "text",
+				"text": "Something else I noticed: "
+			},
+			{
+				"kind": "marker",
+				"tag": "checked",
+				"known": true,
+				"label": [
+					{
+						"kind": "text",
+						"text": "README.md line 32 contains a "
+					},
+					{
+						"kind": "code",
+						"text": ":checked[...]"
+					},
+					{
+						"kind": "text",
+						"text": " marker"
+					}
+				],
+				"labelText": "README.md line 32 contains a :checked[...] marker",
+				"src": "README.md:32",
+				"attrs": {},
+				"source": ":checked[README.md line 32 contains a `:checked[...]` marker]{src=\"README.md:32\"}",
+				"start": 1845,
+				"end": 1926
+			},
+			{
+				"kind": "text",
+				"text": ". That markup is only meant for chat replies, never saved files. The line is also out of date: it says the cup is 250 ml, but your uncommitted change sets it to 236.588. "
+			},
+			{
+				"kind": "marker",
+				"tag": "guess",
+				"known": true,
+				"label": [
+					{
+						"kind": "text",
+						"text": "It looks like another session wrote this into the README by mistake"
+					}
+				],
+				"labelText": "It looks like another session wrote this into the README by mistake",
+				"attrs": {},
+				"source": ":guess[It looks like another session wrote this into the README by mistake]",
+				"start": 2096,
+				"end": 2171
+			},
+			{
+				"kind": "text",
+				"text": "; you may want to remove it before committing."
+			}
+		]
+	},
+	{
+		"source": ":changed[nothing] — this was a read-and-test check only, as you asked.",
+		"gap": "",
+		"hasMarkers": true,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "marker",
+				"tag": "changed",
+				"known": true,
+				"label": [
+					{
+						"kind": "text",
+						"text": "nothing"
+					}
+				],
+				"labelText": "nothing",
+				"attrs": {},
+				"source": ":changed[nothing]",
+				"start": 2219,
+				"end": 2236
+			},
+			{
+				"kind": "text",
+				"text": " — this was a read-and-test check only, as you asked."
+			}
+		]
+	}
+]

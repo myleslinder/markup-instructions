@@ -1,0 +1,757 @@
+[
+	{
+		"source": "I've read the plan, the issues and the code; here are my recommendations.",
+		"gap": "\n\n",
+		"hasMarkers": false,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "text",
+				"text": "I've read the plan, the issues and the code; here are my recommendations."
+			}
+		]
+	},
+	{
+		"source": "**In short:** leave both Q1 and Q2 out of 0.2. Of the remaining issues, I5 and I6 should block the release; I3 and I4 should not.",
+		"gap": "\n\n",
+		"hasMarkers": false,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "strong",
+				"runs": [
+					{
+						"kind": "text",
+						"text": "In short:"
+					}
+				]
+			},
+			{
+				"kind": "text",
+				"text": " leave both Q1 and Q2 out of 0.2. Of the remaining issues, I5 and I6 should block the release; I3 and I4 should not."
+			}
+		]
+	},
+	{
+		"source": "## Q1: Converting between weight and volume per ingredient",
+		"gap": "\n\n",
+		"hasMarkers": false,
+		"kind": "heading",
+		"depth": 2,
+		"runs": [
+			{
+				"kind": "text",
+				"text": "Q1: Converting between weight and volume per ingredient"
+			}
+		]
+	},
+	{
+		"source": ":guess[Recommendation: not in 0.2. Add weight units now and leave densities for 0.3.]",
+		"gap": "\n\n",
+		"hasMarkers": true,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "marker",
+				"tag": "guess",
+				"known": true,
+				"label": [
+					{
+						"kind": "text",
+						"text": "Recommendation: not in 0.2. Add weight units now and leave densities for 0.3."
+					}
+				],
+				"labelText": "Recommendation: not in 0.2. Add weight units now and leave densities for 0.3.",
+				"attrs": {},
+				"source": ":guess[Recommendation: not in 0.2. Add weight units now and leave densities for 0.3.]",
+				"start": 266,
+				"end": 351
+			}
+		]
+	},
+	{
+		"source": "- **Why not now:** a density table is mostly a data job, not code. A cup of flour weighs anywhere from about 120 to 140 g depending on the source and on whether it's sifted. Brown sugar changes with packing. You'd also need to match ingredient names (\"flour\" vs \"all-purpose flour\"). That's a lot to pin down for a release whose main goal is publishing.\n- **What's missing first:** :checked[UNITS has only volume units, with no g, kg, oz or lb]{src=\"src/convert.js:2-10\"}. Adding weight units as a separate group is cheap and needs no data. Gram-to-ounce conversion works right away, and `convert` would throw a clear error on cup-to-gram until densities exist.\n- **Adding it later won't break anything:** densities can come in later as an optional argument, such as `convert(1, \"cup\", \"g\", { ingredient: \"flour\" })`. That keeps existing calls working, so leaving it out now doesn't commit the API.\n- **What you give up:** the meal-planning app will want this eventually, for example to add up shopping lists by weight. Until then, the app has to do it itself.",
+		"gap": "\n\n",
+		"hasMarkers": true,
+		"kind": "list",
+		"ordered": false,
+		"spread": false,
+		"items": [
+			{
+				"blocks": [
+					{
+						"source": "**Why not now:** a density table is mostly a data job, not code. A cup of flour weighs anywhere from about 120 to 140 g depending on the source and on whether it's sifted. Brown sugar changes with packing. You'd also need to match ingredient names (\"flour\" vs \"all-purpose flour\"). That's a lot to pin down for a release whose main goal is publishing.",
+						"gap": "",
+						"hasMarkers": false,
+						"kind": "paragraph",
+						"runs": [
+							{
+								"kind": "strong",
+								"runs": [
+									{
+										"kind": "text",
+										"text": "Why not now:"
+									}
+								]
+							},
+							{
+								"kind": "text",
+								"text": " a density table is mostly a data job, not code. A cup of flour weighs anywhere from about 120 to 140 g depending on the source and on whether it's sifted. Brown sugar changes with packing. You'd also need to match ingredient names (\"flour\" vs \"all-purpose flour\"). That's a lot to pin down for a release whose main goal is publishing."
+							}
+						]
+					}
+				]
+			},
+			{
+				"blocks": [
+					{
+						"source": "**What's missing first:** :checked[UNITS has only volume units, with no g, kg, oz or lb]{src=\"src/convert.js:2-10\"}. Adding weight units as a separate group is cheap and needs no data. Gram-to-ounce conversion works right away, and `convert` would throw a clear error on cup-to-gram until densities exist.",
+						"gap": "",
+						"hasMarkers": true,
+						"kind": "paragraph",
+						"runs": [
+							{
+								"kind": "strong",
+								"runs": [
+									{
+										"kind": "text",
+										"text": "What's missing first:"
+									}
+								]
+							},
+							{
+								"kind": "text",
+								"text": " "
+							},
+							{
+								"kind": "marker",
+								"tag": "checked",
+								"known": true,
+								"label": [
+									{
+										"kind": "text",
+										"text": "UNITS has only volume units, with no g, kg, oz or lb"
+									}
+								],
+								"labelText": "UNITS has only volume units, with no g, kg, oz or lb",
+								"src": "src/convert.js:2-10",
+								"attrs": {},
+								"source": ":checked[UNITS has only volume units, with no g, kg, oz or lb]{src=\"src/convert.js:2-10\"}",
+								"start": 735,
+								"end": 824
+							},
+							{
+								"kind": "text",
+								"text": ". Adding weight units as a separate group is cheap and needs no data. Gram-to-ounce conversion works right away, and "
+							},
+							{
+								"kind": "code",
+								"text": "convert"
+							},
+							{
+								"kind": "text",
+								"text": " would throw a clear error on cup-to-gram until densities exist."
+							}
+						]
+					}
+				]
+			},
+			{
+				"blocks": [
+					{
+						"source": "**Adding it later won't break anything:** densities can come in later as an optional argument, such as `convert(1, \"cup\", \"g\", { ingredient: \"flour\" })`. That keeps existing calls working, so leaving it out now doesn't commit the API.",
+						"gap": "",
+						"hasMarkers": false,
+						"kind": "paragraph",
+						"runs": [
+							{
+								"kind": "strong",
+								"runs": [
+									{
+										"kind": "text",
+										"text": "Adding it later won't break anything:"
+									}
+								]
+							},
+							{
+								"kind": "text",
+								"text": " densities can come in later as an optional argument, such as "
+							},
+							{
+								"kind": "code",
+								"text": "convert(1, \"cup\", \"g\", { ingredient: \"flour\" })"
+							},
+							{
+								"kind": "text",
+								"text": ". That keeps existing calls working, so leaving it out now doesn't commit the API."
+							}
+						]
+					}
+				]
+			},
+			{
+				"blocks": [
+					{
+						"source": "**What you give up:** the meal-planning app will want this eventually, for example to add up shopping lists by weight. Until then, the app has to do it itself.",
+						"gap": "",
+						"hasMarkers": false,
+						"kind": "paragraph",
+						"runs": [
+							{
+								"kind": "strong",
+								"runs": [
+									{
+										"kind": "text",
+										"text": "What you give up:"
+									}
+								]
+							},
+							{
+								"kind": "text",
+								"text": " the meal-planning app will want this eventually, for example to add up shopping lists by weight. Until then, the app has to do it itself."
+							}
+						]
+					}
+				]
+			}
+		]
+	},
+	{
+		"source": "## Q2: A CLI, or a library only",
+		"gap": "\n\n",
+		"hasMarkers": false,
+		"kind": "heading",
+		"depth": 2,
+		"runs": [
+			{
+				"kind": "text",
+				"text": "Q2: A CLI, or a library only"
+			}
+		]
+	},
+	{
+		"source": ":guess[Recommendation: library only for 0.2.]",
+		"gap": "\n\n",
+		"hasMarkers": true,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "marker",
+				"tag": "guess",
+				"known": true,
+				"label": [
+					{
+						"kind": "text",
+						"text": "Recommendation: library only for 0.2."
+					}
+				],
+				"labelText": "Recommendation: library only for 0.2.",
+				"attrs": {},
+				"source": ":guess[Recommendation: library only for 0.2.]",
+				"start": 1448,
+				"end": 1493
+			}
+		]
+	},
+	{
+		"source": "- The plan says pantry is meant to sit under an app, so a CLI has no user yet.\n- With no dependencies (D1), you'd write the argument parsing yourself and pick an input format for recipes. Once published, that becomes more public behaviour you have to support.\n- **What you give up:** a CLI makes a nice demo and a quick manual test. `node -e` covers the manual testing for now, and a CLI can be added in any later version without breaking anything.",
+		"gap": "\n\n",
+		"hasMarkers": false,
+		"kind": "list",
+		"ordered": false,
+		"spread": false,
+		"items": [
+			{
+				"blocks": [
+					{
+						"source": "The plan says pantry is meant to sit under an app, so a CLI has no user yet.",
+						"gap": "",
+						"hasMarkers": false,
+						"kind": "paragraph",
+						"runs": [
+							{
+								"kind": "text",
+								"text": "The plan says pantry is meant to sit under an app, so a CLI has no user yet."
+							}
+						]
+					}
+				]
+			},
+			{
+				"blocks": [
+					{
+						"source": "With no dependencies (D1), you'd write the argument parsing yourself and pick an input format for recipes. Once published, that becomes more public behaviour you have to support.",
+						"gap": "",
+						"hasMarkers": false,
+						"kind": "paragraph",
+						"runs": [
+							{
+								"kind": "text",
+								"text": "With no dependencies (D1), you'd write the argument parsing yourself and pick an input format for recipes. Once published, that becomes more public behaviour you have to support."
+							}
+						]
+					}
+				]
+			},
+			{
+				"blocks": [
+					{
+						"source": "**What you give up:** a CLI makes a nice demo and a quick manual test. `node -e` covers the manual testing for now, and a CLI can be added in any later version without breaking anything.",
+						"gap": "",
+						"hasMarkers": false,
+						"kind": "paragraph",
+						"runs": [
+							{
+								"kind": "strong",
+								"runs": [
+									{
+										"kind": "text",
+										"text": "What you give up:"
+									}
+								]
+							},
+							{
+								"kind": "text",
+								"text": " a CLI makes a nice demo and a quick manual test. "
+							},
+							{
+								"kind": "code",
+								"text": "node -e"
+							},
+							{
+								"kind": "text",
+								"text": " covers the manual testing for now, and a CLI can be added in any later version without breaking anything."
+							}
+						]
+					}
+				]
+			}
+		]
+	},
+	{
+		"source": "## Which remaining issues should block 0.2",
+		"gap": "\n\n",
+		"hasMarkers": false,
+		"kind": "heading",
+		"depth": 2,
+		"runs": [
+			{
+				"kind": "text",
+				"text": "Which remaining issues should block 0.2"
+			}
+		]
+	},
+	{
+		"source": "| Issue | Block? | Why |\n|---|---|---|\n| I5: `convert` rounds to whole ml | **Yes** | It's worse than the issue says (see below). Fixing it changes what `convert` returns, so do it before people depend on the current output. |\n| I6: \"1½\" read aloud wrongly | **Yes** | A small fix, but it changes what `formatAmount` outputs, which is public. |\n| I3: error doesn't name the recipe | No | Just a better error message, safe to add anytime. Include it if you like, since it's about one line. |\n| I4: convert units while scaling | No | A new feature, not a bug, so goal 1 (\"fix the open bugs\") doesn't cover it. It also overlaps Q1's API design, so it's better done in 0.3 alongside that. |",
+		"gap": "\n\n",
+		"hasMarkers": false,
+		"kind": "table",
+		"align": [
+			null,
+			null,
+			null
+		],
+		"rows": [
+			[
+				[
+					{
+						"kind": "text",
+						"text": "Issue"
+					}
+				],
+				[
+					{
+						"kind": "text",
+						"text": "Block?"
+					}
+				],
+				[
+					{
+						"kind": "text",
+						"text": "Why"
+					}
+				]
+			],
+			[
+				[
+					{
+						"kind": "text",
+						"text": "I5: "
+					},
+					{
+						"kind": "code",
+						"text": "convert"
+					},
+					{
+						"kind": "text",
+						"text": " rounds to whole ml"
+					}
+				],
+				[
+					{
+						"kind": "strong",
+						"runs": [
+							{
+								"kind": "text",
+								"text": "Yes"
+							}
+						]
+					}
+				],
+				[
+					{
+						"kind": "text",
+						"text": "It's worse than the issue says (see below). Fixing it changes what "
+					},
+					{
+						"kind": "code",
+						"text": "convert"
+					},
+					{
+						"kind": "text",
+						"text": " returns, so do it before people depend on the current output."
+					}
+				]
+			],
+			[
+				[
+					{
+						"kind": "text",
+						"text": "I6: \"1½\" read aloud wrongly"
+					}
+				],
+				[
+					{
+						"kind": "strong",
+						"runs": [
+							{
+								"kind": "text",
+								"text": "Yes"
+							}
+						]
+					}
+				],
+				[
+					{
+						"kind": "text",
+						"text": "A small fix, but it changes what "
+					},
+					{
+						"kind": "code",
+						"text": "formatAmount"
+					},
+					{
+						"kind": "text",
+						"text": " outputs, which is public."
+					}
+				]
+			],
+			[
+				[
+					{
+						"kind": "text",
+						"text": "I3: error doesn't name the recipe"
+					}
+				],
+				[
+					{
+						"kind": "text",
+						"text": "No"
+					}
+				],
+				[
+					{
+						"kind": "text",
+						"text": "Just a better error message, safe to add anytime. Include it if you like, since it's about one line."
+					}
+				]
+			],
+			[
+				[
+					{
+						"kind": "text",
+						"text": "I4: convert units while scaling"
+					}
+				],
+				[
+					{
+						"kind": "text",
+						"text": "No"
+					}
+				],
+				[
+					{
+						"kind": "text",
+						"text": "A new feature, not a bug, so goal 1 (\"fix the open bugs\") doesn't cover it. It also overlaps Q1's API design, so it's better done in 0.3 alongside that."
+					}
+				]
+			]
+		]
+	},
+	{
+		"source": "**I5 is more serious than reported.** :checked[convert rounds every result to a whole number, so converting to a larger unit gives 0: convert(1, \"tsp\", \"tbsp\") and convert(1, \"tbsp\", \"cup\") both return 0]{src=\"src/convert.js:15\"}. I worked this out from the code rather than running it, because running the tests needs your approval here. Rounding inside `convert` also cuts against the idea behind D3, that only display rounds. :guess[The fix is to drop the rounding in convert and let formatAmount or the caller round.] That will break :checked[the tests expecting 15 and 473]{src=\"test/convert.test.js:6,10\"} and :checked[the README example showing 473]{src=\"README.md:8\"}. All three would need updating, to about 14.787 and 473.176.",
+		"gap": "\n\n",
+		"hasMarkers": true,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "strong",
+				"runs": [
+					{
+						"kind": "text",
+						"text": "I5 is more serious than reported."
+					}
+				]
+			},
+			{
+				"kind": "text",
+				"text": " "
+			},
+			{
+				"kind": "marker",
+				"tag": "checked",
+				"known": true,
+				"label": [
+					{
+						"kind": "text",
+						"text": "convert rounds every result to a whole number, so converting to a larger unit gives 0: convert(1, \"tsp\", \"tbsp\") and convert(1, \"tbsp\", \"cup\") both return 0"
+					}
+				],
+				"labelText": "convert rounds every result to a whole number, so converting to a larger unit gives 0: convert(1, \"tsp\", \"tbsp\") and convert(1, \"tbsp\", \"cup\") both return 0",
+				"src": "src/convert.js:15",
+				"attrs": {},
+				"source": ":checked[convert rounds every result to a whole number, so converting to a larger unit gives 0: convert(1, \"tsp\", \"tbsp\") and convert(1, \"tbsp\", \"cup\") both return 0]{src=\"src/convert.js:15\"}",
+				"start": 2715,
+				"end": 2906
+			},
+			{
+				"kind": "text",
+				"text": ". I worked this out from the code rather than running it, because running the tests needs your approval here. Rounding inside "
+			},
+			{
+				"kind": "code",
+				"text": "convert"
+			},
+			{
+				"kind": "text",
+				"text": " also cuts against the idea behind D3, that only display rounds. "
+			},
+			{
+				"kind": "marker",
+				"tag": "guess",
+				"known": true,
+				"label": [
+					{
+						"kind": "text",
+						"text": "The fix is to drop the rounding in convert and let formatAmount or the caller round."
+					}
+				],
+				"labelText": "The fix is to drop the rounding in convert and let formatAmount or the caller round.",
+				"attrs": {},
+				"source": ":guess[The fix is to drop the rounding in convert and let formatAmount or the caller round.]",
+				"start": 3106,
+				"end": 3198
+			},
+			{
+				"kind": "text",
+				"text": " That will break "
+			},
+			{
+				"kind": "marker",
+				"tag": "checked",
+				"known": true,
+				"label": [
+					{
+						"kind": "text",
+						"text": "the tests expecting 15 and 473"
+					}
+				],
+				"labelText": "the tests expecting 15 and 473",
+				"src": "test/convert.test.js:6,10",
+				"attrs": {},
+				"source": ":checked[the tests expecting 15 and 473]{src=\"test/convert.test.js:6,10\"}",
+				"start": 3215,
+				"end": 3288
+			},
+			{
+				"kind": "text",
+				"text": " and "
+			},
+			{
+				"kind": "marker",
+				"tag": "checked",
+				"known": true,
+				"label": [
+					{
+						"kind": "text",
+						"text": "the README example showing 473"
+					}
+				],
+				"labelText": "the README example showing 473",
+				"src": "README.md:8",
+				"attrs": {},
+				"source": ":checked[the README example showing 473]{src=\"README.md:8\"}",
+				"start": 3293,
+				"end": 3352
+			},
+			{
+				"kind": "text",
+				"text": ". All three would need updating, to about 14.787 and 473.176."
+			}
+		]
+	},
+	{
+		"source": "**For I6,** :guess[put a narrow no-break space between the whole number and the fraction, like \"1 ½\"]. That keeps the two together on one line and lets screen readers read them separately. The tests expecting \"1½\" and \"2¾\" would need updating.",
+		"gap": "\n\n",
+		"hasMarkers": true,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "strong",
+				"runs": [
+					{
+						"kind": "text",
+						"text": "For I6,"
+					}
+				]
+			},
+			{
+				"kind": "text",
+				"text": " "
+			},
+			{
+				"kind": "marker",
+				"tag": "guess",
+				"known": true,
+				"label": [
+					{
+						"kind": "text",
+						"text": "put a narrow no-break space between the whole number and the fraction, like \"1 ½\""
+					}
+				],
+				"labelText": "put a narrow no-break space between the whole number and the fraction, like \"1 ½\"",
+				"attrs": {},
+				"source": ":guess[put a narrow no-break space between the whole number and the fraction, like \"1 ½\"]",
+				"start": 3427,
+				"end": 3516
+			},
+			{
+				"kind": "text",
+				"text": ". That keeps the two together on one line and lets screen readers read them separately. The tests expecting \"1½\" and \"2¾\" would need updating."
+			}
+		]
+	},
+	{
+		"source": "**Before you publish,** :guess[the npm name \"pantry\" may already be taken]. Check with `npm view pantry`. I didn't look it up, so the name didn't go to an outside service.",
+		"gap": "\n\n",
+		"hasMarkers": true,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "strong",
+				"runs": [
+					{
+						"kind": "text",
+						"text": "Before you publish,"
+					}
+				]
+			},
+			{
+				"kind": "text",
+				"text": " "
+			},
+			{
+				"kind": "marker",
+				"tag": "guess",
+				"known": true,
+				"label": [
+					{
+						"kind": "text",
+						"text": "the npm name \"pantry\" may already be taken"
+					}
+				],
+				"labelText": "the npm name \"pantry\" may already be taken",
+				"attrs": {},
+				"source": ":guess[the npm name \"pantry\" may already be taken]",
+				"start": 3684,
+				"end": 3734
+			},
+			{
+				"kind": "text",
+				"text": ". Check with "
+			},
+			{
+				"kind": "code",
+				"text": "npm view pantry"
+			},
+			{
+				"kind": "text",
+				"text": ". I didn't look it up, so the name didn't go to an outside service."
+			}
+		]
+	},
+	{
+		"source": ":changed[nothing]. I haven't edited any files.",
+		"gap": "\n\n",
+		"hasMarkers": true,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "marker",
+				"tag": "changed",
+				"known": true,
+				"label": [
+					{
+						"kind": "text",
+						"text": "nothing"
+					}
+				],
+				"labelText": "nothing",
+				"attrs": {},
+				"source": ":changed[nothing]",
+				"start": 3833,
+				"end": 3850
+			},
+			{
+				"kind": "text",
+				"text": ". I haven't edited any files."
+			}
+		]
+	},
+	{
+		"source": ":open-ask[Do you agree with both recommendations and the blocking list?] If so, I'll add Q1 and Q2 to `docs/plan.md` as decisions D4 and D5, and then fix I5 and I6.",
+		"gap": "",
+		"hasMarkers": true,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "marker",
+				"tag": "open-ask",
+				"known": true,
+				"label": [
+					{
+						"kind": "text",
+						"text": "Do you agree with both recommendations and the blocking list?"
+					}
+				],
+				"labelText": "Do you agree with both recommendations and the blocking list?",
+				"attrs": {},
+				"source": ":open-ask[Do you agree with both recommendations and the blocking list?]",
+				"start": 3881,
+				"end": 3953
+			},
+			{
+				"kind": "text",
+				"text": " If so, I'll add Q1 and Q2 to "
+			},
+			{
+				"kind": "code",
+				"text": "docs/plan.md"
+			},
+			{
+				"kind": "text",
+				"text": " as decisions D4 and D5, and then fix I5 and I6."
+			}
+		]
+	}
+]

@@ -1,0 +1,8 @@
+// Serves the explainer page in site/ at markupinstructions.com: static assets only, no Worker script.
+{
+	"name": "markup-instructions",
+	"compatibility_date": "2026-11-27",
+	"assets": {
+		"directory": "./site"
+	}
+}

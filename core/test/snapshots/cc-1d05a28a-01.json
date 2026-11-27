@@ -1,0 +1,775 @@
+[
+	{
+		"source": "I read everything (plan, issues, README, source, tests), but I couldn't run the tests because `npm test` needed approval. **The short version:** nothing for 0.2 is done yet. The two decisions that matter most for the bugs are already in the plan, and the code doesn't follow either of them. Fixing that should close I1, and probably I2.",
+		"gap": "\n\n",
+		"hasMarkers": false,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "text",
+				"text": "I read everything (plan, issues, README, source, tests), but I couldn't run the tests because "
+			},
+			{
+				"kind": "code",
+				"text": "npm test"
+			},
+			{
+				"kind": "text",
+				"text": " needed approval. "
+			},
+			{
+				"kind": "strong",
+				"runs": [
+					{
+						"kind": "text",
+						"text": "The short version:"
+					}
+				]
+			},
+			{
+				"kind": "text",
+				"text": " nothing for 0.2 is done yet. The two decisions that matter most for the bugs are already in the plan, and the code doesn't follow either of them. Fixing that should close I1, and probably I2."
+			}
+		]
+	},
+	{
+		"source": "## Where the code doesn't match the plan",
+		"gap": "\n\n",
+		"hasMarkers": false,
+		"kind": "heading",
+		"depth": 2,
+		"runs": [
+			{
+				"kind": "text",
+				"text": "Where the code doesn't match the plan"
+			}
+		]
+	},
+	{
+		"source": "1. :checked[The cup is defined as 250 ml, a metric cup, not the US cup that D2 requires]{src=\"src/convert.js:7\"}. This is the cause of I1: `convert(2, \"cup\", \"ml\")` gives 500 where the README says 473. The other units (tsp, tbsp, fl oz, pint) are US values, so as it stands a pint isn't two cups. The fix is `cup: 236.588`.\n2. :checked[formatAmount rounds to the nearest eighth, but D3 says the nearest quarter]{src=\"src/scale.js:14-16\"}. The comment at the top of the same file cites D3 while the function does something else. :guess[This is probably behind I2]: a 0.3 that is really 0.32 or so rounds to ⅜ in eighths but to ¼ in quarters.\n3. :checked[The cups test expects 473, so it should be failing right now]{src=\"test/convert.test.js:10\"}. I worked that out by reading the code, not by running it.\n4. :checked[convert rounds to whole units of the target unit, not to whole millilitres as I5 says]{src=\"src/convert.js:15\"}. So it's worse than the issue describes: `convert(100, \"ml\", \"cup\")` returns 0. I5's fix should cover every unit, not just spoons.\n5. :checked[D2 says metric units convert exactly, but tsp, tbsp and fl oz are cut to 3 decimals]{src=\"src/convert.js:5-8\"}. For example, a US teaspoon is 4.92892 ml and the code uses 4.929. It's a small error, but it goes against the wording of D2.",
+		"gap": "\n\n",
+		"hasMarkers": true,
+		"kind": "list",
+		"ordered": true,
+		"start": 1,
+		"spread": false,
+		"items": [
+			{
+				"blocks": [
+					{
+						"source": ":checked[The cup is defined as 250 ml, a metric cup, not the US cup that D2 requires]{src=\"src/convert.js:7\"}. This is the cause of I1: `convert(2, \"cup\", \"ml\")` gives 500 where the README says 473. The other units (tsp, tbsp, fl oz, pint) are US values, so as it stands a pint isn't two cups. The fix is `cup: 236.588`.",
+						"gap": "",
+						"hasMarkers": true,
+						"kind": "paragraph",
+						"runs": [
+							{
+								"kind": "marker",
+								"tag": "checked",
+								"known": true,
+								"label": [
+									{
+										"kind": "text",
+										"text": "The cup is defined as 250 ml, a metric cup, not the US cup that D2 requires"
+									}
+								],
+								"labelText": "The cup is defined as 250 ml, a metric cup, not the US cup that D2 requires",
+								"src": "src/convert.js:7",
+								"attrs": {},
+								"source": ":checked[The cup is defined as 250 ml, a metric cup, not the US cup that D2 requires]{src=\"src/convert.js:7\"}",
+								"start": 383,
+								"end": 492
+							},
+							{
+								"kind": "text",
+								"text": ". This is the cause of I1: "
+							},
+							{
+								"kind": "code",
+								"text": "convert(2, \"cup\", \"ml\")"
+							},
+							{
+								"kind": "text",
+								"text": " gives 500 where the README says 473. The other units (tsp, tbsp, fl oz, pint) are US values, so as it stands a pint isn't two cups. The fix is "
+							},
+							{
+								"kind": "code",
+								"text": "cup: 236.588"
+							},
+							{
+								"kind": "text",
+								"text": "."
+							}
+						]
+					}
+				]
+			},
+			{
+				"blocks": [
+					{
+						"source": ":checked[formatAmount rounds to the nearest eighth, but D3 says the nearest quarter]{src=\"src/scale.js:14-16\"}. The comment at the top of the same file cites D3 while the function does something else. :guess[This is probably behind I2]: a 0.3 that is really 0.32 or so rounds to ⅜ in eighths but to ¼ in quarters.",
+						"gap": "",
+						"hasMarkers": true,
+						"kind": "paragraph",
+						"runs": [
+							{
+								"kind": "marker",
+								"tag": "checked",
+								"known": true,
+								"label": [
+									{
+										"kind": "text",
+										"text": "formatAmount rounds to the nearest eighth, but D3 says the nearest quarter"
+									}
+								],
+								"labelText": "formatAmount rounds to the nearest eighth, but D3 says the nearest quarter",
+								"src": "src/scale.js:14-16",
+								"attrs": {},
+								"source": ":checked[formatAmount rounds to the nearest eighth, but D3 says the nearest quarter]{src=\"src/scale.js:14-16\"}",
+								"start": 707,
+								"end": 817
+							},
+							{
+								"kind": "text",
+								"text": ". The comment at the top of the same file cites D3 while the function does something else. "
+							},
+							{
+								"kind": "marker",
+								"tag": "guess",
+								"known": true,
+								"label": [
+									{
+										"kind": "text",
+										"text": "This is probably behind I2"
+									}
+								],
+								"labelText": "This is probably behind I2",
+								"attrs": {},
+								"source": ":guess[This is probably behind I2]",
+								"start": 908,
+								"end": 942
+							},
+							{
+								"kind": "text",
+								"text": ": a 0.3 that is really 0.32 or so rounds to ⅜ in eighths but to ¼ in quarters."
+							}
+						]
+					}
+				]
+			},
+			{
+				"blocks": [
+					{
+						"source": ":checked[The cups test expects 473, so it should be failing right now]{src=\"test/convert.test.js:10\"}. I worked that out by reading the code, not by running it.",
+						"gap": "",
+						"hasMarkers": true,
+						"kind": "paragraph",
+						"runs": [
+							{
+								"kind": "marker",
+								"tag": "checked",
+								"known": true,
+								"label": [
+									{
+										"kind": "text",
+										"text": "The cups test expects 473, so it should be failing right now"
+									}
+								],
+								"labelText": "The cups test expects 473, so it should be failing right now",
+								"src": "test/convert.test.js:10",
+								"attrs": {},
+								"source": ":checked[The cups test expects 473, so it should be failing right now]{src=\"test/convert.test.js:10\"}",
+								"start": 1024,
+								"end": 1125
+							},
+							{
+								"kind": "text",
+								"text": ". I worked that out by reading the code, not by running it."
+							}
+						]
+					}
+				]
+			},
+			{
+				"blocks": [
+					{
+						"source": ":checked[convert rounds to whole units of the target unit, not to whole millilitres as I5 says]{src=\"src/convert.js:15\"}. So it's worse than the issue describes: `convert(100, \"ml\", \"cup\")` returns 0. I5's fix should cover every unit, not just spoons.",
+						"gap": "",
+						"hasMarkers": true,
+						"kind": "paragraph",
+						"runs": [
+							{
+								"kind": "marker",
+								"tag": "checked",
+								"known": true,
+								"label": [
+									{
+										"kind": "text",
+										"text": "convert rounds to whole units of the target unit, not to whole millilitres as I5 says"
+									}
+								],
+								"labelText": "convert rounds to whole units of the target unit, not to whole millilitres as I5 says",
+								"src": "src/convert.js:15",
+								"attrs": {},
+								"source": ":checked[convert rounds to whole units of the target unit, not to whole millilitres as I5 says]{src=\"src/convert.js:15\"}",
+								"start": 1188,
+								"end": 1308
+							},
+							{
+								"kind": "text",
+								"text": ". So it's worse than the issue describes: "
+							},
+							{
+								"kind": "code",
+								"text": "convert(100, \"ml\", \"cup\")"
+							},
+							{
+								"kind": "text",
+								"text": " returns 0. I5's fix should cover every unit, not just spoons."
+							}
+						]
+					}
+				]
+			},
+			{
+				"blocks": [
+					{
+						"source": ":checked[D2 says metric units convert exactly, but tsp, tbsp and fl oz are cut to 3 decimals]{src=\"src/convert.js:5-8\"}. For example, a US teaspoon is 4.92892 ml and the code uses 4.929. It's a small error, but it goes against the wording of D2.",
+						"gap": "",
+						"hasMarkers": true,
+						"kind": "paragraph",
+						"runs": [
+							{
+								"kind": "marker",
+								"tag": "checked",
+								"known": true,
+								"label": [
+									{
+										"kind": "text",
+										"text": "D2 says metric units convert exactly, but tsp, tbsp and fl oz are cut to 3 decimals"
+									}
+								],
+								"labelText": "D2 says metric units convert exactly, but tsp, tbsp and fl oz are cut to 3 decimals",
+								"src": "src/convert.js:5-8",
+								"attrs": {},
+								"source": ":checked[D2 says metric units convert exactly, but tsp, tbsp and fl oz are cut to 3 decimals]{src=\"src/convert.js:5-8\"}",
+								"start": 1443,
+								"end": 1562
+							},
+							{
+								"kind": "text",
+								"text": ". For example, a US teaspoon is 4.92892 ml and the code uses 4.929. It's a small error, but it goes against the wording of D2."
+							}
+						]
+					}
+				]
+			}
+		]
+	},
+	{
+		"source": "## Settled",
+		"gap": "\n\n",
+		"hasMarkers": false,
+		"kind": "heading",
+		"depth": 2,
+		"runs": [
+			{
+				"kind": "text",
+				"text": "Settled"
+			}
+		]
+	},
+	{
+		"source": ":checked[Three decisions are recorded in the plan]{src=\"docs/plan.md\"}:",
+		"gap": "\n",
+		"hasMarkers": true,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "marker",
+				"tag": "checked",
+				"known": true,
+				"label": [
+					{
+						"kind": "text",
+						"text": "Three decisions are recorded in the plan"
+					}
+				],
+				"labelText": "Three decisions are recorded in the plan",
+				"src": "docs/plan.md",
+				"attrs": {},
+				"source": ":checked[Three decisions are recorded in the plan]{src=\"docs/plan.md\"}",
+				"start": 1702,
+				"end": 1772
+			},
+			{
+				"kind": "text",
+				"text": ":"
+			}
+		]
+	},
+	{
+		"source": "- **D1:** no runtime dependencies. `package.json` has none, so the code matches.\n- **D2:** US customary units. The cup doesn't match (see above).\n- **D3:** display rounds to the nearest quarter. `formatAmount` doesn't match (see above).",
+		"gap": "\n\n",
+		"hasMarkers": false,
+		"kind": "list",
+		"ordered": false,
+		"spread": false,
+		"items": [
+			{
+				"blocks": [
+					{
+						"source": "**D1:** no runtime dependencies. `package.json` has none, so the code matches.",
+						"gap": "",
+						"hasMarkers": false,
+						"kind": "paragraph",
+						"runs": [
+							{
+								"kind": "strong",
+								"runs": [
+									{
+										"kind": "text",
+										"text": "D1:"
+									}
+								]
+							},
+							{
+								"kind": "text",
+								"text": " no runtime dependencies. "
+							},
+							{
+								"kind": "code",
+								"text": "package.json"
+							},
+							{
+								"kind": "text",
+								"text": " has none, so the code matches."
+							}
+						]
+					}
+				]
+			},
+			{
+				"blocks": [
+					{
+						"source": "**D2:** US customary units. The cup doesn't match (see above).",
+						"gap": "",
+						"hasMarkers": false,
+						"kind": "paragraph",
+						"runs": [
+							{
+								"kind": "strong",
+								"runs": [
+									{
+										"kind": "text",
+										"text": "D2:"
+									}
+								]
+							},
+							{
+								"kind": "text",
+								"text": " US customary units. The cup doesn't match (see above)."
+							}
+						]
+					}
+				]
+			},
+			{
+				"blocks": [
+					{
+						"source": "**D3:** display rounds to the nearest quarter. `formatAmount` doesn't match (see above).",
+						"gap": "",
+						"hasMarkers": false,
+						"kind": "paragraph",
+						"runs": [
+							{
+								"kind": "strong",
+								"runs": [
+									{
+										"kind": "text",
+										"text": "D3:"
+									}
+								]
+							},
+							{
+								"kind": "text",
+								"text": " display rounds to the nearest quarter. "
+							},
+							{
+								"kind": "code",
+								"text": "formatAmount"
+							},
+							{
+								"kind": "text",
+								"text": " doesn't match (see above)."
+							}
+						]
+					}
+				]
+			}
+		]
+	},
+	{
+		"source": "## Still open",
+		"gap": "\n\n",
+		"hasMarkers": false,
+		"kind": "heading",
+		"depth": 2,
+		"runs": [
+			{
+				"kind": "text",
+				"text": "Still open"
+			}
+		]
+	},
+	{
+		"source": "- **Q1 (weight-to-volume conversion with a density table) and Q2 (whether to ship a CLI):** neither is decided, and 0.2 goal 2 is to decide both. :open-ask[Do you want to decide Q1 and Q2 now, or should I sketch what each would cost first?]\n- **All six issues are still open.** In the code:\n  - I1 is the cup value.\n  - I2 is likely the eighths rounding.\n  - :checked[I3 is real: the error says only \"factor must be positive\", without the recipe name]{src=\"src/scale.js:4\"}.\n  - :checked[I6 is real: the whole number and fraction are joined with no space]{src=\"src/scale.js:20\"}. :checked[The test asserts \"1½\"]{src=\"test/scale.test.js:22\"}, so it will need updating once a space is added.\n- **I4 is a feature, not a bug.** Scaling and showing the result in metric needs new API, so it doesn't fit 0.2 goal 1 (\"fix the open bugs\"). :open-default[I'd treat I4 as out of scope for 0.2 unless you want it in.]\n- **Publishing to npm (goal 3) hasn't started.** :guess[The name \"pantry\" is probably taken on npm], but I didn't check. `package.json` also has no `files` or `exports` field, so a publish would ship the docs and tests too.",
+		"gap": "\n\n",
+		"hasMarkers": true,
+		"kind": "list",
+		"ordered": false,
+		"spread": false,
+		"items": [
+			{
+				"blocks": [
+					{
+						"source": "**Q1 (weight-to-volume conversion with a density table) and Q2 (whether to ship a CLI):** neither is decided, and 0.2 goal 2 is to decide both. :open-ask[Do you want to decide Q1 and Q2 now, or should I sketch what each would cost first?]",
+						"gap": "",
+						"hasMarkers": true,
+						"kind": "paragraph",
+						"runs": [
+							{
+								"kind": "strong",
+								"runs": [
+									{
+										"kind": "text",
+										"text": "Q1 (weight-to-volume conversion with a density table) and Q2 (whether to ship a CLI):"
+									}
+								]
+							},
+							{
+								"kind": "text",
+								"text": " neither is decided, and 0.2 goal 2 is to decide both. "
+							},
+							{
+								"kind": "marker",
+								"tag": "open-ask",
+								"known": true,
+								"label": [
+									{
+										"kind": "text",
+										"text": "Do you want to decide Q1 and Q2 now, or should I sketch what each would cost first?"
+									}
+								],
+								"labelText": "Do you want to decide Q1 and Q2 now, or should I sketch what each would cost first?",
+								"attrs": {},
+								"source": ":open-ask[Do you want to decide Q1 and Q2 now, or should I sketch what each would cost first?]",
+								"start": 2173,
+								"end": 2267
+							}
+						]
+					}
+				]
+			},
+			{
+				"blocks": [
+					{
+						"source": "**All six issues are still open.** In the code:",
+						"gap": "\n  ",
+						"hasMarkers": false,
+						"kind": "paragraph",
+						"runs": [
+							{
+								"kind": "strong",
+								"runs": [
+									{
+										"kind": "text",
+										"text": "All six issues are still open."
+									}
+								]
+							},
+							{
+								"kind": "text",
+								"text": " In the code:"
+							}
+						]
+					},
+					{
+						"source": "- I1 is the cup value.\n  - I2 is likely the eighths rounding.\n  - :checked[I3 is real: the error says only \"factor must be positive\", without the recipe name]{src=\"src/scale.js:4\"}.\n  - :checked[I6 is real: the whole number and fraction are joined with no space]{src=\"src/scale.js:20\"}. :checked[The test asserts \"1½\"]{src=\"test/scale.test.js:22\"}, so it will need updating once a space is added.",
+						"gap": "",
+						"hasMarkers": true,
+						"kind": "list",
+						"ordered": false,
+						"spread": false,
+						"items": [
+							{
+								"blocks": [
+									{
+										"source": "I1 is the cup value.",
+										"gap": "",
+										"hasMarkers": false,
+										"kind": "paragraph",
+										"runs": [
+											{
+												"kind": "text",
+												"text": "I1 is the cup value."
+											}
+										]
+									}
+								]
+							},
+							{
+								"blocks": [
+									{
+										"source": "I2 is likely the eighths rounding.",
+										"gap": "",
+										"hasMarkers": false,
+										"kind": "paragraph",
+										"runs": [
+											{
+												"kind": "text",
+												"text": "I2 is likely the eighths rounding."
+											}
+										]
+									}
+								]
+							},
+							{
+								"blocks": [
+									{
+										"source": ":checked[I3 is real: the error says only \"factor must be positive\", without the recipe name]{src=\"src/scale.js:4\"}.",
+										"gap": "",
+										"hasMarkers": true,
+										"kind": "paragraph",
+										"runs": [
+											{
+												"kind": "marker",
+												"tag": "checked",
+												"known": true,
+												"label": [
+													{
+														"kind": "text",
+														"text": "I3 is real: the error says only \"factor must be positive\", without the recipe name"
+													}
+												],
+												"labelText": "I3 is real: the error says only \"factor must be positive\", without the recipe name",
+												"src": "src/scale.js:4",
+												"attrs": {},
+												"source": ":checked[I3 is real: the error says only \"factor must be positive\", without the recipe name]{src=\"src/scale.js:4\"}",
+												"start": 2386,
+												"end": 2500
+											},
+											{
+												"kind": "text",
+												"text": "."
+											}
+										]
+									}
+								]
+							},
+							{
+								"blocks": [
+									{
+										"source": ":checked[I6 is real: the whole number and fraction are joined with no space]{src=\"src/scale.js:20\"}. :checked[The test asserts \"1½\"]{src=\"test/scale.test.js:22\"}, so it will need updating once a space is added.",
+										"gap": "",
+										"hasMarkers": true,
+										"kind": "paragraph",
+										"runs": [
+											{
+												"kind": "marker",
+												"tag": "checked",
+												"known": true,
+												"label": [
+													{
+														"kind": "text",
+														"text": "I6 is real: the whole number and fraction are joined with no space"
+													}
+												],
+												"labelText": "I6 is real: the whole number and fraction are joined with no space",
+												"src": "src/scale.js:20",
+												"attrs": {},
+												"source": ":checked[I6 is real: the whole number and fraction are joined with no space]{src=\"src/scale.js:20\"}",
+												"start": 2506,
+												"end": 2605
+											},
+											{
+												"kind": "text",
+												"text": ". "
+											},
+											{
+												"kind": "marker",
+												"tag": "checked",
+												"known": true,
+												"label": [
+													{
+														"kind": "text",
+														"text": "The test asserts \"1½\""
+													}
+												],
+												"labelText": "The test asserts \"1½\"",
+												"src": "test/scale.test.js:22",
+												"attrs": {},
+												"source": ":checked[The test asserts \"1½\"]{src=\"test/scale.test.js:22\"}",
+												"start": 2607,
+												"end": 2667
+											},
+											{
+												"kind": "text",
+												"text": ", so it will need updating once a space is added."
+											}
+										]
+									}
+								]
+							}
+						]
+					}
+				]
+			},
+			{
+				"blocks": [
+					{
+						"source": "**I4 is a feature, not a bug.** Scaling and showing the result in metric needs new API, so it doesn't fit 0.2 goal 1 (\"fix the open bugs\"). :open-default[I'd treat I4 as out of scope for 0.2 unless you want it in.]",
+						"gap": "",
+						"hasMarkers": true,
+						"kind": "paragraph",
+						"runs": [
+							{
+								"kind": "strong",
+								"runs": [
+									{
+										"kind": "text",
+										"text": "I4 is a feature, not a bug."
+									}
+								]
+							},
+							{
+								"kind": "text",
+								"text": " Scaling and showing the result in metric needs new API, so it doesn't fit 0.2 goal 1 (\"fix the open bugs\"). "
+							},
+							{
+								"kind": "marker",
+								"tag": "open-default",
+								"known": true,
+								"label": [
+									{
+										"kind": "text",
+										"text": "I'd treat I4 as out of scope for 0.2 unless you want it in."
+									}
+								],
+								"labelText": "I'd treat I4 as out of scope for 0.2 unless you want it in.",
+								"attrs": {},
+								"source": ":open-default[I'd treat I4 as out of scope for 0.2 unless you want it in.]",
+								"start": 2859,
+								"end": 2933
+							}
+						]
+					}
+				]
+			},
+			{
+				"blocks": [
+					{
+						"source": "**Publishing to npm (goal 3) hasn't started.** :guess[The name \"pantry\" is probably taken on npm], but I didn't check. `package.json` also has no `files` or `exports` field, so a publish would ship the docs and tests too.",
+						"gap": "",
+						"hasMarkers": true,
+						"kind": "paragraph",
+						"runs": [
+							{
+								"kind": "strong",
+								"runs": [
+									{
+										"kind": "text",
+										"text": "Publishing to npm (goal 3) hasn't started."
+									}
+								]
+							},
+							{
+								"kind": "text",
+								"text": " "
+							},
+							{
+								"kind": "marker",
+								"tag": "guess",
+								"known": true,
+								"label": [
+									{
+										"kind": "text",
+										"text": "The name \"pantry\" is probably taken on npm"
+									}
+								],
+								"labelText": "The name \"pantry\" is probably taken on npm",
+								"attrs": {},
+								"source": ":guess[The name \"pantry\" is probably taken on npm]",
+								"start": 2983,
+								"end": 3033
+							},
+							{
+								"kind": "text",
+								"text": ", but I didn't check. "
+							},
+							{
+								"kind": "code",
+								"text": "package.json"
+							},
+							{
+								"kind": "text",
+								"text": " also has no "
+							},
+							{
+								"kind": "code",
+								"text": "files"
+							},
+							{
+								"kind": "text",
+								"text": " or "
+							},
+							{
+								"kind": "code",
+								"text": "exports"
+							},
+							{
+								"kind": "text",
+								"text": " field, so a publish would ship the docs and tests too."
+							}
+						]
+					}
+				]
+			}
+		]
+	},
+	{
+		"source": ":changed[nothing]. A sensible first step is fixing the cup value and the rounding to match D2 and D3, which takes care of I1 and probably I2. I'll start there if you want, and I'll need approval to run `npm test`.",
+		"gap": "",
+		"hasMarkers": true,
+		"kind": "paragraph",
+		"runs": [
+			{
+				"kind": "marker",
+				"tag": "changed",
+				"known": true,
+				"label": [
+					{
+						"kind": "text",
+						"text": "nothing"
+					}
+				],
+				"labelText": "nothing",
+				"attrs": {},
+				"source": ":changed[nothing]",
+				"start": 3159,
+				"end": 3176
+			},
+			{
+				"kind": "text",
+				"text": ". A sensible first step is fixing the cup value and the rounding to match D2 and D3, which takes care of I1 and probably I2. I'll start there if you want, and I'll need approval to run "
+			},
+			{
+				"kind": "code",
+				"text": "npm test"
+			},
+			{
+				"kind": "text",
+				"text": "."
+			}
+		]
+	}
+]

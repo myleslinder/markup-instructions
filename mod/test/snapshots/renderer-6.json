@@ -1,0 +1,125 @@
+{
+	"type": "Box",
+	"layout": {
+		"flexDirection": "column",
+		"gap": 1
+	},
+	"children": [
+		{
+			"type": "Markdown",
+			"text": "**Sample reply** (same made-up blog move)"
+		},
+		{
+			"type": "Markdown",
+			"text": "---"
+		},
+		{
+			"type": "Text",
+			"style": {},
+			"children": [
+				{
+					"type": "Text",
+					"style": {
+						"tone": "open-ask"
+					},
+					"children": [
+						{
+							"type": "Text",
+							"style": {
+								"bold": true
+							},
+							"children": [
+								{
+									"type": "Symbol",
+									"tag": "open-ask"
+								}
+							]
+						},
+						" ",
+						"Run ",
+						"npx @astrojs/upgrade",
+						" in the blog folder before I scaffold anything else"
+					]
+				},
+				". I can't run it for you, because the project lives on your machine."
+			]
+		},
+		{
+			"type": "Text",
+			"style": {},
+			"children": [
+				{
+					"type": "Text",
+					"style": {
+						"tone": "decided"
+					},
+					"children": [
+						{
+							"type": "Text",
+							"style": {
+								"bold": true
+							},
+							"children": [
+								{
+									"type": "Symbol",
+									"tag": "decided"
+								}
+							]
+						},
+						" ",
+						"Old post URLs must keep working",
+						{
+							"type": "Text",
+							"style": {
+								"tone": "decided",
+								"note": true,
+								"added": true
+							},
+							"children": [
+								" #D2"
+							]
+						}
+					]
+				},
+				", so I'll check the redirects again once the upgrade is done."
+			]
+		},
+		{
+			"type": "Text",
+			"style": {},
+			"children": [
+				{
+					"type": "Text",
+					"style": {
+						"tone": "changed"
+					},
+					"children": [
+						{
+							"type": "Text",
+							"style": {
+								"bold": true
+							},
+							"children": [
+								{
+									"type": "Symbol",
+									"tag": "changed"
+								}
+							]
+						},
+						" ",
+						"nothing"
+					]
+				},
+				". Everything else waits on that command."
+			]
+		},
+		{
+			"type": "Markdown",
+			"text": "---"
+		},
+		{
+			"type": "Markdown",
+			"text": "Your preferences say labels shouldn't contain formatting, so this is a good edge case for the renderer. If the label breaks at the backticks, you'll need to either escape them or allow inline code as the one exception."
+		}
+	]
+}
